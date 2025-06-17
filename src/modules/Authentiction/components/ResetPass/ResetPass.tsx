@@ -28,7 +28,7 @@ export default function ResetPass() {
   const onSubmit = async (data:ForgetType)=>{
       setLoder(true)
       try{
-        let response = await axiosInstance(USERS_URLS.RESET,data).then(res=>{
+        let response = await axiosInstance.post(USERS_URLS.RESET,data).then(res=>{
           toast.success(res.data.message);
           navigate("/login")
           setLoder(false);

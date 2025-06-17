@@ -28,8 +28,10 @@ export default function ChangePass() {
   const onSubmit = async (data:ForgetType)=>{
       setLoder(true)
       try{
-        let response = await axiosInstance(USERS_URLS.CHANGE_PASSWORD,data).then(res=>{
-          toast.success(res.data.message);
+        let response = await axiosInstance.put(USERS_URLS.CHANGE_PASSWORD,data).then(res=>{
+          console.log(res.data);
+          
+          // toast.success(res.data.message);
           navigate("/login")
           setLoder(false);
           reset()
