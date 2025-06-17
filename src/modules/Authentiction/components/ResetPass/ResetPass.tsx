@@ -7,6 +7,13 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
+<<<<<<< HEAD
+=======
+import { ClipLoader } from 'react-spinners';
+import { EMAIL_VALIDION } from '../../../../services/validation';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+>>>>>>> change-password-hamza
 type ForgetType = {
   email:"string",
   seed: "string",
@@ -15,9 +22,12 @@ type ForgetType = {
 }
 export default function ResetPass() {
   const [showPass, setShowPass] = useState(true);
-  const [showPassCon, setShowPassCon] = useState(true)
+  const [showPassCon, setShowPassCon] = useState(true);
+  const navigate = useNavigate()
   let {register, formState:{errors}, handleSubmit, watch ,reset} =  useForm<ForgetType>();
+  const [loder ,setLoder] = useState(false);
 
+<<<<<<< HEAD
   const onSubmit = (data:ForgetType)=>{
     // try{
     //   let res = axiosInstance.post(USERS_URLS.)
@@ -25,6 +35,23 @@ export default function ResetPass() {
     //   console.log(error);
       
     // }
+=======
+
+  const onSubmit = async (data:ForgetType)=>{
+      setLoder(true)
+      try{
+        let response = await axiosInstance.post(USERS_URLS.RESET,data).then(res=>{
+          toast.success(res.data.message);
+          navigate("/login")
+          setLoder(false);
+          reset()
+          
+        })
+      }catch(error){
+        toast.success(error.data.message);
+        setLoder(false);
+    }
+>>>>>>> change-password-hamza
     
   }
   return (
@@ -41,11 +68,7 @@ export default function ResetPass() {
           <div className='d-flex justify-content-start align-items-start flex-column mt-3'>
             <label htmlFor="">E-mail</label>
             <input type="text" placeholder='Enter your E-mail'
-                {...register("email",
-                  {
-                    required:"email is required"
-                  }
-                  )}
+                {...register("email",EMAIL_VALIDION )}
             />
             {errors.email&&<div className="text-danger mb-2">{errors.email.message}</div>}
           </div>
@@ -105,7 +128,7 @@ export default function ResetPass() {
             {errors.confirmPassword&&<div className="text-danger mb-2">{errors.confirmPassword.message}</div>}
           </div>
     
-          <button>Verify</button>
+          <button>{loder? <ClipLoader size={15} color='green' /> :"Verify"}</button>
         </form>
       </div>
     </div>
