@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { useEffect } from 'react';
 import './login.css';
 import bgYacts from '../../../../images/Logo.png'
@@ -6,11 +6,6 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-=======
-
->>>>>>> eeb244e0cc8b3a869dff5c4a92a96b9264a00981
-
-
 const Login = () => {
   let {register,handleSubmit,formState:{errors}}=useForm()
   let submittion= async(data:any)=>{
@@ -29,12 +24,15 @@ const Login = () => {
 
     } catch (error) {
       console.error("Error during form submission:", error);
-      
+       toast.error("Error during form submission:");
     }
    
   }
+
   let navi=useNavigate()
- 
+ let funForget=()=>{
+  navi('/forget-pass')
+ }
   return (
     <div className="ContainerYasta">
        <ToastContainer
@@ -52,12 +50,10 @@ const Login = () => {
         <div className="HeaderYasta">
           <img src={bgYacts} alt="PMS Logo" className="LogoYasta" />
         </div>
-        
         <div className="WelcomeYasta">
           <h2 className="WelcomeTitleYasta">Welcome to PMS</h2>
           <h3 className="LoginTitleYasta">Login</h3>
         </div>
-
         <form onSubmit={handleSubmit(submittion)} className="FormYasta">
           <div className="FieldYasta ">
             <label className="LabelYasta">E-mail</label>
@@ -65,7 +61,6 @@ const Login = () => {
               type="email" 
               className="InputYasta " 
                 autoComplete="off"
-
               placeholder="Enter your E-mail"
                {...register("email", {
     required: "Email is required",
@@ -101,7 +96,7 @@ const Login = () => {
 
           <div className="LinksYasta">
             <a href="#" className="LinkYasta">Register Now ?</a>
-            <a href="#" className="LinkYasta">Forget Password ?</a>
+            <a href="#" className="LinkYasta" onClick={funForget}>Forget Password ?</a>
           </div>
 
           <button type="submit" className="ButtonYasta">
@@ -112,5 +107,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;
