@@ -1,20 +1,24 @@
 
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './login.css';
 import bgYacts from '../../../../images/Logo.png'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../../context/AuthContext';
 const Login = () => {
-  let {register,handleSubmit,formState:{errors}}=useForm()
+  let {register,handleSubmit,formState:{errors}}=useForm();
+  let{saveLoginData} = useContext(AuthContext)
   let submittion= async(data:any)=>{
     try {
       let res= await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login',data, { headers: { 'Content-Type': 'application/json' } } )
+      localStorage.setItem('token' , (res.data.token));
+        toast.success('تم حفظ البيانات بنجاح!');
  
-  toast.success('تم حفظ البيانات بنجاح!');
- 
-    navi('/dashboard/Project-List');
+        navi('/dashboard/Project-List');
+        saveLoginData()
+        
 
  
 
