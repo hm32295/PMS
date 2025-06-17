@@ -25,7 +25,7 @@ export default function ForgetPass() {
   },
   onClose: () => {
     navi('/reset-pass'); 
-  },
+  }
 });
     } catch (error) {
       console.error("Error during form submission:", error);

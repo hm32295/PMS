@@ -7,13 +7,12 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
-<<<<<<< HEAD
-=======
+
 import { ClipLoader } from 'react-spinners';
 import { EMAIL_VALIDION } from '../../../../services/validation';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
->>>>>>> change-password-hamza
+
 type ForgetType = {
   email:"string",
   seed: "string",
@@ -27,15 +26,9 @@ export default function ResetPass() {
   let {register, formState:{errors}, handleSubmit, watch ,reset} =  useForm<ForgetType>();
   const [loder ,setLoder] = useState(false);
 
-<<<<<<< HEAD
-  const onSubmit = (data:ForgetType)=>{
-    // try{
-    //   let res = axiosInstance.post(USERS_URLS.)
-    // }catch(error){
-    //   console.log(error);
-      
-    // }
-=======
+
+ 
+
 
   const onSubmit = async (data:ForgetType)=>{
       setLoder(true)
@@ -51,7 +44,7 @@ export default function ResetPass() {
         toast.success(error.data.message);
         setLoder(false);
     }
->>>>>>> change-password-hamza
+
     
   }
   return (
