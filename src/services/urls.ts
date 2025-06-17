@@ -11,6 +11,8 @@ export const axiosInstance = axios.create({
 });
 
 
-  
+export const USERS_URLS = {
+    
+}
 
 
