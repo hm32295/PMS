@@ -6,6 +6,7 @@ import "./ResetPass.css"
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 type ForgetType = {
   email:"string",
   seed: "string",
@@ -18,7 +19,12 @@ export default function ResetPass() {
   let {register, formState:{errors}, handleSubmit, watch ,reset} =  useForm<ForgetType>();
 
   const onSubmit = (data:ForgetType)=>{
-    console.log(data);
+    // try{
+    //   let res = axiosInstance.post(USERS_URLS.)
+    // }catch(error){
+    //   console.log(error);
+      
+    // }
     
   }
   return (
