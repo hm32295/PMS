@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import './login.css';
 import bgYacts from '../../../../images/Logo.png'
@@ -5,6 +6,9 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+=======
+
+>>>>>>> eeb244e0cc8b3a869dff5c4a92a96b9264a00981
 
 
 const Login = () => {
