@@ -1,0 +1,101 @@
+/* #EF9B28 */
+
+.ResetPass {
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+    background-image: url("../../../../assets/image/bg-auth.jpeg");
+    background-size: cover;
+    /* background-image: url('../../../../images/bg.jpg'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.ResetPass .auth-container .box_ResetPass {
+    background: #315951E5;  
+}
+
+
+.ResetPass .auth-container .titel h3 {
+    color: #EF9B28;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 46px;
+    letter-spacing: -0.4px;
+}
+@media (max-width : 767px) {
+    .ResetPass .auth-container .titel h3 {
+        font-size: 24px;
+    }
+}
+    
+.ResetPass .auth-container .titel p {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 46px;
+    letter-spacing: -0.4px;
+    color: #FFFFFF;
+}
+
+.ResetPass .auth-container .titel h3 span::after {
+    content: "";
+    height: 4px;
+    width: 100%;
+    background-color: #EF9B28;
+    left: 0;
+    top: 100%;
+    position: absolute;
+}
+
+.ResetPass .auth-container button {
+    background-color: #EF9B28;
+    border-radius: 96px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    border: 0;
+    margin-top: 2rem;
+}
+
+.ResetPass .auth-container label {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 22px;
+    letter-spacing: 1;
+    color: #EF9B28;
+    margin-bottom: 2px;
+}
+
+.ResetPass .auth-container input {
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1px white solid;
+    outline: 0;
+    font-family: "Inter" ,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 5px 0;
+    color: #FFFFFF;
+    line-height: 22px;
+    letter-spacing: 1;
+}
+.ResetPass .auth-container .input input {
+    border: 0;
+}
+.ResetPass .auth-container .input {
+    border-bottom: 1px white solid;
+    display: flex !important;
+    align-items: center;
+}
+.ResetPass .auth-container .input .icons{
+    cursor: pointer;
+}
+.ResetPass .auth-container input::placeholder {
+    color: #aaa;
+}
