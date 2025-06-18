@@ -28,10 +28,7 @@ const Login = () => {
    
   }
 
-  let navi=useNavigate()
- let funForget=()=>{
-  navi('/forget-pass')
- }
+ 
   return (
     <div className="ContainerYasta">
        <ToastContainer
@@ -88,8 +85,8 @@ const Login = () => {
           </div>
 
           <div className="LinksYasta">
-            <Link to={"./register"} className="LinkYasta">Register Now ?</Link>
-            <a  className="LinkYasta" onClick={funForget}>Forget Password ?</a>
+            <Link to={"/register"} className="LinkYasta">Register Now ?</Link>
+            <Link to={'/forget-pass'}  className="LinkYasta">Forget Password ?</Link>
           </div>
 
           <button type="submit" className="ButtonYasta">

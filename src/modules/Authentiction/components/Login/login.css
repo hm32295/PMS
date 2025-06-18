@@ -251,7 +251,7 @@
 .InputYasta:-webkit-autofill:focus,
 .InputYasta:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-          box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
   -webkit-text-fill-color: #fff !important; /* يحافظ على لون النص أبيض */
   transition: background-color 9999s ease-out, color 9999s ease-out;
 }

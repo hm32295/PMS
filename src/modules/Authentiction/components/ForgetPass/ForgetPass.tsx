@@ -2,7 +2,7 @@ import bgYacts from '../../../../images/Logo.png'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 import { EMAIL_VALIDION } from '../../../../services/validation';
 export default function ForgetPass() {
@@ -89,10 +89,11 @@ export default function ForgetPass() {
           </div>
 
         
-
+          <Link className='text-white p-0 mt-2 text-capitalize text-decoration-none' to={"/login"} >login now?</Link>
+         
          
 
-          <button type="submit" className="ButtonYasta p-2 mt-2">
+          <button type="submit" className="ButtonYasta p-2 mt-3">
             Verify
           </button>
         </form>

@@ -1,8 +1,8 @@
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import logo from '../../../../assets/image/logo.png'
-import avtar from '../../../../assets/image/logo.png'
+import logo from '../../../../assets/image/logo.png';
+import logo2 from '../../../../assets/image/avtar.png';
 import "./Regestor.css"
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
@@ -11,8 +11,8 @@ import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 
 import { ClipLoader } from 'react-spinners';
 import { EMAIL_VALIDION } from '../../../../services/validation';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 
 type ForgetType = {
   userName:string ,
@@ -27,7 +27,8 @@ type ForgetType = {
 export default function Regestor() {
   const [showPass, setShowPass] = useState(true);
   const [showPassCon, setShowPassCon] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  
   let {register, formState:{errors}, handleSubmit, watch ,reset} =  useForm<ForgetType>();
   const [loder ,setLoder] = useState(false);
 
@@ -48,6 +49,7 @@ export default function Regestor() {
 
 
   const onSubmit = async (data:ForgetType)=>{
+ 
     let resulteHandleForm =handelDataToForm(data)
  
     
@@ -57,17 +59,30 @@ export default function Regestor() {
           toast.success(res.data.message);
           navigate("/verify-account")
           setLoder(false);
-          reset()
+          reset();
+          // console.log(res);
+          
+
           
         })
       }catch(error:any){
         
-        toast.success(error.response.data.message);
+        toast.error(error.response.data.message);
         setLoder(false);
     }
 
     
   }
+
+
+  const [avtar,setAvtar] = useState(logo2)
+  const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setAvtar(imageUrl);
+    }
+  };
   return (
     <div className='ResetPass Regestor d-flex justify-content-center align-items-center row'>
       <div className="auth-container col-md-8 col-sm-10 d-flex justify-content-center align-items-center flex-column">
@@ -80,7 +95,16 @@ export default function Regestor() {
           </div>
 
           <div className="div_avtar w-100 d-flex justify-content-center align-items-center overflow-hidden">
-              <img src={avtar} className='avtar rounded-circle' alt="" />
+                <div style={{backgroundImage : `url(${avtar})`}} className='input d-flex overflow-hidden position-relative rounded-circle justify-content-center'>
+                    <input
+                    className='position-absolute top-0 left-0 h-100 opacity-0'  type="file" placeholder='change your image'
+                        {...register("profileImage"  )}
+                        onChange={(e) => {
+                          onImageChange(e);
+                        }}
+                    />
+               </div>
+              
           </div>
 
 
@@ -177,20 +201,14 @@ export default function Regestor() {
           </div>
 
 
-          <div className='sup_input row w-100 mt-3  justify-content-center'>
-
-              <div className='input d-flex justify-content-center w-50'>
-                    <input className=''  type="file" placeholder='change your image'
-                        {...register("profileImage" )}
-                    />
-                </div>
-                {errors.profileImage&&<div className="text-danger mb-2">{errors.profileImage.message}</div>}
-          </div>
-
+          <Link className='text-white p-0 mt-3 text-capitalize text-decoration-none' to={"/login"} >login now?</Link>
          
-    
+                      
           <button className='w-50 m-auto mt-4'>{loder?  <ClipLoader size={15} color='green' /> :"save"}</button>
+                      
         </form>
+
+        
       </div>
     </div>
   )

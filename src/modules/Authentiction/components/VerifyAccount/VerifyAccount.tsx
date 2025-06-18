@@ -1,6 +1,7 @@
 
 import logo from '../../../../assets/image/logo.png'
 
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
@@ -49,7 +50,7 @@ export default function VerifyAccount() {
         <form onSubmit={handleSubmit(onSubmit)} className="box_ResetPass w-100 p-5 text-white rounded-2">
           <div className='titel'>
             <p className='m-0'>welcome to PMS</p>
-            <h3 ><span className='position-relative text-capitalize'>R</span>eset  Password</h3>
+            <h3 ><span className='position-relative text-capitalize'>v</span>erify Account</h3>
           </div>
 
 
