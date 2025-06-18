@@ -60,8 +60,7 @@ export default function Regestor() {
           reset()
           
         })
-      }catch(error){
-        console.log(error);
+      }catch(error:any){
         
         toast.success(error.response.data.message);
         setLoder(false);
