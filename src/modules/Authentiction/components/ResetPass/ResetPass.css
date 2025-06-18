@@ -6,10 +6,14 @@
     overflow: auto;
     background-image: url("../../../../assets/image/bg-auth.jpeg");
     background-size: cover;
+    /* background-image: url('../../../../images/bg.jpg'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .ResetPass .auth-container .box_ResetPass {
-    background: #315951E5;    ;
+    background: #315951E5;  
 }
 
 

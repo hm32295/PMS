@@ -14,13 +14,15 @@
 }
 
 .BoxLoginYasta {
-  background: rgba(49, 89, 81, 0.95);
+
+  /* background: rgba(49, 89, 81, 0.95); */
+  background: #315951E5 !important;
   border-radius: 20px;
   padding: 40px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); 
+  backdrop-filter: blur(10px); */
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   z-index: 2;
@@ -215,12 +217,12 @@
   height: 100%;
   z-index: 1;
  
-  background-color: rgba(14, 56, 47, 1);
+  /* background-color: rgba(14, 56, 47, 1); */
 }
 
 .ContainerYasta {
     padding: 10px !important;
-    background-image: none;
+    /* background-image: none; */
   
    
   }
@@ -229,7 +231,7 @@
   }
 }
 .BoxLoginYasta {
- background: rgba(0, 0, 0, 0.4);
+ /* background: rgba(0, 0, 0, 0.4); */
 
 }
 

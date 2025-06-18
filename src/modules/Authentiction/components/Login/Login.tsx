@@ -63,7 +63,7 @@ const Login = () => {
               placeholder="Enter your E-mail"
                {...register("email", EMAIL_VALIDION)}
             />
-            {errors.email && <span className="ErrorYastaPassemail">{errors.email.message}</span>}
+            {errors?.email && <span className="ErrorYastaPassemail">{errors?.email.message}</span>}
           </div>
 
           <div className="FieldYasta">
