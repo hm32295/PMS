@@ -1,0 +1,11 @@
+.Regestor .div_avtar img{
+    width: 95px;
+}
+.Regestor .sup_input{
+    
+}
+@media (min-width : 575px) {
+    .Regestor .sup_input>div {
+        width: 48%;   
+    } 
+}

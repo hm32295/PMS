@@ -86,6 +86,8 @@
 }
 .ResetPass .auth-container .input {
     border-bottom: 1px white solid;
+    display: flex !important;
+    align-items: center;
 }
 .ResetPass .auth-container .input .icons{
     cursor: pointer;

@@ -13,8 +13,11 @@ export const axiosInstance = axios.create({
 
 export const USERS_URLS = {
     RESET : `/Users/Reset/`,
+    LOGIN : "/Users/Login/",
+    FPRGET_PASSWORD : "/Users/Reset/Request/",
     CHANGE_PASSWORD : "/Users/ChangePassword/",
-    
+    REGISTER : "/Users/Register/",
+    VERIFY :`/Users/verify`,
 }
 
 

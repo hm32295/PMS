@@ -17,7 +17,6 @@ import ProjectData from "./modules/Projects/components/ProjectData/ProjectData";
 import Tasks from "./modules/Tasks/components/Tasks";
 import Users from "./modules/Users/components/Users";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-bootstrap";
 
@@ -73,9 +72,11 @@ function App() {
        }
    ])
  return(
-  
+  <>
    <RouterProvider router={routs}>  
    </RouterProvider>
+   <ToastContainer />
+  </>
  );
 }
 

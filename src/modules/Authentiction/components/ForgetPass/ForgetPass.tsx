@@ -3,12 +3,14 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { axiosInstance, USERS_URLS } from '../../../../services/urls';
+import { EMAIL_VALIDION } from '../../../../services/validation';
 export default function ForgetPass() {
    let {register,handleSubmit,formState:{errors}}=useForm()
   let submittion= async(data:any)=>{
          
     try {
-    let res= await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Reset/Request',data, { headers: { 'Content-Type': 'application/json' } } )
+    let res= await axiosInstance.post(USERS_URLS.FPRGET_PASSWORD,data )
     toast.success('OTP sent. Please check your inbox.', {
   position: 'top-right',
   autoClose: 3000,
@@ -81,13 +83,7 @@ export default function ForgetPass() {
                 autoComplete="off"
 
               placeholder="Enter your E-mail"
-               {...register("email", {
-    required: "Email is required",
-    pattern: {
-      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      message: "Invalid email format"
-    }
-  })}
+               {...register("email", EMAIL_VALIDION)}
             />
             {errors.email && <span className="ErrorYastaPassemail">{errors.email.message}</span>}
           </div>

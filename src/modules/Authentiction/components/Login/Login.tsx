@@ -1,30 +1,25 @@
 
-import React, { useContext, useEffect } from 'react';
+import  { useContext } from 'react';
 import './login.css';
 import bgYacts from '../../../../images/Logo.png'
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../context/AuthContext';
+import { axiosInstance, USERS_URLS } from '../../../../services/urls';
+import { EMAIL_VALIDION } from '../../../../services/validation';
 const Login = () => {
   let {register,handleSubmit,formState:{errors}}=useForm();
-  let{saveLoginData} = useContext(AuthContext)
+  let{saveLoginData} = useContext(AuthContext);
   let submittion= async(data:any)=>{
     try {
-      let res= await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login',data, { headers: { 'Content-Type': 'application/json' } } )
+      let res= await axiosInstance.post(USERS_URLS.LOGIN,data)
       localStorage.setItem('token' , (res.data.token));
         toast.success('تم حفظ البيانات بنجاح!');
  
         navi('/dashboard/Project-List');
         saveLoginData()
         
-
- 
-
-
-      
-      
 
     } catch (error) {
       console.error("Error during form submission:", error);
@@ -66,13 +61,7 @@ const Login = () => {
               className="InputYasta " 
                 autoComplete="off"
               placeholder="Enter your E-mail"
-               {...register("email", {
-    required: "Email is required",
-    pattern: {
-      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      message: "Invalid email format"
-    }
-  })}
+               {...register("email", EMAIL_VALIDION)}
             />
             {errors.email && <span className="ErrorYastaPassemail">{errors.email.message}</span>}
           </div>
@@ -99,8 +88,8 @@ const Login = () => {
           </div>
 
           <div className="LinksYasta">
-            <a href="#" className="LinkYasta">Register Now ?</a>
-            <a href="#" className="LinkYasta" onClick={funForget}>Forget Password ?</a>
+            <Link to={"./register"} className="LinkYasta">Register Now ?</Link>
+            <a  className="LinkYasta" onClick={funForget}>Forget Password ?</a>
           </div>
 
           <button type="submit" className="ButtonYasta">
