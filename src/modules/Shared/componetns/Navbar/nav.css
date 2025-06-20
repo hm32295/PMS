@@ -1,0 +1,210 @@
+.Nav_Ya3a3pee {
+  background: linear-gradient(135deg, #ff9500, #ff7b00);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.Nav_Ya3a3pee:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo Ya Ged3an */
+.Logo_Ya_Ged3an {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.Logo_Ya_Ged3an:hover {
+  transform: scale(1.05);
+  color: white;
+  text-decoration: none;
+}
+
+.Logo_Soora {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #ff9500;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* User Info Ya Bro */
+.User_Info_Ya_Bro {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: white;
+}
+
+.User_Details_Ya_Habibi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.User_Ism {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.User_Email {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.User_Soora_Ya_King {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  object-fit: cover;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.User_Soora_Ya_King:hover {
+  border-color: white;
+  transform: scale(1.1);
+}
+
+.Notification_Icon_Ya_Basha {
+  font-size: 1.3rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.Notification_Icon_Ya_Basha:hover {
+  transform: scale(1.2);
+  color: #fff3cd;
+}
+
+/* Mobile Ya Gada3 */
+@media (max-width: 768px) {
+  .User_Details_Ya_Habibi {
+    display: none;
+  }
+  
+  .User_Info_Ya_Bro {
+    gap: 10px;
+  }
+  
+  .Logo_Ya_Ged3an {
+    font-size: 1.2rem;
+  }
+  
+  .Logo_Soora {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .User_Soora_Ya_King {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 576px) {
+  .Nav_Ya3a3pee {
+    padding: 8px 0;
+  }
+  
+  .Logo_Ya_Ged3an {
+    font-size: 1.1rem;
+    gap: 8px;
+  }
+  
+  .Logo_Soora {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  
+  .User_Soora_Ya_King {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .Notification_Icon_Ya_Basha {
+    font-size: 1.1rem;
+  }
+}
+
+/* Animation Ya Nag7 */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.Nav_Ya3a3pee {
+  animation: fadeInDown 0.5s ease-out;
+}
+.User_Details_Ya_Habibi{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.Infoo{
+    display: flex !important;
+    flex-direction: column !important;
+}
+ .Infoo{
+        text-align: start !important;
+        justify-content: start !important;
+    }
+    .ProfileName{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .IoIosArrowDown{
+      font-size: 20px;
+      
+    }
+    .IoIosArrowDown:hover{
+         transform: scale(1.2);
+  color: #fff3cd;
+    }
+@media(max-width:1024px){
+    .Notification_Icon_Ya_Basha{
+        display: none;
+    }
+    .Infoo{
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    .ProfileName{
+         text-align: center !important;
+        justify-content: center !important;
+
+    }
+}

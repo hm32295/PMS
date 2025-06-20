@@ -9,18 +9,17 @@ import { AuthContext } from '../../../../context/AuthContext';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 import { EMAIL_VALIDION } from '../../../../services/validation';
 const Login = () => {
+  let navi=useNavigate()
   let {register,handleSubmit,formState:{errors}}=useForm();
   let{saveLoginData} = useContext(AuthContext);
+  
   let submittion= async(data:any)=>{
     try {
       let res= await axiosInstance.post(USERS_URLS.LOGIN,data)
       localStorage.setItem('token' , (res.data.token));
         toast.success('تم حفظ البيانات بنجاح!');
- 
         navi('/dashboard/Project-List');
         saveLoginData()
-        
-
     } catch (error) {
       console.error("Error during form submission:", error);
        toast.error("Error during form submission:");
