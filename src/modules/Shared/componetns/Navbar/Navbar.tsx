@@ -21,10 +21,9 @@ const Navbar = () => {
               <div className="Logo_Soora me-2">
                 PM
               </div>
-              <span className="d-none d-md-inline">PMS</span>
+              <span className=" d-md-inline">PMS</span>
             </a>
           </div>
-
           {/* User Info Section */}
           <div className="flex-shrink-0">
             <div className="User_Info_Ya_Bro d-flex align-items-center">

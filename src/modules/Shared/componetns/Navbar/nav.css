@@ -103,9 +103,7 @@
 
 /* Mobile Ya Gada3 */
 @media (max-width: 768px) {
-  .User_Details_Ya_Habibi {
-    display: none;
-  }
+  
   
   .User_Info_Ya_Bro {
     gap: 10px;
@@ -195,9 +193,7 @@
   color: #fff3cd;
     }
 @media(max-width:1024px){
-    .Notification_Icon_Ya_Basha{
-        display: none;
-    }
+   
     .Infoo{
         text-align: center !important;
         justify-content: center !important;
@@ -206,5 +202,11 @@
          text-align: center !important;
         justify-content: center !important;
 
+    }
+    .User_Email{
+      display: none;
+    }
+     .IoIosArrowDown{
+display: none;
     }
 }

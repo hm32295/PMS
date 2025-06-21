@@ -1,0 +1,118 @@
+.header-section {
+  background: linear-gradient(135deg, rgba(49, 89, 81, 0.44) 0%, rgba(49, 89, 81, 0.44) 100%);
+  background-image: url('./backg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  min-height: 280px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 0;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.header-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(49, 89, 81, 0.44) 0%, rgba(49, 89, 81, 0.44) 100%);
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.header-title {
+  font-size: 40px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  margin-left: 20px;
+}
+
+.header-title .highlight {
+  color: rgba(239, 155, 40, 1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.header-subtitle {
+  margin-left: 20px;
+  color: #E5E7EB;
+  font-weight: 400;
+  line-height: 1;
+  font-size: 25px;
+ 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0;
+}
+
+/* Responsive Header */
+@media (max-width: 991.98px) {
+  .header-section {
+    min-height: 350px;
+    padding: 50px 0;
+  }
+  
+  .header-title {
+    font-size: 2.8rem;
+  }
+  
+  .header-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .header-section {
+    min-height: 300px;
+  
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .header-content {
+    max-width: 100%;
+  }
+  
+  .header-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .header-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .header-section {
+    min-height: 280px;
+    padding: 30px 0;
+  }
+  
+  .header-title {
+    font-size: 1.8rem;
+  }
+  
+  .header-subtitle {
+    font-size: 0.95rem;
+    padding: 0 15px;
+  }
+}
+
+
+.header-content {
+  animation: fadeInUp 1s ease-out;
+}
+
