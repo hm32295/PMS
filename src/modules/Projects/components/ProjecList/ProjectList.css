@@ -79,6 +79,8 @@
 }
 .ProjectList table .action:hover .actions{
     display: flex !important;
+    top: 95%;
+    z-index: 2;
 }
 
 .ProjectList table .action .actions > div{

@@ -1,0 +1,94 @@
+.ProjectData{
+    background-color: #eee;
+}
+.ProjectData header{
+    padding: 25px;
+    background: #fff;
+    width: 100%;
+    color: #0E382F;
+    text-transform: capitalize;
+}
+.ProjectData header button{
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 14px;
+    background: transparent;
+    line-height: 100%;
+    letter-spacing: 0;
+    margin-bottom: 16px;
+    border: 0;
+}
+.ProjectData header h2{
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0;
+}
+.ProjectData form{
+    box-shadow: 0px 2px 4px 0px #00000040;
+    border-radius: 1rem;
+    background-color: #fff;
+    margin-top: 36px 40px;
+    padding: 48px 32px;
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    
+}
+.ProjectData form div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.ProjectData form div textarea,
+.ProjectData form div input
+{
+    text-transform: capitalize;
+    width: 100%;
+    border: 1px solid #ECECEC;
+    border-radius: 1rem;
+    padding: 1rem;
+    outline: 2px solid #e4e4e4;
+}
+.ProjectData form label{
+    font-family: Quicksand;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0;
+}
+.ProjectData form .buttons{
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.ProjectData form .buttons a{
+    
+    border-radius: 24px;
+    border-width: 1px;
+    padding-top: 14px;
+    padding-right: 28px;
+    padding-bottom: 14px;
+    padding-left: 28px;
+    border: 1px solid #000000;
+    color: #000;
+    text-decoration: none;
+}
+.ProjectData form .buttons button{
+
+    border-radius: 24px;
+    padding-top: 14px;
+    padding-right: 28px;
+    padding-bottom: 14px;
+    padding-left: 28px;
+    background: #EF9B28;
+    text-transform: capitalize;
+    color: #fff;
+    border: 0;
+    outline: 0;
+}

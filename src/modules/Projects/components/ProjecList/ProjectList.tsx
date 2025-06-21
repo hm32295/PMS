@@ -11,17 +11,16 @@ export default function ProjectList() {
   const navigate = useNavigate();
   const [AllProjects ,setAllProjects] = useState([]);
   const [loders ,setLoders] = useState(false);
-  const getAllProjects = async (pageSize:number , pageNumber:number )=>{
+  const getAllProjects = async ( pageNumber:number,pageSize:number  )=>{
     setLoders(true)
     try {
       const response = await axiosInstance(PROJECTS_URLS.GET,{params:{pageSize , pageNumber}} );
       setAllProjects(response.data.data);
       setLoders(false)
-      // console.log((response.data.data));
+      ;
       
     } catch (error) {
       setLoders(false)
-      // console.log(error);
       
     }
     
@@ -71,7 +70,7 @@ export default function ProjectList() {
                                     <span className='rounded-circle'></span>
                                     <span className='rounded-circle'></span>
                                     <span className='rounded-circle'></span>
-                                    <div className="actions position-absolute top-100 rounded-3 bg-white end-0 d-flex flex-column">
+                                    <div className="actions position-absolute rounded-3 bg-white end-0 d-flex flex-column">
                                       <div>
                                         <FontAwesomeIcon className='actions_icons' icon={faEye}  title="View" />
                                         <span>View</span>
