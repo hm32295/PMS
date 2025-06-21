@@ -11,6 +11,7 @@ import { EMAIL_VALIDION } from '../../../../services/validation';
 const Login = () => {
   let {register,handleSubmit,formState:{errors}}=useForm();
   let{saveLoginData} = useContext(AuthContext);
+  const navi = useNavigate()
   let submittion= async(data:any)=>{
     try {
       let res= await axiosInstance.post(USERS_URLS.LOGIN,data)

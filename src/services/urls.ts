@@ -20,4 +20,7 @@ export const USERS_URLS = {
     VERIFY :`/Users/verify`,
 }
 
+export const PROJECTS_URLS ={
+    GET : `/Project/`,
+}
 
