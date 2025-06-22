@@ -5,6 +5,7 @@ import { FaEllipsisV, FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
 import { BsFilter } from 'react-icons/bs';
 
 type User = {
+  id: number;
   userName: string;
   isActivated: boolean;
   phoneNumber: string;
@@ -57,18 +58,17 @@ export default function UsersList() {
   useEffect(() => {
     let filtered = [...rawUsersList];
 
-     if (statusFilter === 'true') {
+    if (statusFilter === 'true') {
       filtered = filtered.filter(user => user.isActivated === true);
     } else if (statusFilter === 'false') {
       filtered = filtered.filter(user => user.isActivated === false);
     }
 
-     if (sortField && sortDirection) {
+    if (sortField && sortDirection) {
       filtered.sort((a, b) => {
         let aValue: any = a[sortField];
         let bValue: any = b[sortField];
 
-        // Handle different data types
         if (sortField === 'modificationDate') {
           aValue = new Date(aValue);
           bValue = new Date(bValue);
@@ -95,7 +95,7 @@ export default function UsersList() {
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
-       if (sortDirection === 'asc') {
+      if (sortDirection === 'asc') {
         setSortDirection('desc');
       } else if (sortDirection === 'desc') {
         setSortDirection(null);
@@ -104,27 +104,35 @@ export default function UsersList() {
         setSortDirection('asc');
       }
     } else {
-       setSortField(field);
+      setSortField(field);
       setSortDirection('asc');
     }
   };
 
-const getSortIcon = (field: SortField) => {
-  const iconStyle = { fontSize: '18px', color: '#fff' };  
+  const getSortIcon = (field: SortField) => {
+    const iconStyle = { fontSize: '18px', color: '#fff' };
 
-  if (sortField !== field) {
+    if (sortField !== field) {
+      return <FaSort className="ms-1" style={iconStyle} />;
+    }
+
+    if (sortDirection === 'asc') {
+      return <FaSortUp className="ms-1" style={iconStyle} />;
+    } else if (sortDirection === 'desc') {
+      return <FaSortDown className="ms-1" style={iconStyle} />;
+    }
+
     return <FaSort className="ms-1" style={iconStyle} />;
-  }
+  };
 
-  if (sortDirection === 'asc') {
-    return <FaSortUp className="ms-1" style={iconStyle} />;
-  } else if (sortDirection === 'desc') {
-    return <FaSortDown className="ms-1" style={iconStyle} />;
-  }
-
-  return <FaSort className="ms-1" style={iconStyle} />;
-};
-
+  const handleBlockUser = async (userId: number) => {
+    try {
+      await axiosInstance.put(USERS_URLS.UPDATE_USER_STATUS(userId));
+      getAllUsers(pageSize, currentPage, nameValue);
+    } catch (error) {
+      console.error('Error toggling user status:', error);
+    }
+  };
 
   const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setPageSize(parseInt(e.target.value));
@@ -189,45 +197,20 @@ const getSortIcon = (field: SortField) => {
         <Table striped bordered hover className="text-center align-middle">
           <thead className="table-dark">
             <tr>
-              <th 
-                className="user-select-none" 
-                style={{ cursor: 'pointer' }}
-                onClick={() => handleSort('userName')}
-              >
-                User Name
-                {getSortIcon('userName')}
+              <th onClick={() => handleSort('userName')} className="user-select-none" style={{ cursor: 'pointer' }}>
+                User Name {getSortIcon('userName')}
               </th>
-              <th 
-                className="user-select-none" 
-                style={{ cursor: 'pointer' }}
-                onClick={() => handleSort('isActivated')}
-              >
-                Status
-                {getSortIcon('isActivated')}
+              <th onClick={() => handleSort('isActivated')} className="user-select-none" style={{ cursor: 'pointer' }}>
+                Status {getSortIcon('isActivated')}
               </th>
-              <th 
-                className="user-select-none" 
-                style={{ cursor: 'pointer' }}
-                onClick={() => handleSort('phoneNumber')}
-              >
-                Phone Number
-                {getSortIcon('phoneNumber')}
+              <th onClick={() => handleSort('phoneNumber')} className="user-select-none" style={{ cursor: 'pointer' }}>
+                Phone Number {getSortIcon('phoneNumber')}
               </th>
-              <th 
-                className="user-select-none" 
-                style={{ cursor: 'pointer' }}
-                onClick={() => handleSort('email')}
-              >
-                Email
-                {getSortIcon('email')}
+              <th onClick={() => handleSort('email')} className="user-select-none" style={{ cursor: 'pointer' }}>
+                Email {getSortIcon('email')}
               </th>
-              <th 
-                className="user-select-none" 
-                style={{ cursor: 'pointer' }}
-                onClick={() => handleSort('modificationDate')}
-              >
-                Date Created
-                {getSortIcon('modificationDate')}
+              <th onClick={() => handleSort('modificationDate')} className="user-select-none" style={{ cursor: 'pointer' }}>
+                Date Created {getSortIcon('modificationDate')}
               </th>
               <th>Actions</th>
             </tr>
@@ -263,7 +246,15 @@ const getSortIcon = (field: SortField) => {
                       <FaEllipsisV />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item>Block</Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => {
+                          if (window.confirm(`Are you sure you want to ${user.isActivated ? 'block' : 'unblock'} this user?`)) {
+                            handleBlockUser(user.id);
+                          }
+                        }}
+                      >
+                        {user.isActivated ? 'Block' : 'Unblock'}
+                      </Dropdown.Item>
                       <Dropdown.Item>View</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
