@@ -15,7 +15,7 @@ import "bootstrap/dist/js/bootstrap.bundle.js";
 import ProjectList from "./modules/Projects/components/ProjecList/ProjectList";
 import ProjectData from "./modules/Projects/components/ProjectData/ProjectData";
 import Tasks from "./modules/Tasks/components/Tasks";
-import Users from "./modules/Users/components/Users";
+import Users from "./modules/Users/components/UsersList/UsersList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
