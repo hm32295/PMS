@@ -9,11 +9,12 @@ import { AuthContext } from '../../../../context/AuthContext';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 import { EMAIL_VALIDION } from '../../../../services/validation';
 const Login = () => {
+  let navi=useNavigate()
 
-  let {register,handleSubmit,formState:{errors}}=useForm();
+  const {register,handleSubmit,formState:{errors}}=useForm();
   let{saveLoginData} = useContext(AuthContext);
 
-  const navi = useNavigate()
+ 
 
   let submittion= async(data:any)=>{
     try {
