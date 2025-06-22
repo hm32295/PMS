@@ -1,0 +1,118 @@
+.not-found-container {
+  min-height: 100vh;
+  background-color:rgba(14, 56, 47, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+.error-content {
+  text-align: center;
+}
+
+.error-number {
+  font-size: 8rem;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+.error-number::before,
+.error-number::after {
+  content: '404';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.error-number::before {
+  color: #ff0000;
+  animation: glitch-1 0.3s infinite linear alternate-reverse;
+}
+
+.error-number::after {
+  color:rgba(239, 155, 40, 1);
+  animation: glitch-2 0.3s infinite linear alternate-reverse;
+}
+
+.error-message {
+  font-size: 3rem !important;
+  color: #060606;
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+@keyframes glitch-1 {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  60% {
+    transform: translate(-2px, -2px);
+  }
+  80% {
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .error-number {
+    font-size: 6rem;
+  }
+  
+  .error-message {
+    font-size: 1rem;
+  }
+}
+.error-message {
+  font-size: 2rem !important;
+  color: rgba(239, 155, 40, 1);
+  margin-top: 1rem;
+  font-weight: 700;
+}
+.error-message span{
+    color:rgba(244, 244, 229, 1);
+}
+.Dashboard_Unfound{
+    padding: 10px;
+    color: aliceblue;
+    background-color:  rgba(239, 155, 40, 1);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-weight: 700;
+}
