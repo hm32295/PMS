@@ -84,10 +84,10 @@
 }
 
 .ProjectList table .action .actions > div{
-display: flex;
-padding:.5rem 3rem .5rem .5rem;
-justify-content: flex-start;
-align-items: center;
+    display: flex;
+    padding:.5rem 3rem .5rem .5rem;
+    justify-content: flex-start;
+    align-items: center;
     gap: .5rem;
 }
 .ProjectList table .action .actions > div:hover{
@@ -130,4 +130,12 @@ align-items: center;
     background: #EF9B28;
     border: 0;
     color: white;
+}
+.view{
+    background-color: #00000033;
+}
+.view div svg{
+    width: 1rem ;
+    cursor: pointer;
+    height: 1rem;
 }

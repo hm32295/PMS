@@ -23,5 +23,9 @@ export const USERS_URLS = {
 export const PROJECTS_URLS ={
     GET : `/Project/`,
     CRETE : `/Project/`,
-}
+    DELETE :(id:string)=>`/Project/${id}`,
+    UPDATE :(id)=>`/Project/${id}`,
+
+}// 
+// /api/v1/Project/{id}
 

@@ -1,25 +1,55 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import './ProjectData.css'
 import { useForm } from "react-hook-form";
 import { axiosInstance, PROJECTS_URLS } from "../../../../services/urls";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
+import { projectData } from "../../../../interfaces/interface";
 
 
 export default function ProjectData() {
   const navigate = useNavigate();
   const {handleSubmit, register,formState:{errors} ,reset}= useForm();
-  const [loder , setLoder] = useState(false)
-  const saveData =async (data)=>{
+  const [loder , setLoder] = useState(false);
+  const [buttonSave , setButtonSave]= useState("save")
+  const location = useLocation();
+  const projectItem = location.state
+
+
+  useEffect(()=>{
+    if(projectItem){
+      setButtonSave("Edit");
+      reset({
+        description:projectItem.description,
+        title : projectItem.title
+      })
+      
+      
+    }
+  },[])
+  const saveData =async (data:projectData)=>{
+  
+    let id;
+    if(projectItem) id = projectItem.id
+    let response;
       setLoder(true)
     try {
-      
-      const respnse = await axiosInstance.post(PROJECTS_URLS.CRETE,data);
-      console.log(respnse);
+      if(buttonSave === "save"){
+
+        response =  await axiosInstance.post(PROJECTS_URLS.CRETE,data);
+      }else if(buttonSave === "Edit"){
+        response = await axiosInstance.put(PROJECTS_URLS.UPDATE(id),data);
+
+      }
       setLoder(false);
-      toast.success(respnse.statusText + ' success' || "Created Succes");
-      reset()
+      toast.success(response?.statusText || "success created");
+      setButtonSave("save");
+      // setPageNumber(Array(response.data.totalNumberOfPages).fill().map((_,i) => i+1))
+      reset({
+        description:"",
+        title : ""
+      });
       
     } catch (error) {
       setLoder(false)
@@ -27,6 +57,7 @@ export default function ProjectData() {
     }
     
   }
+  
   return (
     <div className='ProjectData'>
       <header >
@@ -45,8 +76,8 @@ export default function ProjectData() {
           {errors?.description&&<div className="text-danger mb-2">{errors?.description?.message}</div>}
         </div>
         <div className="buttons">
-          <button type="submit">
-            {loder ? <ClipLoader color="#000" size={20} /> : 'Save' }
+          <button type="submit" disabled={loder} className="d-flex justify-content-center align-items-center">
+            {loder ? <ClipLoader color="#fff" size={20} /> : buttonSave}
             
           </button>
           <Link to="/dashboard/Project-List">Cancel</Link>

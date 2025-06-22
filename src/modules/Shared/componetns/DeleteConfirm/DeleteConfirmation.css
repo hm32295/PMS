@@ -1,0 +1,94 @@
+.deleteConfirm-sup{
+    cursor: pointer;
+    background: transparent;
+    color: #000;
+    display: flex;
+    justify-content: flex-start;
+    gap: .5rem;
+    text-transform: capitalize;
+    border: none;
+    padding: .5rem 3rem .5rem .5rem;
+    align-items: center;
+    margin: 0;
+}
+.deleteConfirm-sup:hover,
+.deleteConfirm-sup:active
+{
+    background-color: #f5f6f6 !important;
+    color: #000 !important;
+    border: 0 !important;
+}
+
+.deleteConfirmation button.btn-close {
+    color: #CC0000;
+    border: #CC0000 solid 1px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.deleteConfirmation button {
+    border: 1px solid #CC0000;
+    color: #CC0000;
+    background: transparent;
+}
+
+.deleteConfirmation button,
+.deleteConfirmation button:hover {
+    background-color: transparent;
+    color: #CC0000;
+}
+
+/* .deleteConfirmation button:cliked{
+
+} */
+.data-deleteCon h3 {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #49494999;
+    text-align: center;
+}
+
+.data-deleteCon p {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #494949;
+}
+
+.deleteConfirmation button {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+}
+.deleteConfirmation button:active {
+    background-color: transparent !important;
+    color: red !important;
+}
+
+.closed.modal-header {
+    background: transparent;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+}
+
+.closed.modal-header svg {
+    color: #CC0000;
+    border-radius: 50%;
+    border: 1px solid #CC0000;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 12px;
+    cursor: pointer;
+    padding: .2rem;
+}
