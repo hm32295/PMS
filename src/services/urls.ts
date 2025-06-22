@@ -18,6 +18,8 @@ export const USERS_URLS = {
     CHANGE_PASSWORD : "/Users/ChangePassword/",
     REGISTER : "/Users/Register/",
     VERIFY :`/Users/verify`,
+        GET_USERS: "/Users/",
+
 }
 
 export const PROJECTS_URLS ={
