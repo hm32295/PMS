@@ -1,5 +1,4 @@
-import  { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../../../context/AuthContext';
+import  {  useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProjectList.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,36 +6,42 @@ import { faClose, faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-sol
 import { axiosInstance, PROJECTS_URLS } from '../../../../services/urls';
 import { ClipLoader } from 'react-spinners';
 import DeleteConfirmation from '../../../Shared/componetns/DeleteConfirm/DeleteConfirmation';
-import { getDataProject } from '../../../../interfaces/interface';
+import { getDataProject, pageDataCalc } from '../../../../interfaces/interface';
+import ViewData from './ViewData';
+import PaginationPage from './Pagination';
 export default function ProjectList() {
-  let{logout} = useContext(AuthContext);
+  // let{logout}:{logout:any} = useContext(AuthContext);
   const navigate = useNavigate();
   const [AllProjects ,setAllProjects] = useState([]);
-  const[ title ,setTitle] = useState("")
-
-
+  const[ title ,setTitle] = useState("");
   const [loders ,setLoders] = useState(false);
   const [view ,setView] = useState(false);
-  const[dataView , setDataView] = useState({});
-  // const [pageNumber ,setPageNumber] =useState([])
+  const[dataView , setDataView] = useState<getDataProject |null>(null);
+  const [PagesList ,setPagesList] =useState([]);
+  const [pageData , setPageData] = useState<pageDataCalc | null>(null)
   
   const showView =(data:getDataProject)=>{
-    
     setDataView(data);
-    setView(true)
-
+    setView(true);
   }
 
   const getAllProjects = async ( pageNumber:number,pageSize:number,title:string  )=>{
     setLoders(true)
     try {
       const response = await axiosInstance(PROJECTS_URLS.GET,{params:{pageSize , pageNumber,title}} );
-      // setPageNumber(Array(response?.data?.totalNumberOfPages).fill().map((_,i) => i+1))
+      setPageData({
+        pageNumber: response?.data?.pageNumber,
+        totalNumberOfRecords: response?.data?.totalNumberOfRecords,
+        totalNumberOfPages: response?.data?.totalNumberOfPages
+      });
+      
+      setPagesList(Array(response?.data?.totalNumberOfPages).fill().map((_,i) => i+1))
       setAllProjects(response?.data?.data);
-      console.log(response?.data?.data);
       setLoders(false);
       
     } catch (error) {
+      console.log(error);
+      
       setLoders(false)
       
     }
@@ -117,7 +122,9 @@ export default function ProjectList() {
               </tbody> 
           </table>
           )}
-          {view&& <View data={dataView} setView={setView}/>}
+
+          <PaginationPage funData={getAllProjects} pages={PagesList} pageData={pageData}/>
+          {view && <ViewData data={dataView} setView={setView}/>}
           
          
      
@@ -125,42 +132,3 @@ export default function ProjectList() {
   )
 }
 
-function View ({setView ,data}:{ data:getDataProject}){
-
- console.log(setView);
- console.log(data);
- 
-  
-  return(
-    <div className='view position-fixed top-0 start-0 d-flex justify-content-center align-items-center  z-2 h-100 w-100'>
-      <div className='d-flex flex-column align-items-end gap-2'>
-
-        <FontAwesomeIcon  onClick={()=>{setView(false)}} 
-        icon={faClose} className='text-black p-2 border-2 rounded-circle bg-white'
-          
-        />
-        <table className="table  rounded-3  w-100 bg-white ">
-          <thead className="thead-dark">
-            <tr>
-              <th scope="col">title</th>
-              <th scope="col">description</th>
-              <th scope="col">creation Date</th>
-              <th scope="col">modification Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{data.title}</td>
-              <td>{data.description}</td>
-              <td>{data.creationDate}</td>
-              <td>{data.modificationDate}</td>
-              
-            </tr>
-         
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  )
-}

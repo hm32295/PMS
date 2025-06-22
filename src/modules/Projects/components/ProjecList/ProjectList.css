@@ -139,3 +139,11 @@
     cursor: pointer;
     height: 1rem;
 }
+.ProjectList .page-link {
+    color: #0E382F;
+}
+.ProjectList .active>.page-link,
+.ProjectList .page-link.active{
+    background-color: #0E382F;
+    color: #fff;
+}
