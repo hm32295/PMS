@@ -29,7 +29,7 @@ const Sidepar = () => {
     navi('/dashboard/Users')
   }
    let funPrjects=()=>{
-    navi('/dashboard/Users')
+    navi('/dashboard/Project-List')
   }
    let funTasks=()=>{
     navi('/dashboard/Tasks')

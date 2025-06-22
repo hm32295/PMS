@@ -2,3 +2,12 @@
     padding: 0;
     margin: 0;
 }
+.table thead th {
+background-color: rgba(49, 89, 81, 0.9) !important; 
+ color: white !important;
+  border-color: #315951 !important;
+}
+ 
+.dropdown-toggle::after {
+  display: none !important;
+}
