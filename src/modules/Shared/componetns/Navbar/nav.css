@@ -1,5 +1,5 @@
 .Nav_Ya3a3pee {
-  background: linear-gradient(135deg, #ff9500, #ff7b00);
+
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 12px 0;
   position: sticky;
@@ -19,14 +19,14 @@
   gap: 12px;
   font-weight: bold;
   font-size: 1.4rem;
-  color: white;
+  color:  #ff9500;
   text-decoration: none;
   transition: transform 0.3s ease;
 }
 
 .Logo_Ya_Ged3an:hover {
   transform: scale(1.05);
-  color: white;
+  color: #b27928;
   text-decoration: none;
 }
 
@@ -49,7 +49,8 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  color: white;
+  font-weight: 600;
+  color: #000;
 }
 
 .User_Details_Ya_Habibi {
@@ -90,7 +91,7 @@
 
 .Notification_Icon_Ya_Basha {
   font-size: 1.3rem;
-  color: white;
+  color: #000;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -98,7 +99,7 @@
 
 .Notification_Icon_Ya_Basha:hover {
   transform: scale(1.2);
-  color: #fff3cd;
+  color: #000;
 }
 
 /* Mobile Ya Gada3 */

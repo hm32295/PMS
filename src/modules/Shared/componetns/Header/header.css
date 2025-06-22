@@ -116,3 +116,232 @@
   animation: fadeInUp 1s ease-out;
 }
 
+
+.header_Baladna {
+  background: rgba(229, 230, 244, 1);
+  padding: 20px 0px;
+  border-bottom: 2px solid rgba(200, 200, 220, 0.5);
+}
+
+.title_Keda {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  margin-bottom: 8px;
+}
+
+.subtitle_Yalla {
+  font-size: 14px;
+  color: rgba(102, 102, 102, 1);
+  margin-bottom: 0px;
+}
+
+
+.btn_Tapwesh {
+  background: rgba(66, 139, 202, 1);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn_Tapwesh:hover {
+  background: rgba(51, 122, 183, 1);
+  transform: translateY(-2px);
+}
+
+.btn_Secondary_Khalas {
+  background: rgba(244, 244, 229, 1);
+  border: 1px solid rgba(220, 220, 200, 1);
+  color: rgba(51, 51, 51, 1);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.card_Sahla {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(240, 240, 240, 1);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.card_Sahla:hover {
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.card_Progress_Tanya {
+  background: rgba(229, 230, 244, 0.3);
+}
+
+.card_Tasks_Mesh_Keda {
+  background: rgba(244, 244, 229, 0.3);
+}
+
+.card_Projects_Gamda {
+  background: rgba(255, 229, 229, 0.3);
+}
+
+.card_Active_Yasta {
+  background: rgba(229, 244, 229, 0.3);
+}
+
+.card_Inactive_Khalas {
+  background: rgba(255, 255, 229, 0.3);
+}
+
+.icon_Container_Helwa {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.icon_Progress_Color {
+  background: rgba(229, 230, 244, 1);
+  color: rgba(102, 102, 204, 1);
+}
+
+.icon_Tasks_Color {
+  background: rgba(244, 244, 229, 1);
+  color: rgba(204, 204, 102, 1);
+}
+
+.icon_Projects_Color {
+  background: rgba(255, 229, 229, 1);
+  color: rgba(204, 102, 102, 1);
+}
+
+.icon_Active_Color {
+  background: rgba(229, 244, 229, 1);
+  color: rgba(102, 204, 102, 1);
+}
+
+.icon_Inactive_Color {
+  background: rgba(255, 255, 229, 1);
+  color: rgba(204, 204, 102, 1);
+}
+
+.stat_Number_Kbeer {
+  font-size: 20px !important;
+  font-weight: 600;
+  color: rgba(51, 51, 51, 1);
+  margin-bottom: 4px;
+}
+
+.stat_Label_Sagheer {
+  font-size: 14px;
+  color: rgba(102, 102, 102, 1);
+  font-weight: 500;
+}
+
+
+
+
+.section_Container_Kolo {
+  padding: 40px 0px;
+}
+.section_Header_Fo2 {
+  margin-bottom: 32px;
+}
+
+
+@media (max-width: 768px) {
+  .header_Baladna {
+    padding: 16px 0px;
+  }
+  
+  .title_Keda {
+    font-size: 20px;
+  }
+  
+  .subtitle_Yalla {
+    font-size: 12px;
+  }
+  
+  .card_Sahla {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .stat_Number_Kbeer {
+    font-size: 24px;
+  }
+  
+  .stat_Label_Sagheer {
+    font-size: 12px;
+  }
+  
+  .icon_Container_Helwa {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+  }
+  
+  .grid_Floos {
+    gap: 16px;
+  }
+  
+  .section_Container_Kolo {
+    padding: 24px 0px;
+  }
+  
+  .btn_Tapwesh,
+  .btn_Secondary_Khalas {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .card_Sahla {
+    padding: 12px;
+  }
+  
+  .stat_Number_Kbeer {
+    font-size: 20px;
+  }
+  
+  .icon_Container_Helwa {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card_Sahla {
+    padding: 32px;
+  }
+  
+  .stat_Number_Kbeer {
+    font-size: 36px;
+  }
+  
+  .section_Container_Kolo {
+    padding: 60px 0px;
+  }
+}
+.Bg_YAPAA{
+  background-color:rgba(248, 249, 251, 1);
+}
+.section_Header_Fo2  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 3px solid rgba(239,155,40,1); /* سمك الخط: 4px */
+  padding-left: 12px;
+
+ 
+}
