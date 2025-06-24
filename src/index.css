@@ -12,3 +12,40 @@ background-color: rgba(49, 89, 81, 0.9) !important;
 .dropdown-toggle::after {
   display: none !important;
 }
+
+
+
+/* Test */
+/* Test */
+._layout_j2ocx_3 {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+aside._sidebar_j2ocx_17 {
+  width: 80px !important;
+}
+
+._main_j2ocx_27 {
+  width: calc(100% - 80px);
+}
+
+._content_j2ocx_55 {
+  padding: .5rem !important;
+}
+
+@media (max-width : 455px) {
+  ._content_j2ocx_55 {
+    padding: 0rem !important;
+  }
+
+  /* Test */
+  .Logo_Ya_Ged3an span {
+    display: none !important;
+  }
+}
+.ps-menu-root ul li{
+
+  display: flex !important;
+  justify-content: flex-start !important;
+}

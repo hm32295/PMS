@@ -154,7 +154,7 @@
 }
 @media (max-width : 767px) {
     .ProjectList{
-        margin: .5rem !important;
+        margin: .25rem !important;
     }
     .ProjectList ._content_j2ocx_55{
         padding: 0.5rem;
@@ -170,27 +170,7 @@
     }
     
 }
-/* Test */
-._layout_j2ocx_3{
-    overflow: auto;
-    height: auto;
-}
-aside._sidebar_j2ocx_17{
-    width: 80px !important;
-}
-._main_j2ocx_27{
-    width: calc(100% - 80px);
-}
-._content_j2ocx_55{
-    padding: .5rem;
-}
 @media (max-width : 455px) {
-    /* un test */
-    .ProjectList .search input{
-        width: 100%;
-    }
-    /* Test */
-    .Logo_Ya_Ged3an span {
-        display: none;
-    }
+    .ProjectList .search input {
+        width: 100%; }
 }
