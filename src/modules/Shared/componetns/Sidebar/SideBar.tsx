@@ -26,13 +26,13 @@ const Sidepar = () => {
     navi('/dashboard')
   }
    let funUsers=()=>{
-    navi('/dashboard/Users')
+    navi('/dashboard/users')
   }
    let funPrjects=()=>{
-    navi('/dashboard/Project-List')
+    navi('/dashboard/project-List')
   }
    let funTasks=()=>{
-    navi('/dashboard/Tasks')
+    navi('/dashboard/tasks-list')
   }
    let{logout} = useContext(AuthContext);
    

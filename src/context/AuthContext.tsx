@@ -10,7 +10,8 @@ export default function AuthContextProvider({ children }) {
         const encodedToken = localStorage.getItem("token");
        
         if (!encodedToken) return;
-  
+        
+        
         const decodedToken:any = jwtDecode(encodedToken);
         setLoginData(decodedToken);
         

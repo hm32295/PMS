@@ -14,11 +14,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import ProjectList from "./modules/Projects/components/ProjecList/ProjectList";
 import ProjectData from "./modules/Projects/components/ProjectData/ProjectData";
-import Tasks from "./modules/Tasks/components/Tasks";
 import Users from "./modules/Users/components/UsersList/UsersList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import TasksList from "./modules/Tasks/components/TasksList/TasksList";
+import TasksData from "./modules/Tasks/components/TasksData/TasksData";
 
 
 function App() {
@@ -64,10 +65,11 @@ function App() {
          element: <ProtectedRoute > <MasterLayout /> </ProtectedRoute> , 
          children :[
            { index : true, element : <Dashboard /> },
-           { path : "Project-List", element : <ProjectList /> },
-           { path : "Project-Data", element : <ProjectData /> },
-           { path : "Tasks", element : <Tasks /> },
-           { path : "Users", element : <Users /> },
+           { path : "project-List", element : <ProjectList /> },
+           { path : "project-Data", element : <ProjectData /> },
+           { path : "tasks-list", element : <TasksList /> },
+           { path : "tasks-data", element : <TasksData /> },
+           { path : "users", element : <Users /> },
          ]
        }
    ])

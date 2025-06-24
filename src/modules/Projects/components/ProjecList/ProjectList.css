@@ -1,15 +1,16 @@
-
 @media (max-width : 767px) {
-    
-    .ProjectList header{
+
+    .ProjectList header {
         flex-direction: column;
         gap: 2rem;
     }
 }
-.ProjectList .search{
+
+.ProjectList .search {
     box-shadow: 0px 2px 4px 0px #00000026;
 }
-.ProjectList .search .input_search{
+
+.ProjectList .search .input_search {
     border: 2px solid #26385A40;
     border-radius: 24px;
     width: fit-content;
@@ -19,13 +20,15 @@
     gap: .5rem;
     align-items: center;
 
-    
+
 }
-.ProjectList .search .input_search input{
+
+.ProjectList .search .input_search input {
     outline: none;
     border: none;
 }
-.ProjectList table{
+
+.ProjectList table {
     /* #315951E5 */
     font-family: Montserrat;
     font-weight: 400;
@@ -37,28 +40,31 @@
     border-spacing: 0 5px;
     border-collapse: separate;
 }
-.ProjectList table tr{
+
+.ProjectList table tr {
     margin-top: 10px;
-    
+
 }
+
 .ProjectList table thead th,
-.ProjectList table tbody td{
+.ProjectList table tbody td {
     padding: 19px;
     text-transform: capitalize;
     text-align: center;
-  
+
 }
-.ProjectList table thead{
+
+.ProjectList table thead {
     background-color: #315951E5;
     color: white;
 }
 
 .ProjectList table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9;
 }
 
 
-.ProjectList table .Public{
+.ProjectList table .Public {
     background-color: #315951E5;
     color: white;
     border-radius: 1rem;
@@ -68,40 +74,47 @@
     line-height: 100%;
     letter-spacing: 0;
 }
-.ProjectList table .action{
+
+.ProjectList table .action {
     cursor: pointer;
-    
+
 }
-.ProjectList table .action > span{
+
+.ProjectList table .action>span {
     height: .5rem;
     width: .5rem;
     background-color: #0E382F;
 
 }
-.ProjectList table .action .actions{
+
+.ProjectList table .action .actions {
     box-shadow: 0px 0px 16px 0px #0000001A;
     display: none !important;
 }
-.ProjectList table .action:hover .actions{
+
+.ProjectList table .action:hover .actions {
     display: flex !important;
     top: 95%;
     z-index: 2;
 }
 
-.ProjectList table .action .actions > div{
+.ProjectList table .action .actions>div {
     display: flex;
-    padding:.5rem 3rem .5rem .5rem;
+    padding: .5rem 3rem .5rem .5rem;
     justify-content: flex-start;
     align-items: center;
     gap: .5rem;
 }
-.ProjectList table .action .actions > div:hover{
+
+.ProjectList table .action .actions>div:hover {
     background-color: #f5f6f6;
 }
-.ProjectList table .action .actions > div .actions_icons{
+
+.ProjectList table .action .actions>div .actions_icons {
     color: #0E382F;
 }
-.ProjectList table .action .actions:after{
+
+.ProjectList table .action .actions:after {
     content: "";
     width: 0;
     position: absolute;
@@ -109,23 +122,26 @@
     right: 12px;
     height: 0;
     border: 12px solid;
-    border-color: transparent transparent #fff ;
-    
+    border-color: transparent transparent #fff;
+
 
 }
+
 .ProjectList header {
     margin-bottom: 24px;
     box-shadow: 0px 2px 4px 0px #00000026;
 }
-.ProjectList header span{
+
+.ProjectList header span {
     font-family: Montserrat;
     font-weight: 500;
     font-size: 28px;
     line-height: 100%;
     letter-spacing: 0;
 }
-.ProjectList header button{
-     
+
+.ProjectList header button {
+
     border-radius: 32px;
     padding-top: 12px;
     padding-right: 24px;
@@ -136,41 +152,53 @@
     border: 0;
     color: white;
 }
-.view{
+
+.view {
     background-color: #00000033;
 }
-.view div svg{
-    width: 1rem ;
+
+.view div svg {
+    width: 1rem;
     cursor: pointer;
     height: 1rem;
 }
+
 .ProjectList .page-link {
     color: #0E382F;
 }
+
 .ProjectList .active>.page-link,
-.ProjectList .page-link.active{
+.ProjectList .page-link.active {
     background-color: #0E382F;
     color: #fff;
 }
+
 @media (max-width : 767px) {
-    .ProjectList{
+    .ProjectList {
         margin: .25rem !important;
     }
-    .ProjectList ._content_j2ocx_55{
+
+    .ProjectList ._content_j2ocx_55 {
         padding: 0.5rem;
     }
-    .ProjectList header{
+
+    .ProjectList header {
         padding: .5rem;
     }
-    .ProjectList .search{
+
+    .ProjectList .search {
         padding: .5rem !important;
     }
-    .ProjectList .search input{
+
+    .ProjectList .search input {
         font-size: 14px;
     }
-    
+
 }
+
 @media (max-width : 455px) {
     .ProjectList .search input {
-        width: 100%; }
+        width: 100%;
+    }
+
 }
