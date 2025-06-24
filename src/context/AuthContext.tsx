@@ -13,7 +13,7 @@ export default function AuthContextProvider({ children }) {
   
         const decodedToken:any = jwtDecode(encodedToken);
         setLoginData(decodedToken);
-         console.log(decodedToken)
+        
         setIsAuthLoading(false);
       } catch (error) {
         localStorage.removeItem("token");
