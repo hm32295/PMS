@@ -10,51 +10,10 @@ import { getDataProject, pageDataCalc } from '../../../../interfaces/interface';
 import ViewData from './ViewData';
 import PaginationPage from './Pagination';
 export default function ProjectList() {
-  // let{logout}:{logout:any} = useContext(AuthContext);
-  const navigate = useNavigate();
-  const [AllProjects ,setAllProjects] = useState([]);
-  const[ title ,setTitle] = useState("");
-  const [loders ,setLoders] = useState(false);
-  const [view ,setView] = useState(false);
-  const[dataView , setDataView] = useState<getDataProject |null>(null);
-  const [PagesList ,setPagesList] =useState([]);
-  const [pageData , setPageData] = useState<pageDataCalc | null>(null)
-  
-  const showView =(data:getDataProject)=>{
-    setDataView(data);
-    setView(true);
-  }
-
-  const getAllProjects = async ( pageNumber:number,pageSize:number,title:string  )=>{
-    setLoders(true)
-    try {
-      const response = await axiosInstance(PROJECTS_URLS.GET,{params:{pageSize , pageNumber,title}} );
-      setPageData({
-        pageNumber: response?.data?.pageNumber,
-        totalNumberOfRecords: response?.data?.totalNumberOfRecords,
-        totalNumberOfPages: response?.data?.totalNumberOfPages
-      });
-      
-      setPagesList(Array(response?.data?.totalNumberOfPages).fill().map((_,i) => i+1))
-      setAllProjects(response?.data?.data);
-      setLoders(false);
-      
-    } catch (error) {
-      console.log(error);
-      
-      setLoders(false)
-      
-    }
-    
-  }
-  useEffect(()=>{
-    getAllProjects(1, 5,"")
-  },[])
-  useEffect(()=>{
-    getAllProjects(1, 5,title)
-    
-   },[title])
+ 
+  const navigate = useNavigate()
   return (
+<<<<<<< HEAD
     <div className='ProjectList m-3 bg-white rounded-2 '>
       <header className='p-3 d-flex justify-content-between align-items-center'>
         <span>Projects</span>
@@ -134,6 +93,10 @@ export default function ProjectList() {
       </div>
          
      
+=======
+    <div>ProjectList
+
+>>>>>>> aa569ad646a6c2b6793a4b405b2354144d377acf
     </div>
   )
 }
