@@ -63,28 +63,30 @@ export default function TasksData() {
     getAllProject()
   },[])
   const saveData =async (data:projectData)=>{
-    // console.log(data);
-    
+    const cleanData = {
+      title: data.title.trim(),
+      description: data.description.trim(),
+      employeeId: Number(data.employeeId),
+      projectId: Number(data.projectId)
+    };
     let id;
     if(projectItem) id = projectItem.id
     let response;
     setLoder(true)
     try {
       if(buttonSave === "save"){
-        console.log(data);
-        // https://upskilling-egypt.com:3003/api/v1/Task
-        console.log(TASKS_URLS);
-        
-        response =  await axiosInstance.post(TASKS_URLS.CREATE,data);
+        response =  await axiosInstance.post(TASKS_URLS.CREATE,cleanData);
         toast.success(response?.statusText || "success created");
+     
       }else if(buttonSave === "Edit"){
         response = await axiosInstance.put(TASKS_URLS.UPDATE(id),data);
         toast.success(response?.statusText || "success created");
+        
 
       }
+      navigate("/dashboard/tasks-List");
       setLoder(false);
       setButtonSave("save");
-      // setPageNumber(Array(response.data.totalNumberOfPages).fill().map((_,i) => i+1))
       reset({
         description:"",
         title : ""
@@ -106,14 +108,14 @@ export default function TasksData() {
       <form action="" onSubmit={handleSubmit(saveData)}>
         <div className="title">
           <label> title</label>
-          <input type="text" placeholder="Name" {...register("title",{required: "faid is required"} )}/>
+          <input type="text" placeholder="Name" {...register("title",{required: "Field is required"} )}/>
           {errors?.title&&<div className="text-danger mb-2">{errors?.title?.message}</div>}
         </div>
 
 
         <div className="discripton">
           <label htmlFor="">Description</label>
-          <textarea placeholder="Description" {...register("description",{required: "faid is required"} )}></textarea>
+          <textarea placeholder="Description" {...register("description",{required: "Field is required"} )}></textarea>
           {errors?.description&&<div className="text-danger mb-2">{errors?.description?.message}</div>}
         </div>
 
