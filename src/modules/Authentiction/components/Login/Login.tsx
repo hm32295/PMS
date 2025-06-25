@@ -12,7 +12,7 @@ const Login = () => {
   let navi=useNavigate()
 
   const {register,handleSubmit,formState:{errors}}=useForm();
-  let{saveLoginData} = useContext(AuthContext);
+  let{saveLoginData}:any = useContext(AuthContext);
 
  
 

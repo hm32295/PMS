@@ -18,7 +18,8 @@ export const USERS_URLS = {
     CHANGE_PASSWORD : "/Users/ChangePassword/",
     REGISTER : "/Users/Register/",
     VERIFY :`/Users/verify`,
-        GET_USERS: "/Users/",
+    GET_USERS: "/Users/",
+    UPDATE_USER_STATUS: (id: number | string) => `/Users/${id}`
 
 }
 
