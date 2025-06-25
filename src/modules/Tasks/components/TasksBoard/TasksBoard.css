@@ -1,0 +1,53 @@
+/* .TasksBoard p{
+    background-color: #EF9B28;
+    cursor: grab;
+}
+
+.TasksBoard .status div{
+    width: calc(calc(100% - 1.6rem) / 3);
+    display: flex;
+    flex-direction: column;
+}
+.TasksBoard .status div div{
+    background-color: #315951E5;
+    width: 100%;
+    min-height: 100px;
+    flex: 1;
+}
+@media (max-width: 991px) {
+    .TasksBoard .status{
+        justify-content: center !important;
+
+    }
+    .TasksBoard .status div{
+        width: 250px;
+    }
+} */
+
+
+.task-board {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.column {
+    width: 30%;
+}
+
+.droppable-col {
+    min-height: 250px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.task-item {
+    background-color: #1976d2;
+    color: white;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    cursor: grab;
+}

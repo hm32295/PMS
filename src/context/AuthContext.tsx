@@ -2,21 +2,22 @@ import { useEffect, useState, createContext } from "react";
 import { jwtDecode } from "jwt-decode";
 
 export const AuthContext:any = createContext();
-export default function AuthContextProvider({ children }) {
+export default function AuthContextProvider({ children }:{children:any}) {
     const [loginData, setLoginData] = useState(null);
     const [isAuthLoading, setIsAuthLoading] = useState(true);
-    const saveLoginData = () => {
+    const saveLoginData =() => {
       try {
         const encodedToken = localStorage.getItem("token");
        
         if (!encodedToken) return;
         
-        
         const decodedToken:any = jwtDecode(encodedToken);
         setLoginData(decodedToken);
+    
         
         setIsAuthLoading(false);
       } catch (error) {
+
         localStorage.removeItem("token");
         setLoginData(null);
         setIsAuthLoading(false)
@@ -29,7 +30,7 @@ export default function AuthContextProvider({ children }) {
       setLoginData(null);
      
     };
-  
+
     useEffect(() => {
       if (localStorage.getItem("token")) {
         saveLoginData();

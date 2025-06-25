@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import TasksList from "./modules/Tasks/components/TasksList/TasksList";
 import TasksData from "./modules/Tasks/components/TasksData/TasksData";
+import TasksBoard from "./modules/Tasks/components/TasksBoard/TasksBoard";
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
            { path : "project-List", element : <ProjectList /> },
            { path : "project-Data", element : <ProjectData /> },
            { path : "tasks-list", element : <TasksList /> },
+           { path : "tasks-board", element : <TasksBoard /> },
            { path : "tasks-data", element : <TasksData /> },
            { path : "users", element : <Users /> },
          ]

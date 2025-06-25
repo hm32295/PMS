@@ -1,16 +1,17 @@
-import  {  useEffect, useState } from 'react';
+import  {  useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProjectList.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose, faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {  faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { axiosInstance, PROJECTS_URLS } from '../../../../services/urls';
 import { ClipLoader } from 'react-spinners';
 import DeleteConfirmation from '../../../Shared/componetns/DeleteConfirm/DeleteConfirmation';
 import { getDataProject, pageDataCalc } from '../../../../interfaces/interface';
 import ViewData from './ViewData';
 import PaginationPage from './Pagination';
+import { AuthContext } from '../../../../context/AuthContext';
 export default function ProjectList() {
-  // let{logout}:{logout:any} = useContext(AuthContext);
+  let{loginData,isAuthLoading}:{loginData:any,isAuthLoading:any} = useContext(AuthContext);
   const navigate = useNavigate();
   const [AllProjects ,setAllProjects] = useState([]);
   const[ title ,setTitle] = useState("");
@@ -18,17 +19,28 @@ export default function ProjectList() {
   const [view ,setView] = useState(false);
   const[dataView , setDataView] = useState<getDataProject |null>(null);
   const [PagesList ,setPagesList] =useState([]);
-  const [pageData , setPageData] = useState<pageDataCalc | null>(null)
+  const [pageData , setPageData] = useState<pageDataCalc | null>(null);
+
   
   const showView =(data:getDataProject)=>{
     setDataView(data);
     setView(true);
   }
 
-  const getAllProjects = async ( pageNumber:number,pageSize:number,title:string  )=>{
+  const fetchProjects  = async ( pageNumber:number,pageSize:number,title:string  )=>{
+    if(loginData === null) return
     setLoders(true)
     try {
-      const response = await axiosInstance(PROJECTS_URLS.GET,{params:{pageSize , pageNumber,title}} );
+      let response;
+      console.log(loginData.userGroup);
+      console.log(loginData);
+      
+      if(loginData?.userGroup === 'Employee' ){
+        response = await axiosInstance(PROJECTS_URLS.GET_EMPLOYEE,{params:{pageSize , pageNumber,title}} );
+      }else if(loginData?.userGroup === 'Manager'){
+        response = await axiosInstance(PROJECTS_URLS.GET_MANAGER,{params:{pageSize , pageNumber,title}} );
+
+      }
       setPageData({
         pageNumber: response?.data?.pageNumber,
         totalNumberOfRecords: response?.data?.totalNumberOfRecords,
@@ -37,21 +49,23 @@ export default function ProjectList() {
       
       setPagesList(Array(response?.data?.totalNumberOfPages).fill().map((_,i) => i+1))
       setAllProjects(response?.data?.data);
-      setLoders(false);
       
     } catch (error) {
       console.log(error);
       
+    }finally {
       setLoders(false)
-      
+
     }
     
   }
   useEffect(()=>{
-    getAllProjects(1, 5,"")
-  },[])
+    if(!isAuthLoading && loginData){
+      fetchProjects (1, 5,"")
+    }
+  },[isAuthLoading,loginData])
   useEffect(()=>{
-    getAllProjects(1, 5,title)
+    fetchProjects (1, 5,title)
     
    },[title])
   return (
@@ -115,7 +129,7 @@ export default function ProjectList() {
                                             <span>edit</span>
                                           </div>
                     
-                                            <DeleteConfirmation nameEle={ele.title}  type='projectList' icon={faTrash} id={ele.id} getData={getAllProjects}/>
+                                            <DeleteConfirmation nameEle={ele.title}  type='projectList' icon={faTrash} id={ele.id} getData={fetchProjects }/>
                                         
                                         </div>
                                   </td>
@@ -128,7 +142,7 @@ export default function ProjectList() {
               </table>
               )}
 
-              <PaginationPage funData={getAllProjects} pages={PagesList} pageData={pageData}/>
+              <PaginationPage funData={fetchProjects } pages={PagesList} pageData={pageData}/>
               {view && <ViewData data={dataView} setView={setView}/>} 
               
       </div>

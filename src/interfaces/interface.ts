@@ -47,6 +47,7 @@ export interface projectData{
     description:string,
     id:number,
     modificationDate:string,
+    status?:string,
     employee:{
       country: string,
       creationDate: string,

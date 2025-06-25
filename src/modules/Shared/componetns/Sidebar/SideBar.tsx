@@ -34,6 +34,9 @@ const Sidepar = () => {
    let funTasks=()=>{
     navi('/dashboard/tasks-list')
   }
+   let funTasksBoard=()=>{
+    navi('/dashboard/tasks-board')
+  }
    let{logout} = useContext(AuthContext);
    
   return (
@@ -52,6 +55,7 @@ const Sidepar = () => {
         <MenuItem icon={<HiOutlineUsers />} onClick={funUsers} className="menu-item-custom">Users</MenuItem>
         <MenuItem icon={<FiGrid />} className="menu-item-custom"  onClick={funPrjects}>Projects</MenuItem>
         <MenuItem icon={<FaTasks />} className="menu-item-custom" onClick={funTasks}>Tasks</MenuItem>
+        <MenuItem icon={<FaTasks />} className="menu-item-custom" onClick={funTasksBoard}>Tasks</MenuItem>
       </Menu>
          <div>
         <Menu iconShape="circle" >

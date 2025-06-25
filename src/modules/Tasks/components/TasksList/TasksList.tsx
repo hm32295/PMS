@@ -1,5 +1,5 @@
 
-import  {  useEffect, useState } from 'react';
+import  {  useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +10,11 @@ import { getAllTasks, pageDataCalc } from '../../../../interfaces/interface';
 import ViewData from './ViewData';
 import './TasksList.css'
 import PaginationPage from './Pagination';
+import { AuthContext } from '../../../../context/AuthContext';
 export default function TasksList() {
-  // let{logout}:{logout:any} = useContext(AuthContext);
+  // let{loginData}:{loginData:any} = useContext(AuthContext);
+  const { loginData, isAuthLoading }: { loginData: any; isAuthLoading: boolean } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const [AllProjects ,setAllProjects] = useState([]);
   const[ title ,setTitle] = useState("");
@@ -27,14 +30,25 @@ export default function TasksList() {
   }
 
   const getAllTasks = async ( pageNumber:number,pageSize:number,title:string  )=>{
-    setLoders(true)
+    setLoders(true);
+    if(loginData === null) return
     try {
-      const response = await axiosInstance(TASKS_URLS.GET_MANGER,{params:{pageSize , pageNumber,title}} );
+      let response;
+      if(loginData.userGroup === 'Employee' ){
+         response = await axiosInstance(TASKS_URLS.GET,{params:{pageSize , pageNumber,title}} );
+      }else if(loginData.userGroup === 'Manager'){
+         response = await axiosInstance(TASKS_URLS.GET_MANGER,{params:{pageSize , pageNumber,title}} );
+
+      }
+
+      
+
+
       setPageData({
         pageNumber: response?.data?.pageNumber,
         totalNumberOfRecords: response?.data?.totalNumberOfRecords,
         totalNumberOfPages: response?.data?.totalNumberOfPages
-      });
+      });      
       
       setPagesList(Array(response?.data?.totalNumberOfPages).fill().map((_,i) => i+1))
       setAllProjects(response?.data?.data);
@@ -49,8 +63,10 @@ export default function TasksList() {
     
   }
   useEffect(()=>{
-    getAllTasks(1, 5,"")
-  },[])
+    if (!isAuthLoading && loginData) {
+      getAllTasks(1, 5,"")
+    }
+  },[loginData ,isAuthLoading])
   useEffect(()=>{
     getAllTasks(1, 5,title)
     
@@ -95,9 +111,7 @@ export default function TasksList() {
                               <tr key={ele.id}>
                                 
                                   <td>{ele.title}</td>
-                                  <td className={`Public ${!ele.employee?.isVerified && 'in-progress'}`} >
-                                      {ele.employee?.isVerified ? "done" : "in-progress"}
-                                      </td>
+                                  <td className={``} > {ele.status}</td>
                                   <td>{ele.employee?.userName}</td>
                                   <td>{ele.project?.title}</td>
                                   <td>{ele.creationDate}</td>

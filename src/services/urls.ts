@@ -9,6 +9,14 @@ export const axiosInstance = axios.create({
         Authorization:  localStorage.getItem('token'),
        }
 });
+// chat
+axiosInstance.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  });
 
 
 export const USERS_URLS = {
@@ -24,17 +32,20 @@ export const USERS_URLS = {
 
 export const PROJECTS_URLS ={
     GET : `/Project/`,
+    GET_MANAGER : `/Project/manager`,
+    GET_EMPLOYEE : `/Project/employee`,
     CRETE : `/Project/`,
     DELETE :(id:string)=>`/Project/${id}`,
     UPDATE :(id:string)=>`/Project/${id}`,
 
-}// 
-// /api/v1/Project/{id}
-// /api/v1/Task/manager
+}
+
+
 export const TASKS_URLS ={
     GET : '/Task/',
     GET_MANGER : '/Task/manager/',
     CREATE : '/Task/',
     UPDATE : (id:any)=>`/Task/${id}`,
     DELETE : (id:any)=>`/Task/${id}`,
+    CHANGE_STATUS :(id:string)=>`/Task/${id}/change-status`,
 }
