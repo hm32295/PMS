@@ -15,6 +15,7 @@ const MasterLayout = () => {
 
   return (
     <div className={styles.layout}>
+          
       <aside className={styles.sidebar}>
        <SideBar/>
       </aside>

@@ -19,6 +19,8 @@ import Users from "./modules/Users/components/UsersList/UsersList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import Protifolio from "./modules/Users/components/Protifolio";
+import Changeinfo from "./modules/Users/components/UsersList/Changeinfo";
 
 
 function App() {
@@ -64,10 +66,14 @@ function App() {
          element: <ProtectedRoute > <MasterLayout /> </ProtectedRoute> , 
          children :[
            { index : true, element : <Dashboard /> },
+            { path : '/dashboard', element : <Dashboard /> },
            { path : "Project-List", element : <ProjectList /> },
            { path : "Project-Data", element : <ProjectData /> },
            { path : "Tasks", element : <Tasks /> },
            { path : "Users", element : <Users /> },
+          { path : "Protifolio", element : <Protifolio /> },
+           { path : "Changeinfo", element : <Changeinfo /> },
+           
          ]
        }
    ])

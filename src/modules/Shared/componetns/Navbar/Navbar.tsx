@@ -4,12 +4,22 @@ import './nav.css'; // لا تغيّر في هذا الملف إذا كانت ا
 import img_profile  from './imgProfile.svg'
 import { IoIosArrowDown } from "react-icons/io";
 import { AuthContext } from '../../../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Navbar = () => {
     const auth = useContext(AuthContext);
-     const { loginData } = auth;
+     const { loginData,Userdata} =auth ;
       const name = loginData?.userName;   
   const email = loginData?.userEmail; 
+  const avatar = Userdata?.imagePath;
+  let UrlAvatar='https://upskilling-egypt.com:3003/'
+
+  let navigate=useNavigate()
+  let FunProtifolio=()=>{
+    navigate('/dashboard/Protifolio')
+  }
 
   return (
     <nav className="Nav_Ya3a3pee">
@@ -33,8 +43,9 @@ const Navbar = () => {
               <div className="User_Details_Ya_Habibi me-3  text-end">
                 <div className="imageE m-1">
                                 <img 
-                src={img_profile}
-                alt="User Profile" 
+                                onClick={FunProtifolio}
+                src={`${UrlAvatar}${avatar}`||img_profile}
+                alt="UserdataimagePath" 
                 className="User_Soora_Ya_King rounded-circle"
                 style={{ width: '45px', height: '45px', objectFit: 'cover' }}
               />

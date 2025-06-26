@@ -1,28 +1,39 @@
 import Header from "../../Shared/componetns/Header/Header";
 import { FaChartLine, FaTasks, FaProjectDiagram, FaUsers, FaUserSlash } from 'react-icons/fa';
+import Sharts from "./Sharts";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
+
 
 export default function Dashboard() {
+  const {statuss}=useContext(AuthContext)
+const{infoo}=useContext(AuthContext)
   const tasksData = [
     {
       title: 'Progress',
       value: '$7328.32',
       icon: <FaChartLine size={24} />,
       cardClass: 'card_Progress_Tanya',
-      iconClass: 'icon_Progress_Color'
+      iconClass: 'icon_Progress_Color',
+     
+       infoo:infoo?.inProgress || 0
     },
     {
-      title: 'Tasks Number',
+      title: 'Tasks',
       value: '1293',
       icon: <FaTasks size={24} />,
       cardClass: 'card_Tasks_Mesh_Keda',
-      iconClass: 'icon_Tasks_Color'
+      iconClass: 'icon_Tasks_Color',
+       infoo:infoo?.toDo || 0
+     
     },
     {
-      title: 'Projects ',
+      title: 'Done',
       value: '32',
       icon: <FaProjectDiagram size={24} />,
       cardClass: 'card_Projects_Gamda',
-      iconClass: 'icon_Projects_Color'
+      iconClass: 'icon_Projects_Color',
+       infoo:infoo?.done || 0
     }
   ];
 
@@ -32,23 +43,22 @@ export default function Dashboard() {
       value: '$7328.32',
       icon: <FaUsers size={24} />,
       cardClass: 'card_Active_Yasta',
-      iconClass: 'icon_Active_Color'
+      iconClass: 'icon_Active_Color',
+      statuos:statuss?.activatedEmployeeCount ??0
     },
     {
       title: 'Inactive',
       value: '1293',
       icon: <FaUserSlash size={24} />,
       cardClass: 'card_Inactive_Khalas',
-      iconClass: 'icon_Inactive_Color'
+      iconClass: 'icon_Inactive_Color',
+       statuos:statuss?.deactivatedEmployeeCount ??0
     }
   ];
+  
   return (
     <div>
-      
-      
-      
       <Header/>
-
 {/* SEction Under Header InfoData */}
      <section className="section_Container_Kolo">
         <div className="container">
@@ -67,7 +77,7 @@ export default function Dashboard() {
                       <div className={`icon_Container_Helwa ${stat.iconClass}`}>
                         {stat.icon}
                       </div>
-                      <div className="stat_Number_Kbeer">{stat.value}</div>
+                      <div className="stat_Number_Kbeer">{stat.infoo}</div>
                       <div className="stat_Label_Sagheer">{stat.title}</div>
                     </div>
                   </div>
@@ -89,7 +99,7 @@ export default function Dashboard() {
                       <div className={`icon_Container_Helwa ${stat.iconClass}`}>
                         {stat.icon}
                       </div>
-                      <div className="stat_Number_Kbeer">{stat.value}</div>
+                      <div className="stat_Number_Kbeer">{stat.statuos}</div>
                       <div className="stat_Label_Sagheer">{stat.title}</div>
                     </div>
                   </div>
@@ -99,7 +109,8 @@ export default function Dashboard() {
           </div>
         </div>
       </section>
-    
+      <Sharts/>
+   
     
     
     </div>
