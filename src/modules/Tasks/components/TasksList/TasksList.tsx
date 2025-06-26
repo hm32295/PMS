@@ -2,17 +2,20 @@
 import  {  useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose, faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { axiosInstance, TASKS_URLS } from '../../../../services/urls';
 import { ClipLoader } from 'react-spinners';
 import DeleteConfirmation from '../../../Shared/componetns/DeleteConfirm/DeleteConfirmation';
-import { getAllTasks, pageDataCalc } from '../../../../interfaces/interface';
+import { getAllTasks } from '../../../../interfaces/interface';
 import ViewData from './ViewData';
 import './TasksList.css'
-import PaginationPage from './Pagination';
 import { AuthContext } from '../../../../context/AuthContext';
+import PaginationTest from './Pagination';
 export default function TasksList() {
-  // let{loginData}:{loginData:any} = useContext(AuthContext);
+  
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalResults, setTotalResults] = useState(0);
+
   const { loginData, isAuthLoading }: { loginData: any; isAuthLoading: boolean } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -21,8 +24,6 @@ export default function TasksList() {
   const [loders ,setLoders] = useState(false);
   const [view ,setView] = useState(false);
   const[dataView , setDataView] = useState<getAllTasks |null>(null);
-  const [PagesList ,setPagesList] =useState([]);
-  const [pageData , setPageData] = useState<pageDataCalc | null>(null)
   
   const showView =(data:getAllTasks)=>{
     setDataView(data);
@@ -41,16 +42,10 @@ export default function TasksList() {
 
       }
 
-      
+      setTotalResults(response?.data?.totalNumberOfRecords);
+      setTotalPages(response?.data?.totalNumberOfPages);
 
-
-      setPageData({
-        pageNumber: response?.data?.pageNumber,
-        totalNumberOfRecords: response?.data?.totalNumberOfRecords,
-        totalNumberOfPages: response?.data?.totalNumberOfPages
-      });      
-      
-      setPagesList(Array(response?.data?.totalNumberOfPages).fill().map((_,i) => i+1))
+   
       setAllProjects(response?.data?.data);
       setLoders(false);
       
@@ -64,11 +59,11 @@ export default function TasksList() {
   }
   useEffect(()=>{
     if (!isAuthLoading && loginData) {
-      getAllTasks(1, 5,"")
+      getAllTasks(1, 10,"")
     }
   },[loginData ,isAuthLoading])
   useEffect(()=>{
-    getAllTasks(1, 5,title)
+    getAllTasks(1, 10,title)
     
    },[title])
   return (
@@ -83,7 +78,7 @@ export default function TasksList() {
           <input type="search" onChange={(e)=>{setTitle(e.target.value)}} placeholder='Search By Title ' />
         </div>
       </div>
-      <div className='overflow-auto w-100'>
+      <div className='overflow-auto w-100 table-data'>
 
        {loders? <div className='d-flex justify-content-center p-5'><ClipLoader  size={50} color='#000'/></div> :
             (
@@ -144,8 +139,7 @@ export default function TasksList() {
                   </tbody> 
               </table>
               )}
-
-              <PaginationPage funData={getAllTasks} pages={PagesList} pageData={pageData}/>
+               <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={getAllTasks} />
               {view && <ViewData data={dataView} setView={setView}/>} 
               
       </div>

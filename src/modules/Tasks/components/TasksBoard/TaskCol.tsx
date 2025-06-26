@@ -34,7 +34,6 @@ export default function TaskCol({tasks,title ,getTasksToDo} : {tasks : TTasks, t
                         <p
                             
                             draggable={true}
-                            // onDragEnd={()=>   }
                             onDragStart={(e)=> e.dataTransfer.setData("id" , task.id)   }
                             key={task.id} className="rounded-1 p-2 text-white w-100 px-3"
                         >

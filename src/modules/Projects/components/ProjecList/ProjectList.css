@@ -27,7 +27,9 @@
     outline: none;
     border: none;
 }
-
+.ProjectList .table-data{
+    padding-bottom: 7rem;
+}
 .ProjectList table {
     /* #315951E5 */
     font-family: Montserrat;

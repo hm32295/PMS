@@ -1,75 +1,59 @@
 
-import Pagination from 'react-bootstrap/Pagination';
-import { paginationPageProps } from '../../../../interfaces/interface';
+import { useEffect, useState } from 'react';
 
-export default function PaginationPage({ pages, funData, pageData }:paginationPageProps) {
-  if(pageData === null) return null;
-  const currentPage = pageData.pageNumber;
-  const totalPages = pages.length;
-  const pageSize = 5;
-  if(totalPages <= 1){
-    return null
-  }
-
-  const maxVisiblePages = 5;
-
-  let start = 1;
-  let end = maxVisiblePages;
-
-  if (currentPage > Math.floor(maxVisiblePages / 2)) {
-    start = currentPage - Math.floor(maxVisiblePages / 2);
-    end = start + maxVisiblePages - 1;
-  }
-
-  if (end > totalPages) {
-    end = totalPages;
-    start = Math.max(end - maxVisiblePages + 1, 1);
-  }
-
-  const visiblePages = [];
-  for (let i = start; i <= end; i++) {
-    visiblePages.push(i);
-  }
+interface TPagination{
+  totalPages:number, totalResults: number,getAllData:any
+}
+export default function PaginationTest({totalPages ,totalResults ,getAllData}:TPagination){
   
-  return (
-    <Pagination className='m-3 d-flex justify-content-center'>
-
-      <Pagination.Prev
-        onClick={() => currentPage > 1 && funData(currentPage - 1, pageSize,  "")}
-        disabled={currentPage === 1}
-      />
-
-      {start > 1 && (
-        <>
-          <Pagination.Item onClick={() => funData(1, pageSize,  "")}>1</Pagination.Item>
-          <Pagination.Ellipsis disabled />
-        </>
-      )}
-
-      {visiblePages.map((page) => (
-        <Pagination.Item
-          key={page}
-          active={currentPage === page}
-          onClick={() => funData(page, pageSize,  "")}
-        >
-          {page}
-        </Pagination.Item>
-      ))}
-
-      {end < totalPages && (
-        <>
-          <Pagination.Ellipsis disabled />
-          <Pagination.Item onClick={() => funData(totalPages, pageSize,  "")}>
-            {totalPages}
-          </Pagination.Item>
-        </>
-      )}
-
-      <Pagination.Next
-        onClick={() => currentPage < totalPages && funData( currentPage + 1, pageSize, "")}
-        disabled={currentPage === totalPages}
-      />
-    </Pagination>
-  );
+  
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setPageSize(parseInt(e.target.value));
+      setCurrentPage(1);
+    };
+    const handlePrev = () => {
+      if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+  
+    const handleNext = () => {
+      if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  
+    };
+   useEffect(() => {
+        getAllData(currentPage,pageSize, "");
+    }, [pageSize, currentPage]);
+  return(
+    <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 my-3">
+        <div className="d-flex align-items-center gap-2">
+          <span>Showing</span>
+          <select
+            className="form-select"
+            style={{ width: '80px' }}
+            value={pageSize}
+            onChange={handlePageSizeChange}
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={30}>30</option>
+            <option value={40}>40</option>
+            <option value={50}>50</option>
+          </select>
+          <span>of {totalResults} Results</span>
+        </div>
+        <div className="d-flex align-items-center gap-3">
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button className="btn btn-outline-dark px-3" onClick={handlePrev} disabled={currentPage === 1}>
+            &#x276E;
+          </button>
+          <button className="btn btn-outline-dark px-3" onClick={handleNext} disabled={currentPage === totalPages}>
+            &#x276F;
+          </button>
+        </div>
+      </div>
+  )
 }
 
