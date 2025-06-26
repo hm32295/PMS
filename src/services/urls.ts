@@ -32,20 +32,20 @@ export const USERS_URLS = {
 
 export const PROJECTS_URLS ={
     GET : `/Project/`,
-    GET_MANAGER : `/Project/manager`,
-    GET_EMPLOYEE : `/Project/employee`,
+    GET_MANAGER : `/Project/manager/`,
+    GET_EMPLOYEE : `/Project/employee/`,
     CRETE : `/Project/`,
     DELETE :(id:string)=>`/Project/${id}`,
     UPDATE :(id:string)=>`/Project/${id}`,
 
 }
-
-
+// /api/v1/Task
+// /api/v1/Task/{id}/change-status
 export const TASKS_URLS ={
-    GET : '/Task/',
+    GET : 'Task',
     GET_MANGER : '/Task/manager/',
     CREATE : '/Task/',
     UPDATE : (id:any)=>`/Task/${id}`,
     DELETE : (id:any)=>`/Task/${id}`,
-    CHANGE_STATUS :(id:string)=>`/Task/${id}/change-status`,
+    CHANGE_STATUS :(id:number)=>`/Task/${id}/change-status`,
 }

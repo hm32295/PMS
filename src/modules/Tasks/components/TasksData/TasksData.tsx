@@ -24,7 +24,7 @@ export default function TasksData() {
   const getAllUsers = async()=>{
     setLoder(true);
     try {
-      const response = await axiosInstance(USERS_URLS.GET_USERS)
+      const response = await axiosInstance(USERS_URLS.GET_USERS ,{params:{pageNumber: 1, pageSize:50}})
       setGetUsers(response.data.data);
       setLoder(false)
     } catch (error) {
@@ -36,7 +36,7 @@ export default function TasksData() {
   const getAllProject = async()=>{
     setLoder(true);
     try {
-      const response = await axiosInstance(PROJECTS_URLS.GET)
+      const response = await axiosInstance(PROJECTS_URLS.GET,{params:{pageNumber: 1, pageSize:50}})
       setGetProject(response.data.data)
       setLoder(false)
     } catch (error) {

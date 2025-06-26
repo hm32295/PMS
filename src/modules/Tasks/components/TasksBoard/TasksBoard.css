@@ -1,4 +1,4 @@
-/* .TasksBoard p{
+.TasksBoard p{
     background-color: #EF9B28;
     cursor: grab;
 }
@@ -22,32 +22,5 @@
     .TasksBoard .status div{
         width: 250px;
     }
-} */
-
-
-.task-board {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    gap: 20px;
 }
 
-.column {
-    width: 30%;
-}
-
-.droppable-col {
-    min-height: 250px;
-    background-color: #f5f5f5;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.task-item {
-    background-color: #1976d2;
-    color: white;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 5px;
-    cursor: grab;
-}
