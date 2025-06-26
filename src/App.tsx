@@ -18,9 +18,8 @@ import Users from "./modules/Users/components/UsersList/UsersList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
-import TasksList from "./modules/Tasks/components/TasksList/TasksList";
-import TasksData from "./modules/Tasks/components/TasksData/TasksData";
-import TasksBoard from "./modules/Tasks/components/TasksBoard/TasksBoard";
+import Protifolio from "./modules/Users/components/Protifolio";
+import Changeinfo from "./modules/Users/components/UsersList/Changeinfo";
 
 
 function App() {
@@ -66,12 +65,14 @@ function App() {
          element: <ProtectedRoute > <MasterLayout /> </ProtectedRoute> , 
          children :[
            { index : true, element : <Dashboard /> },
-           { path : "project-List", element : <ProjectList /> },
-           { path : "project-Data", element : <ProjectData /> },
-           { path : "tasks-list", element : <TasksList /> },
-           { path : "tasks-board", element : <TasksBoard /> },
-           { path : "tasks-data", element : <TasksData /> },
-           { path : "users", element : <Users /> },
+            { path : '/dashboard', element : <Dashboard /> },
+           { path : "Project-List", element : <ProjectList /> },
+           { path : "Project-Data", element : <ProjectData /> },
+           { path : "Tasks", element : <Tasks /> },
+           { path : "Users", element : <Users /> },
+          { path : "Protifolio", element : <Protifolio /> },
+           { path : "Changeinfo", element : <Changeinfo /> },
+           
          ]
        }
    ])
