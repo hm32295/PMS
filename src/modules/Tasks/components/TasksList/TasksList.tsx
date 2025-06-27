@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { axiosInstance, TASKS_URLS } from '../../../../services/urls';
-import { ClipLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 import DeleteConfirmation from '../../../Shared/componetns/DeleteConfirm/DeleteConfirmation';
 import { getAllTasks } from '../../../../interfaces/interface';
 import ViewData from './ViewData';
 import './TasksList.css'
 import { AuthContext } from '../../../../context/AuthContext';
 import PaginationTest from './Pagination';
+import NoData from '../../../Shared/componetns/NoData/NoData';
 export default function TasksList() {
   
   const [totalPages, setTotalPages] = useState(0);
@@ -79,68 +80,71 @@ export default function TasksList() {
         </div>
       </div>
       <div className='overflow-auto w-100 table-data'>
-
-       {loders? <div className='d-flex justify-content-center p-5'><ClipLoader  size={50} color='#000'/></div> :
-            (
-              <table className='w-100'>
-                  <thead>
-                    <tr>
-                      <th>Title </th>
-                      <th>Statues </th>
-                      <th>User </th>
-                      <th>Project </th>
-                      <th>Date Created </th>
-                      <th> action</th>
-                    </tr>
-                  </thead>
-                  <tbody >
-                  
-                
-                        {AllProjects.length ?
-                        (
-                          
-                          
-                          AllProjects.map((ele:getAllTasks)=>{
-                          
-                            return(
-                              <tr key={ele.id}>
+        {AllProjects.length === 0 && !loders ? <NoData />:(
+          <>
+              {loders? <div className='d-flex justify-content-center p-5'><ScaleLoader  color='#EF9B28'/></div> :
+                  (
+                    <table className='w-100'>
+                        <thead>
+                          <tr>
+                            <th>Title </th>
+                            <th>Statues </th>
+                            <th>User </th>
+                            <th>Project </th>
+                            <th>Date Created </th>
+                            <th> action</th>
+                          </tr>
+                        </thead>
+                        <tbody >
+                        
+                      
+                              {AllProjects.length ?
+                              (
                                 
-                                  <td>{ele.title}</td>
-                                  <td className={``} > {ele.status}</td>
-                                  <td>{ele.employee?.userName}</td>
-                                  <td>{ele.project?.title}</td>
-                                  <td>{ele.creationDate}</td>
-                                  
-                                  <td className='action align-items-center d-flex flex-column gap-1 position-relative'>
-                                        <span className='rounded-circle'></span>
-                                        <span className='rounded-circle'></span>
-                                        <span className='rounded-circle'></span>
+                                
+                                AllProjects.map((ele:getAllTasks)=>{
+                                
+                                  return(
+                                    <tr key={ele.id}>
                                       
-                                        <div className="actions position-absolute rounded-3 bg-white end-0 d-flex flex-column">
-                                          <div onClick={()=> showView(ele)}>
-                                            <FontAwesomeIcon className='actions_icons' icon={faEye}  title="View" />
-                                            <span>View</span>
-                                            
-                                          </div>
-                                          <div onClick={()=>{navigate("/dashboard/tasks-Data", {state : ele})}}>
-                                            <FontAwesomeIcon className='actions_icons' icon={faEdit} title="Edit" />
-                                            <span>edit</span>
-                                          </div>
-                    
-                                            <DeleteConfirmation nameEle={ele.title}  type='tasks' icon={faTrash} id={ele.id} getData={getAllTasks}/>
+                                        <td>{ele.title}</td>
+                                        <td className={``} > {ele.status}</td>
+                                        <td>{ele.employee?.userName}</td>
+                                        <td>{ele.project?.title}</td>
+                                        <td>{ele.creationDate}</td>
                                         
-                                        </div>
-                                  </td>
-                            </tr>
-                            )
-                          })
-                        ) : <tr><td></td></tr>}
-              
-                  </tbody> 
-              </table>
-              )}
-               <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={getAllTasks} />
-              {view && <ViewData data={dataView} setView={setView}/>} 
+                                        <td className='action align-items-center d-flex flex-column gap-1 position-relative'>
+                                              <span className='rounded-circle'></span>
+                                              <span className='rounded-circle'></span>
+                                              <span className='rounded-circle'></span>
+                                            
+                                              <div className="actions position-absolute rounded-3 bg-white end-0 d-flex flex-column">
+                                                <div onClick={()=> showView(ele)}>
+                                                  <FontAwesomeIcon className='actions_icons' icon={faEye}  title="View" />
+                                                  <span>View</span>
+                                                  
+                                                </div>
+                                                <div onClick={()=>{navigate("/dashboard/tasks-Data", {state : ele})}}>
+                                                  <FontAwesomeIcon className='actions_icons' icon={faEdit} title="Edit" />
+                                                  <span>edit</span>
+                                                </div>
+                          
+                                                  <DeleteConfirmation nameEle={ele.title}  type='tasks' icon={faTrash} id={ele.id} getData={getAllTasks}/>
+                                              
+                                              </div>
+                                        </td>
+                                  </tr>
+                                  )
+                                })
+                              ) : <tr><td></td></tr>}
+                    
+                        </tbody> 
+                    </table>
+                    )}
+                      <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={getAllTasks} />
+                    {view && <ViewData data={dataView} setView={setView}/>} 
+          </>
+    )}
               
       </div>
          

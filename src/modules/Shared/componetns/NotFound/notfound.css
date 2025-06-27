@@ -20,8 +20,8 @@
   display: inline-block;
 }
 
-.error-number::before,
-.error-number::after {
+.error-number-not-found::before,
+.error-number-not-found::after {
   content: '404';
   position: absolute;
   top: 0;

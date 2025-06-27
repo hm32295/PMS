@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { axiosInstance, PROJECTS_URLS, TASKS_URLS, USERS_URLS } from "../../../../services/urls";
 import { Fragment, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { ClipLoader } from "react-spinners";
+import { ClipLoader, ScaleLoader } from "react-spinners";
 import {employeesType, getDataProject, projectData } from "../../../../interfaces/interface";
 
 
@@ -38,15 +38,21 @@ export default function TasksData() {
     try {
       const response = await axiosInstance(PROJECTS_URLS.GET,{params:{pageNumber: 1, pageSize:50}})
       setGetProject(response.data.data)
-      setLoder(false)
+    
     } catch (error) {
-      setLoder(false)
       
+    }
+    finally{
+      setLoder(false)
+
     }
   
   }
-
-  useEffect(()=>{
+  const getUsersAndProject = async ()=>{
+    await getAllUsers()
+    await getAllProject()
+  }
+  useEffect( ()=> {
     if(projectItem){
       setButtonSave("Edit");
       
@@ -59,8 +65,7 @@ export default function TasksData() {
       
       
     }
-    getAllUsers()
-    getAllProject()
+    getUsersAndProject()
   },[])
   const saveData =async (data:projectData)=>{
     const cleanData = {
@@ -98,7 +103,7 @@ export default function TasksData() {
     }
     
   }
-  
+  if(loder) return <div className="loader"><ScaleLoader  color='#EF9B28'/></div>
   return (
     <div className='ProjectData TasksData'>
       <header >

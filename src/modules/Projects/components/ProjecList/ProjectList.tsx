@@ -4,12 +4,13 @@ import './ProjectList.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { axiosInstance, PROJECTS_URLS } from '../../../../services/urls';
-import { ClipLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 import DeleteConfirmation from '../../../Shared/componetns/DeleteConfirm/DeleteConfirmation';
 import { getDataProject } from '../../../../interfaces/interface';
 import ViewData from './ViewData';
 import { AuthContext } from '../../../../context/AuthContext';
 import PaginationTest from './Pagination';
+import NoData from '../../../Shared/componetns/NoData/NoData';
 export default function ProjectList() {
   const [totalPages, setTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
@@ -79,73 +80,76 @@ export default function ProjectList() {
         </div>
       </div>
       <div className='overflow-auto w-100 table-data'>
-
-       {loders? <div className='d-flex justify-content-center p-5'><ClipLoader  size={50} color='#000'/></div> :
-            (
-              <table className='w-100'>
-                  <thead>
-                    <tr>
-                      <th>Title </th>
-                      <th>Statues </th>
-                      <th>Num Users </th>
-                      <th>Num Tasks </th>
-                      <th>Date Created </th>
-                      <th> action</th>
-                    </tr>
-                  </thead>
-                  <tbody >
-                  
-                
-                        {AllProjects.length ?
-                        (
-                          
-                          
-                          AllProjects.map((ele:getDataProject)=>{
-                          
-                            return(
-                              <tr key={ele.id}>
-                                
-                                  <td>{ele.title}</td>
-                                  <td className='Public' >{ele.manager?.isActivated ? "Public" : "No Public"}</td>
-                                  <td>{ele.manager?.userName}</td>
-                                  <td>Num Tasks</td>
-                                  <td>{ele.creationDate}</td>
+        {!loders && !AllProjects.length ?<NoData /> :(<>
+            {loders? <div className='d-flex justify-content-center p-5'><ScaleLoader  color='#EF9B28'/></div> :
+                      <>
+                              <table className='w-100'>
+                                  <thead>
+                                    <tr>
+                                      <th>Title </th>
+                                      <th>Statues </th>
+                                      <th>Num Users </th>
+                                      <th>Num Tasks </th>
+                                      <th>Date Created </th>
+                                      <th> action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody >
                                   
-                                  <td className='action align-items-center d-flex flex-column gap-1 position-relative'>
-                                        <span className='rounded-circle'></span>
-                                        <span className='rounded-circle'></span>
-                                        <span className='rounded-circle'></span>
-                                      
-                                        <div className="actions position-absolute rounded-3 bg-white end-0 d-flex flex-column">
-                                          <div onClick={()=> showView(ele)}>
-                                            <FontAwesomeIcon className='actions_icons' icon={faEye}  title="View" />
-                                            <span>View</span>
-                                            
-                                          </div>
+                                
+                                        {AllProjects.length ?
+                                        (
+                                          
+                                          
+                                          AllProjects.map((ele:getDataProject)=>{
+                                          
+                                            return(
+                                              <tr key={ele.id}>
+                                                
+                                                  <td>{ele.title}</td>
+                                                  <td className='Public' >{ele.manager?.isActivated ? "Public" : "No Public"}</td>
+                                                  <td>{ele.manager?.userName}</td>
+                                                  <td>Num Tasks</td>
+                                                  <td>{ele.creationDate}</td>
+                                                  
+                                                  <td className='action align-items-center d-flex flex-column gap-1 position-relative'>
+                                                        <span className='rounded-circle'></span>
+                                                        <span className='rounded-circle'></span>
+                                                        <span className='rounded-circle'></span>
+                                                      
+                                                        <div className="actions position-absolute rounded-3 bg-white end-0 d-flex flex-column">
+                                                          <div onClick={()=> showView(ele)}>
+                                                            <FontAwesomeIcon className='actions_icons' icon={faEye}  title="View" />
+                                                            <span>View</span>
+                                                            
+                                                          </div>
 
-                                          {/* {loginData?.userGroup === "Manager" &&( */}
-                                            <>
-                                              <div onClick={()=>{navigate("/dashboard/Project-Data", {state : ele})}}>
-                                                <FontAwesomeIcon className='actions_icons' icon={faEdit} title="Edit" />
-                                                <span>edit</span>
-                                              </div>
-                        
-                                                <DeleteConfirmation nameEle={ele.title}  type='projectList' icon={faTrash} id={ele.id} getData={fetchProjects }/>
-                                            </>
-                                          {/* )} */}
+                                                          {loginData?.userGroup === "Manager" &&(
+                                                            <>
+                                                              <div onClick={()=>{navigate("/dashboard/Project-Data", {state : ele})}}>
+                                                                <FontAwesomeIcon className='actions_icons' icon={faEdit} title="Edit" />
+                                                                <span>edit</span>
+                                                              </div>
                                         
-                                        </div>
-                                  </td>
-                            </tr>
-                            )
-                          })
-                        ) : <tr><td></td></tr>}
-              
-                  </tbody> 
-              </table>
-              )}
+                                                                <DeleteConfirmation nameEle={ele.title}  type='projectList' icon={faTrash} id={ele.id} getData={fetchProjects }/>
+                                                            </>
+                                                          )}
+                                                        
+                                                        </div>
+                                                  </td>
+                                            </tr>
+                                            )
+                                          })
+                                        ) : <tr><td></td></tr>}
+                              
+                                  </tbody> 
+                              </table>
+                      </>
+            }
+        </>)}
+   <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={fetchProjects} />
+  
 
-              <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={fetchProjects} />
               {view && <ViewData data={dataView} setView={setView}/>} 
               
       </div>

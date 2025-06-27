@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react'
+import { useContext, useState, useCallback } from 'react'
 
 import { useDropzone } from 'react-dropzone'
 import { Trash2 } from 'lucide-react'
@@ -48,12 +48,12 @@ const Changeinfo = () => {
 let {register,handleSubmit,formState:{errors}}=useForm()
 let handledata=(data:any)=>{
     let appending= new FormData()
-    appending.append('userName',data.userName)
-     appending.append('email',data.email)
+      appending.append('userName',data.userName)
+      appending.append('email',data.email)
       appending.append('country',data.country)
-       appending.append('phoneNumber',data.phoneNumber)
-        appending.append('profileImage', file || '')
-  appending.append('confirmPassword',data.confirmPassword)
+      appending.append('phoneNumber',data.phoneNumber)
+      appending.append('profileImage', file || '')
+      appending.append('confirmPassword',data.confirmPassword)
   return appending;
         
 

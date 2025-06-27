@@ -33,15 +33,18 @@ export default function ResetPass() {
   const onSubmit = async (data:ForgetType)=>{
       setLoder(true)
       try{
-        let response = await axiosInstance.post(USERS_URLS.RESET,data).then(res=>{
-          toast.success(res.data.message);
+        let response = await axiosInstance.post(USERS_URLS.RESET,data)
+        console.log(response.data);
+        
+          toast.success(response.data.message);
           navigate("/login")
           setLoder(false);
           reset()
           
-        })
       }catch(error){
-        toast.success(error.data.message);
+        console.log(error);
+        
+        toast.success(error.data.message || "Cannot find any reset requests for you please try to reset again");
         setLoder(false);
     }
 

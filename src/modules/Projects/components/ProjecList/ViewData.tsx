@@ -15,20 +15,29 @@ export default function ViewData ({setView ,data}:{ setView: any,data:getDataPro
           <table className="table  rounded-3  w-100 bg-white ">
             <thead className="thead-dark">
               <tr>
-                <th scope="col">title</th>
-                <th scope="col">description</th>
-                <th scope="col">creation Date</th>
-                <th scope="col">modification Date</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>title</td>
                 <td>{data.title}</td>
-                <td>{data.description}</td>
-                <td>{data.creationDate}</td>
-                <td>{data.modificationDate}</td>
-                
               </tr>
+              <tr>
+                <td>description</td>
+                <td>{data.description}</td>
+              </tr>
+              <tr>
+                <td>description</td>
+                <td>{data.description}</td>
+              </tr>
+              <tr>
+                <td>modification Date</td>
+                <td>{data.modificationDate}</td>
+              </tr>
+            
            
             </tbody>
           </table>

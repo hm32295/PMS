@@ -1,37 +1,39 @@
 import bgYacts from '../../../../images/Logo.png'
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 import { EMAIL_VALIDION } from '../../../../services/validation';
 export default function ForgetPass() {
-   let {register,handleSubmit,formState:{errors}}=useForm()
+   let {register,handleSubmit,formState:{errors}}=useForm();
+
   let submittion= async(data:any)=>{
          
     try {
     let res= await axiosInstance.post(USERS_URLS.FPRGET_PASSWORD,data )
-    toast.success('OTP sent. Please check your inbox.', {
-  position: 'top-right',
-  autoClose: 3000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  style: {
-    background: 'rgba(239, 155, 40, 1)',
-    color: '#000',
-    fontWeight:600,
-    fontSize:'15px',
-  },
+  
+    toast.success(res.data.message || 'OTP sent. Please check your inbox.', 
+      {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          background: 'rgba(239, 155, 40, 1)',
+          color: '#000',
+          fontWeight:600,
+          fontSize:'15px',
+        },
   onClose: () => {
     navi('/reset-pass'); 
   }
 });
     } catch (error) {
-      console.error("Error during form submission:", error);
-       toast.error(error?.response?.data?.message  || "Something went wrong", {
+       toast.error(error?.response?.data?.message  || "Something went wrong", 
+        {
   position: 'top-right',
   autoClose: 3000,
   hideProgressBar: false,
@@ -53,7 +55,7 @@ export default function ForgetPass() {
    let navi=useNavigate()
   return (
     <div className="ContainerYasta">
-       <ToastContainer
+       {/* <ToastContainer
       position="top-right"
       autoClose={3000}
       hideProgressBar={false}
@@ -63,7 +65,7 @@ export default function ForgetPass() {
       pauseOnFocusLoss
       draggable
       pauseOnHover
-    />
+    /> */}
       <div className="BoxLoginYasta">
         <div className="HeaderYasta">
           <img src={bgYacts} alt="PMS Logo" className="LogoYasta" />

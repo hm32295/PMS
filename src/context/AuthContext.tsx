@@ -90,7 +90,7 @@ let [infoo,setinfoo]=useState([])
           console.log('Error in Getting Data',error)
         }
       }
-       console.log(Userdata)
+      //  console.log(Userdata)
       // Effect
         useEffect(() => {
       if (localStorage.getItem("token")) {

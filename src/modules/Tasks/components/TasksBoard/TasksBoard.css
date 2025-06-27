@@ -9,9 +9,9 @@
     flex-direction: column;
 }
 .TasksBoard .status div div{
-    background-color: #315951E5;
+    background-color:rgba(14, 56, 47, 1);
     width: 100%;
-    min-height: 100px;
+    min-height: 400px;
     flex: 1;
 }
 @media (max-width: 991px) {

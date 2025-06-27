@@ -21,7 +21,7 @@ export default function TaskCol({tasks,title ,getTasksToDo} : {tasks : TTasks, t
                 e.preventDefault();
                 let id = e. dataTransfer.getData("id")
                 await changeStatus(title , +id);
-                await getTasksToDo()
+                await getTasksToDo(true)
                 
             }}
             onDragOver={(e)=> e.preventDefault()}

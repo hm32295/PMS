@@ -31,11 +31,9 @@
     padding-bottom: 7rem;
 }
 .ProjectList table {
-    /* #315951E5 */
     font-family: Montserrat;
     font-weight: 400;
     font-size: 14px;
-    /* leading-trim: Cap height; */
     line-height: 100%;
     letter-spacing: 0;
     width: 100%;
@@ -58,9 +56,13 @@
 
 .ProjectList table thead {
     background-color: #315951E5;
+    background-color: #315951E5;
     color: white;
 }
+.ProjectList table  th{
+    background-color: #315951E5;
 
+}
 .ProjectList table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -157,6 +159,18 @@
 
 .view {
     background-color: #00000033;
+}
+.actions button{
+    cursor: pointer;
+        background: transparent;
+        color: black;
+        border: 0;
+        justify-content: flex-start;
+        display: flex;
+        padding: .5rem 3rem .5rem .5rem;
+        justify-content: flex-start;
+        align-items: center;
+        gap: .5rem;
 }
 
 .view div svg {

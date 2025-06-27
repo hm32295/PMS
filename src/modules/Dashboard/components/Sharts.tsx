@@ -10,7 +10,6 @@ import {
 } from 'chart.js';
 import { Pie, Bar } from 'react-chartjs-2';
 import './sharts.css';
-import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
 
 ChartJS.register(

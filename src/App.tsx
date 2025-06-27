@@ -22,6 +22,7 @@ import Protifolio from "./modules/Users/components/Protifolio";
 import Changeinfo from "./modules/Users/components/UsersList/Changeinfo";
 import TasksList from "./modules/Tasks/components/TasksList/TasksList";
 import TasksData from "./modules/Tasks/components/TasksData/TasksData";
+import TasksBoard from "./modules/Tasks/components/TasksBoard/TasksBoard";
 
 
 function App() {
@@ -76,7 +77,8 @@ function App() {
            { path : "Changeinfo", element : <Changeinfo /> },
             { path : "tasks-list", element : <TasksList /> },
                { path : "tasks-data", element : <TasksData/> },
-            
+                 { path : "tasks-board", element : <TasksBoard/> },
+             
            
          ]
        }

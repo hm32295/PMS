@@ -42,23 +42,26 @@ export default function Regestor() {
     recipesForm.append('password', data.password)
     recipesForm.append('phoneNumber', data.phoneNumber)
     recipesForm.append('profileImage', data.profileImage[0])
+   
     return recipesForm
   
   }
+
+
   const onSubmit = async (data:ForgetType)=>{
-  let resulteHandleForm =handelDataToForm(data)
-  setLoder(true)
-  try{
-  let response = await axiosInstance.post(USERS_URLS.REGISTER,resulteHandleForm).then(res=>{
-  toast.success(res.data.message);
-  navigate("/verify-account")
-  setLoder(false);
-  reset();
-          
+ 
+    let resulteHandleForm =handelDataToForm(data)
+ 
+    
+      setLoder(true)
+      try{
+        let response = await axiosInstance.post(USERS_URLS.REGISTER,resulteHandleForm)
+          toast.success(response.data.message || "Create Data Success");
+          navigate("/verify-account")
+          setLoder(false);
+          reset();
           
 
-          
-        })
       }catch(error:any){
         
         toast.error(error.response.data.message);
@@ -67,6 +70,8 @@ export default function Regestor() {
 
     
   }
+
+
   const [avtar,setAvtar] = useState(logo2)
   const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
