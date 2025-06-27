@@ -20,6 +20,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import Protifolio from "./modules/Users/components/Protifolio";
 import Changeinfo from "./modules/Users/components/UsersList/Changeinfo";
+import TasksList from "./modules/Tasks/components/TasksList/TasksList";
+import TasksData from "./modules/Tasks/components/TasksData/TasksData";
 
 
 function App() {
@@ -68,10 +70,13 @@ function App() {
             { path : '/dashboard', element : <Dashboard /> },
            { path : "Project-List", element : <ProjectList /> },
            { path : "Project-Data", element : <ProjectData /> },
-           { path : "Tasks", element : <Tasks /> },
+          
            { path : "Users", element : <Users /> },
           { path : "Protifolio", element : <Protifolio /> },
            { path : "Changeinfo", element : <Changeinfo /> },
+            { path : "tasks-list", element : <TasksList /> },
+               { path : "tasks-data", element : <TasksData/> },
+            
            
          ]
        }

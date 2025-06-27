@@ -12,15 +12,16 @@ const Login = () => {
   let navi=useNavigate()
 
   const {register,handleSubmit,formState:{errors}}=useForm();
-  let{saveLoginData} = useContext(AuthContext);
+  let{saveLoginData,funUserdata} = useContext(AuthContext);
 
   let submittion= async(data:any)=>{
     try {
       let res= await axiosInstance.post(USERS_URLS.LOGIN,data)
       localStorage.setItem('token' , (res.data.token));
         toast.success('تم حفظ البيانات بنجاح!');
-        navi('/dashboard/Project-List');
+        navi('/dashboard');
         saveLoginData()
+        funUserdata()
     } catch (error) {
       console.error("Error during form submission:", error);
        toast.error("Error during form submission:");

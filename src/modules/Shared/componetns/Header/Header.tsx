@@ -4,8 +4,8 @@ import { AuthContext } from '../../../../context/AuthContext';
 
 const Header = () => {
   let auth=useContext(AuthContext)
-    const { loginData } = auth;
-      const name = loginData?.userName;   
+    const { Userdata } = auth;
+      const name = Userdata?.userName;   
   return (
     <section className="header-section">
       <div className="container">

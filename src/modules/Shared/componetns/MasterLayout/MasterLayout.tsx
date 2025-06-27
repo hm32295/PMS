@@ -25,7 +25,7 @@ const MasterLayout = () => {
         </header>
         <div className={styles.content} >
          
-         {/* {!hideHeader && <Header />} */}
+    
           <Outlet />
          
         </div>

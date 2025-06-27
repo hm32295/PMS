@@ -1,15 +1,20 @@
-.sidebar-layout {
+sidebar-layout {
   background-color:rgba(14, 56, 47, 1);
-}.sidebar-root {
+}
+
+.sidebar-root {
   background-color:rgba(14, 56, 47, 1);
   height: 100%;
+  transition: width 0.3s ease;
 }
+
 .sidebar-header {
   display: flex;
   justify-content: center;
   padding: 16px 0;
   width: 100%;
 }
+
 .menu-item-custom {
   width: 100%;
   display: flex !important;
@@ -19,12 +24,11 @@
   background-color:rgba(14, 56, 47, 1) !important;
   color: #fff !important;
   padding: 8px 0 !important;
- 
 }
+
 .menu-item-custom:hover {
   background-color: rgba(0, 146, 71, 0.1) !important;
   color: #fff !important;
- 
 }
 
 .menu-item-custom::after {
@@ -37,15 +41,16 @@
   background-color: transparent;
   transition: background-color 0.2s ease;
 }
+
 .pro-item-content{
   font-weight: 700;
   font-size: 14px !important;
 }
+
 .pro-icon-wrapper{
   background-color: rgba(0, 146, 71, 1) !important;
- 
- 
 }
+
 .sidebar-root.is-collapsed .pro-menu .pro-menu-item .pro-inner-item {
   padding: 0 !important;
   justify-content: center !important;
@@ -54,53 +59,116 @@
 .sidebar-root.is-collapsed .pro-menu .pro-menu-item .pro-item-content {
   display: none !important;
 }
-@media(max-width: 1024px) {
-  .sidebar-TopItems-is-collapsed {
-    margin-top: 40px !important;
-  }
-  
-}
+
 .ps-menu-button:hover{
   background:none !important;
 }
+
 .ps-menu-label{
  font-weight: 700;
  font-size: 14px;
 }
+
 .ps-menu-label {
   display: block !important;
 }
+
 .sidebar-root.is-collapsed .ps-menu-label {
   display: none !important;
 }
+
 .sidebar-root.is-collapsed
   .ps-menu-root > ul > li.ps-menu-item > .ps-menu-button {
   padding: 0 !important;
   justify-content: center !important;
 }
+
 .ps-menu-icon{
   background-color: #af731e !important;
   border-radius: 50% !important;
   color: #fff;
- 
 }
+
 .sidebar-header img{
  width: 190px !important;
  height: 80px !important;
 }
+
 .css-dip3t8{
 background-color:rgba(14, 56, 47, 1) !important;
 min-height: 100vh  !important;
 }
+
 .ps-menuitem-root:hover{
     background-color: rgba(239, 155, 40, 0.3) !important;
     border-radius: 10px;
     color:rgba(239, 155, 40, 1) !important ;
 }
+
 .sidebar-header h3 {
  color:#ff9500 ;
 }
 
 .Sidebar {
     position: relative;
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 1023px) {
+  .sidebar-TopItems-is-collapsed {
+    margin-top: 40px !important;
+  }
+  
+  /* تقليل المساحات في الشاشات الصغيرة */
+  .sidebar-root {
+    width: 280px !important;
+  }
+  
+  .sidebar-root.is-collapsed {
+    width: 64px !important;
+  }
+  
+  .sidebar-header {
+    padding: 12px 0;
+  }
+  
+  .menu-item-custom {
+    padding: 6px 0 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar-root {
+    width: 240px !important;
+  }
+  
+  .sidebar-root.is-collapsed {
+    width: 56px !important;
+  }
+  
+  .sidebar-header img{
+    width: 140px !important;
+    height: 60px !important;
+  }
+}
+
+/* إضافة overlay للشاشات الصغيرة */
+@media (max-width: 1023px) {
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
 }
