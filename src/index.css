@@ -33,13 +33,15 @@ aside._sidebar_j2ocx_17 {
 ._content_j2ocx_55 {
   padding: .5rem !important;
 }
+.loader{
+  height: 50vh !important;
+}
 
 @media (max-width : 455px) {
   ._content_j2ocx_55 {
     padding: 0rem !important;
   }
 
-  /* Test */
   .Logo_Ya_Ged3an span {
     display: none !important;
   }
@@ -48,4 +50,14 @@ aside._sidebar_j2ocx_17 {
 
   display: flex !important;
   justify-content: flex-start !important;
+}
+.ps-sidebar-root{
+  z-index: 5;
+}
+.ps-sidebar-root{
+  position: fixed !important;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  height: 100vh !important;
 }

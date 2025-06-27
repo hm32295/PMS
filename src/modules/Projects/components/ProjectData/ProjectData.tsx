@@ -33,27 +33,26 @@ export default function ProjectData() {
     let id;
     if(projectItem) id = projectItem.id
     let response;
-      setLoder(true)
+    setLoder(true)
     try {
       if(buttonSave === "save"){
-
         response =  await axiosInstance.post(PROJECTS_URLS.CRETE,data);
       }else if(buttonSave === "Edit"){
         response = await axiosInstance.put(PROJECTS_URLS.UPDATE(id),data);
-
+        navigate("/dashboard/Project-List")
       }
-      setLoder(false);
       toast.success(response?.statusText || "success created");
       setButtonSave("save");
-      // setPageNumber(Array(response.data.totalNumberOfPages).fill().map((_,i) => i+1))
       reset({
         description:"",
         title : ""
       });
       
     } catch (error) {
-      setLoder(false)
       
+    }finally{
+      setLoder(false)
+
     }
     
   }

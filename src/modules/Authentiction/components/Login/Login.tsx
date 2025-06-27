@@ -1,5 +1,5 @@
 
-import  { useContext } from 'react';
+import  { useContext, useState } from 'react';
 import './login.css';
 import bgYacts from '../../../../images/Logo.png'
 import { useForm } from 'react-hook-form';
@@ -8,24 +8,31 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../context/AuthContext';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 import { EMAIL_VALIDION } from '../../../../services/validation';
+import { ClipLoader } from 'react-spinners';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const Login = () => {
+  const [showPass, setShowPass] = useState(true);
   let navi=useNavigate()
-
+  const [loder, setLoder] = useState(false)
   const {register,handleSubmit,formState:{errors}}=useForm();
   let{saveLoginData} = useContext(AuthContext);
 
  
 
   let submittion= async(data:any)=>{
+    setLoder(true)
     try {
       let res= await axiosInstance.post(USERS_URLS.LOGIN,data)
       localStorage.setItem('token' , (res.data.token));
         toast.success('تم حفظ البيانات بنجاح!');
         navi('/dashboard/Project-List');
-        saveLoginData()
+        saveLoginData();
     } catch (error) {
-      console.error("Error during form submission:", error);
-       toast.error("Error during form submission:");
+      toast.error("Error during form submission:");
+    }finally{
+      setLoder(false)
+
     }
    
   }
@@ -67,20 +74,29 @@ const Login = () => {
 
           <div className="FieldYasta">
             <label className="LabelYasta">Password</label>
-            <div className="PasswordWrapperYasta">
-              <input 
-               type="password"   
-                className="InputYasta" 
-                placeholder="Enter your password"
-                 autoComplete="off"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters"
-                  }
-                })}
-              />
+            <div className="PasswordWrapperYasta text-white">
+              <div className='d-flex justify-content-between align-items-center'>
+                <input 
+                type={showPass ? "password" : "text"}   
+                  className="InputYasta" 
+                  placeholder="Enter your password"
+                  autoComplete="off"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters"
+                    }
+                  })}
+                  
+                />
+                {showPass?( <FontAwesomeIcon className='icons' icon={faEye} 
+                              onClick={()=> setShowPass(false)}
+                        /> ) :<FontAwesomeIcon className='icons' icon={faEyeSlash}
+                              onClick={()=> setShowPass(true)}
+                        
+                  /> }
+              </div>
               {errors.password && <span className="ErrorYastaPassemail">{errors.password.message}</span>}
             
             </div>
@@ -92,7 +108,7 @@ const Login = () => {
           </div>
 
           <button type="submit" className="ButtonYasta">
-            Login
+            { loder? <ClipLoader size={15} color='green' />: "Login"}
           </button>
         </form>
       </div>

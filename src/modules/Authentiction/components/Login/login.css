@@ -230,10 +230,7 @@
       max-width: 630px;
   }
 }
-.BoxLoginYasta {
- /* background: rgba(0, 0, 0, 0.4); */
 
-}
 
 
 .InputYasta {
@@ -242,8 +239,15 @@
   border-bottom-width: 2px !important;
 }
 .ErrorYastaPassemail{
-    color: #fff;
-    font-size: 12px;
+  color: #fff;
+  font-size: 12px;
+}
+.PasswordWrapperYasta {
+  border-bottom:solid 2px rgb(239, 189, 40) !important;
+  
+}
+.PasswordWrapperYasta input{
+  border: 0 !important;
 }
 /* Override علي ال Outfill بتاع ال inputs */
 .InputYasta:-webkit-autofill,

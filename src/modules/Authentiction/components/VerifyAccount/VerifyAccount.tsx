@@ -16,8 +16,8 @@ type ForgetType = {
   code: "string"
 }
 export default function VerifyAccount() {
-  const [showPass, setShowPass] = useState(true);
-  const [showPassCon, setShowPassCon] = useState(true);
+  // const [showPass, setShowPass] = useState(true);
+  // const [showPassCon, setShowPassCon] = useState(true);
   const navigate = useNavigate()
   let {register, formState:{errors}, handleSubmit, watch ,reset} =  useForm<ForgetType>();
   const [loder ,setLoder] = useState(false);
@@ -29,16 +29,16 @@ export default function VerifyAccount() {
   const onSubmit = async (data:ForgetType)=>{
       setLoder(true)
       try{
-        let response = await axiosInstance.put(USERS_URLS.VERIFY,data).then(res=>{
-          toast.success(res.data.message);
+        let response = await axiosInstance.put(USERS_URLS.VERIFY,data)
+       
+          toast.success(response.data.message);
           navigate("/login")
           setLoder(false);
-          reset()
-          
-        })
+          reset(); 
       }catch(error:any){
-        toast.success(error.data.message);
+        
         setLoder(false);
+        toast.success(error.data.message || "Sorry");
     }
 
     

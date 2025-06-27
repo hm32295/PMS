@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { axiosInstance, TASKS_URLS } from '../../../../services/urls';
-import { ClipLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 import DeleteConfirmation from '../../../Shared/componetns/DeleteConfirm/DeleteConfirmation';
 import { getAllTasks } from '../../../../interfaces/interface';
 import ViewData from './ViewData';
@@ -80,7 +80,7 @@ export default function TasksList() {
       </div>
       <div className='overflow-auto w-100 table-data'>
 
-       {loders? <div className='d-flex justify-content-center p-5'><ClipLoader  size={50} color='#000'/></div> :
+       {loders? <div className='d-flex justify-content-center p-5'><ScaleLoader  color='#EF9B28'/></div> :
             (
               <table className='w-100'>
                   <thead>

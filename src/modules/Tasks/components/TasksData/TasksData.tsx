@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { axiosInstance, PROJECTS_URLS, TASKS_URLS, USERS_URLS } from "../../../../services/urls";
 import { Fragment, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { ClipLoader } from "react-spinners";
+import { ClipLoader, ScaleLoader } from "react-spinners";
 import {employeesType, getDataProject, projectData } from "../../../../interfaces/interface";
 
 
@@ -98,7 +98,7 @@ export default function TasksData() {
     }
     
   }
-  
+  if(loder) return <ScaleLoader  color='#EF9B28'/>
   return (
     <div className='ProjectData TasksData'>
       <header >

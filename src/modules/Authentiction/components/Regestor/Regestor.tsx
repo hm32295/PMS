@@ -55,16 +55,13 @@ export default function Regestor() {
     
       setLoder(true)
       try{
-        let response = await axiosInstance.post(USERS_URLS.REGISTER,resulteHandleForm).then(res=>{
-          toast.success(res.data.message);
+        let response = await axiosInstance.post(USERS_URLS.REGISTER,resulteHandleForm)
+          toast.success(response.data.message || "Create Data Success");
           navigate("/verify-account")
           setLoder(false);
           reset();
-          // console.log(res);
           
 
-          
-        })
       }catch(error:any){
         
         toast.error(error.response.data.message);
