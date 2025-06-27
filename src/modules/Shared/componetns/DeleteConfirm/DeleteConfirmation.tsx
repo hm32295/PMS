@@ -6,16 +6,20 @@ import {  faTrashCan, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { toast } from 'react-toastify';
-import { axiosInstance, PROJECTS_URLS } from '../../../../services/urls';
+import { axiosInstance, PROJECTS_URLS, TASKS_URLS } from '../../../../services/urls';
 import "./DeleteConfirmation.css"
 import { ClipLoader } from 'react-spinners';
 
-export default function DeleteConfirmation({id,type,getData ,nameEle ,icon}) {
+export default function DeleteConfirmation({id,type,getData ,nameEle ,icon}:{id:any,type:any,getData:any,nameEle:any,icon:any}) {
   const[loder ,setLoder] = useState(false)
   let deleteElement =async()=>{
     setLoder(true)      
     try {
         
+        if(type === "Tasks"){
+            
+            const response = await axiosInstance.delete(TASKS_URLS.DELETE(id))
+        }
         if(type === "projectList"){
             
             const response = await axiosInstance.delete(PROJECTS_URLS.DELETE(id))

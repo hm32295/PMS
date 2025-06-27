@@ -1,76 +1,76 @@
+
 import  {  useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ProjectList.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { axiosInstance, PROJECTS_URLS } from '../../../../services/urls';
+import { faEdit, faEye, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { axiosInstance, TASKS_URLS } from '../../../../services/urls';
 import { ClipLoader } from 'react-spinners';
 import DeleteConfirmation from '../../../Shared/componetns/DeleteConfirm/DeleteConfirmation';
-import { getDataProject } from '../../../../interfaces/interface';
+import { getAllTasks } from '../../../../interfaces/interface';
 import ViewData from './ViewData';
+import './TasksList.css'
 import { AuthContext } from '../../../../context/AuthContext';
 import PaginationTest from './Pagination';
-export default function ProjectList() {
+export default function TasksList() {
+  
   const [totalPages, setTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
 
+  const { loginData, isAuthLoading }: { loginData: any; isAuthLoading: boolean } = useContext(AuthContext);
 
-  let{loginData,isAuthLoading}:{loginData:any,isAuthLoading:any} = useContext(AuthContext);
   const navigate = useNavigate();
   const [AllProjects ,setAllProjects] = useState([]);
   const[ title ,setTitle] = useState("");
   const [loders ,setLoders] = useState(false);
   const [view ,setView] = useState(false);
-  const[dataView , setDataView] = useState<getDataProject |null>(null);
-
+  const[dataView , setDataView] = useState<getAllTasks |null>(null);
   
-  const showView =(data:getDataProject)=>{
+  const showView =(data:getAllTasks)=>{
     setDataView(data);
     setView(true);
   }
 
-  const fetchProjects  = async ( pageNumber:number,pageSize:number,title:string  )=>{
+  const getAllTasks = async ( pageNumber:number,pageSize:number,title:string  )=>{
+    setLoders(true);
     if(loginData === null) return
-    setLoders(true)
     try {
       let response;
-      
-      if(loginData?.userGroup === 'Employee' ){
-        response = await axiosInstance(PROJECTS_URLS.GET_EMPLOYEE,{params:{pageSize , pageNumber,title}} );
-      }else if(loginData?.userGroup === 'Manager'){
-        response = await axiosInstance(PROJECTS_URLS.GET_MANAGER,{params:{pageSize , pageNumber,title}} );
+      if(loginData.userGroup === 'Employee' ){
+         response = await axiosInstance(TASKS_URLS.GET,{params:{pageSize , pageNumber,title}} );
+      }else if(loginData.userGroup === 'Manager'){
+         response = await axiosInstance(TASKS_URLS.GET_MANGER,{params:{pageSize , pageNumber,title}} );
 
       }
-      
+
       setTotalResults(response?.data?.totalNumberOfRecords);
       setTotalPages(response?.data?.totalNumberOfPages);
+
+   
       setAllProjects(response?.data?.data);
+      setLoders(false);
       
     } catch (error) {
       console.log(error);
       
-    }finally {
       setLoders(false)
-
+      
     }
     
   }
   useEffect(()=>{
-    if(!isAuthLoading && loginData){
-      fetchProjects (1, 10,"")
+    if (!isAuthLoading && loginData) {
+      getAllTasks(1, 10,"")
     }
-  },[isAuthLoading,loginData])
+  },[loginData ,isAuthLoading])
   useEffect(()=>{
-    fetchProjects (1, 5,title)
+    getAllTasks(1, 10,title)
     
    },[title])
   return (
-    <div className='ProjectList m-3 bg-white rounded-2 '>
+    <div className='ProjectList TasksList m-3 bg-white rounded-2 '>
       <header className='p-3 d-flex justify-content-between align-items-center'>
-        <span>Projects</span>
-        {loginData?.userGroup === "Manager" &&(
-          <button onClick={()=>{navigate('/dashboard/Project-Data')}}>Add New Project</button>
-        )}
+        <span>Tasks</span>
+        <button onClick={()=>{navigate('/dashboard/tasks-Data')}}>Add New Task</button>
       </header>
       <div className="search p-3">
         <div className="input_search bg-white">
@@ -87,8 +87,8 @@ export default function ProjectList() {
                     <tr>
                       <th>Title </th>
                       <th>Statues </th>
-                      <th>Num Users </th>
-                      <th>Num Tasks </th>
+                      <th>User </th>
+                      <th>Project </th>
                       <th>Date Created </th>
                       <th> action</th>
                     </tr>
@@ -100,15 +100,15 @@ export default function ProjectList() {
                         (
                           
                           
-                          AllProjects.map((ele:getDataProject)=>{
+                          AllProjects.map((ele:getAllTasks)=>{
                           
                             return(
                               <tr key={ele.id}>
                                 
                                   <td>{ele.title}</td>
-                                  <td className='Public' >{ele.manager?.isActivated ? "Public" : "No Public"}</td>
-                                  <td>{ele.manager?.userName}</td>
-                                  <td>Num Tasks</td>
+                                  <td className={``} > {ele.status}</td>
+                                  <td>{ele.employee?.userName}</td>
+                                  <td>{ele.project?.title}</td>
                                   <td>{ele.creationDate}</td>
                                   
                                   <td className='action align-items-center d-flex flex-column gap-1 position-relative'>
@@ -122,17 +122,12 @@ export default function ProjectList() {
                                             <span>View</span>
                                             
                                           </div>
-
-                                          {/* {loginData?.userGroup === "Manager" &&( */}
-                                            <>
-                                              <div onClick={()=>{navigate("/dashboard/Project-Data", {state : ele})}}>
-                                                <FontAwesomeIcon className='actions_icons' icon={faEdit} title="Edit" />
-                                                <span>edit</span>
-                                              </div>
-                        
-                                                <DeleteConfirmation nameEle={ele.title}  type='projectList' icon={faTrash} id={ele.id} getData={fetchProjects }/>
-                                            </>
-                                          {/* )} */}
+                                          <div onClick={()=>{navigate("/dashboard/tasks-Data", {state : ele})}}>
+                                            <FontAwesomeIcon className='actions_icons' icon={faEdit} title="Edit" />
+                                            <span>edit</span>
+                                          </div>
+                    
+                                            <DeleteConfirmation nameEle={ele.title}  type='tasks' icon={faTrash} id={ele.id} getData={getAllTasks}/>
                                         
                                         </div>
                                   </td>
@@ -144,8 +139,7 @@ export default function ProjectList() {
                   </tbody> 
               </table>
               )}
-
-              <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={fetchProjects} />
+               <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={getAllTasks} />
               {view && <ViewData data={dataView} setView={setView}/>} 
               
       </div>

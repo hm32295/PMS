@@ -14,8 +14,6 @@ const Login = () => {
   const {register,handleSubmit,formState:{errors}}=useForm();
   let{saveLoginData}:any = useContext(AuthContext);
 
- 
-
   let submittion= async(data:any)=>{
     try {
       let res= await axiosInstance.post(USERS_URLS.LOGIN,data)

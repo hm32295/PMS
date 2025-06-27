@@ -12,15 +12,15 @@ import MasterLayout from "./modules/Shared/componetns/MasterLayout/MasterLayout"
 import Dashboard from "./modules/Dashboard/components/Dashboard";
 import ProjectList from "./modules/Projects/components/ProjecList/ProjectList";
 import ProjectData from "./modules/Projects/components/ProjectData/ProjectData";
-import Tasks from "./modules/Tasks/components/Tasks";
 import Users from "./modules/Users/components/UsersList/UsersList";
-
+import Protifolio from "./modules/Users/components/Protifolio";
+import Changeinfo from "./modules/Users/components/UsersList/Changeinfo";
+import Tasks from "./modules/Tasks/components/Tasks";   
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-
-import AuthContextProvider from "./context/AuthContext";  
+import AuthContextProvider from "./context/AuthContext";
 
 function App() {
   const routes = createBrowserRouter([
@@ -47,10 +47,13 @@ function App() {
       ),
       children: [
         { index: true, element: <Dashboard /> },
+        { path: "/dashboard", element: <Dashboard /> },
         { path: "Project-List", element: <ProjectList /> },
         { path: "Project-Data", element: <ProjectData /> },
         { path: "Tasks", element: <Tasks /> },
         { path: "Users", element: <Users /> },
+        { path: "Protifolio", element: <Protifolio /> },
+        { path: "Changeinfo", element: <Changeinfo /> },
       ],
     },
   ]);
@@ -60,7 +63,6 @@ function App() {
       <AuthContextProvider>
         <RouterProvider router={routes} />
       </AuthContextProvider>
-
       <ToastContainer />
     </>
   );

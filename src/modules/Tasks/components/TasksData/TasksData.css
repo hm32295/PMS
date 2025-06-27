@@ -1,0 +1,31 @@
+.ProjectData.TasksData .selectTasks {
+    flex-direction: row;
+}
+.ProjectData.TasksData .selectTasks > div{
+    width: 45%;
+    /* flex-direction: row; */
+}
+.ProjectData.TasksData .selectTasks > div label{
+    width: 100%;
+    font-family: "Quicksand" , sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+.ProjectData.TasksData .selectTasks > div select{
+    width: 100%;
+    font-family: "Quicksand" ,sans-serif;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-weight: 400;
+    border: #ccc solid 1px;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    outline: none;
+}
+@media (max-width : 480px) {
+    .ProjectData.TasksData .selectTasks>div {
+            width: 98%;   }
+}

@@ -53,10 +53,6 @@ export default function ChangePass() {
             <h3 ><span className='position-relative text-capitalize'>C</span>hange Password</h3>
           </div>
 
-
-          
-
-          
           <div className='d-flex justify-content-start align-items-start flex-column mt-3'>
             <label htmlFor="">Old Password</label>
             <div className='input d-flex justify-content-between w-100'>
