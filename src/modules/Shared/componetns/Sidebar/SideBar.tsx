@@ -53,7 +53,9 @@ const Sidepar = () => {
      <div className="mt-3">
   <Menu iconShape="circle" className={`sidebar-TopItems ${collapsed ? 'sidebar-TopItems-is-collapsed' : ''}`}>
         <MenuItem icon={<IoHome />} onClick={funHome} className="menu-item-custom">Home</MenuItem>
-        <MenuItem icon={<HiOutlineUsers />} onClick={funUsers} className="menu-item-custom">Users</MenuItem>
+        {loginData?.userGroup === "Manager" &&
+          <MenuItem icon={<HiOutlineUsers />} onClick={funUsers} className="menu-item-custom">Users</MenuItem>
+        }
         <MenuItem icon={<FiGrid />} className="menu-item-custom"  onClick={funPrjects}>Projects</MenuItem>
         {loginData?.userGroup === "Manager" &&
           <MenuItem icon={<FaTasks />} className="menu-item-custom" onClick={funTasks}>Tasks</MenuItem>

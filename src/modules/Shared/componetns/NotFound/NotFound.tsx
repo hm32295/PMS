@@ -11,7 +11,7 @@ export default function NotFound() {
   return (
     <div className="not-found-container">
       <div className="error-content">
-        <h1 className="error-number">404</h1>
+        <h1 className="error-number error-number-not-found">404</h1>
         <p className="error-message">Page :<span > {location.pathname}</span> Not Found </p>
         <button className='Dashboard_Unfound mt-2'onClick={funHome}>Dashboard</button>
       </div>

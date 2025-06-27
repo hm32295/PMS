@@ -3,14 +3,11 @@
     margin: 0;
     box-sizing: border-box;
 }
-.table thead th {
-background-color: rgba(49, 89, 81, 0.9) !important; 
- color: white !important;
-  border-color: #315951 !important;
-}
- 
-.dropdown-toggle::after {
-  display: none !important;
+.custom-table thead tr th {
+  background-color: #325C50 !important;
+  color: white !important;
+  font-weight: 500;
+  text-align: center;
 }
 
 
@@ -35,6 +32,11 @@ aside._sidebar_j2ocx_17 {
 }
 .loader{
   height: 50vh !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  box-shadow:0;
 }
 
 @media (max-width : 455px) {
