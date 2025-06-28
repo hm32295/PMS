@@ -5,7 +5,9 @@
         gap: 2rem;
     }
 }
-
+.ProjectList{
+    background-color: #f5f6f6;
+}
 .ProjectList .search {
     box-shadow: 0px 2px 4px 0px #00000026;
 }
@@ -29,18 +31,23 @@
 }
 .ProjectList .table-data{
     padding-bottom: 7rem;
+    overflow-x: auto;
 }
 .ProjectList table {
     font-family: Montserrat;
     font-weight: 400;
+    width: 100%;
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0;
-    width: 100%;
     border-spacing: 0 5px;
     border-collapse: separate;
 }
-
+@media (max-width : 767px) {
+    .ProjectList table{
+        display: none;
+    }
+}
 .ProjectList table tr {
     margin-top: 10px;
 
@@ -216,5 +223,81 @@
     .ProjectList .search input {
         width: 100%;
     }
+
+}
+@media (min-width:768px) {
+    
+    .data_small_screen{
+        display: none !important;
+    }
+}
+.DataInMobile{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px;
+    border-radius: 12px;
+}
+.DataInMobile .icon{
+    background-color: #0E382F;
+    color: white;
+    border-radius: 50%;
+    padding: 1rem;
+    height: 2rem;
+    width: 2rem;
+    font-size: 2rem;
+}
+.DataInMobile h1{
+    font-weight: 500;
+    line-height: 1.2;
+    font-size: calc(1.275rem + .3vw);
+}
+.DataInMobile p{
+    font-size: 12px;
+    margin-bottom: .3rem;
+}
+.DataInMobile .action{
+    margin-left: auto;
+    align-self: stretch;
+    cursor: pointer;
+    width: 1rem;
+}
+.DataInMobile .rounded-circle{
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #0E382F;
+    display: flex;
+    align-self: flex-start;
+}
+.DataInMobile .status span{
+    background-color: #0E382F;
+    color: white;
+    font-size: 12px;
+    display: inline-block;
+    padding: .2rem .2rem;
+    border-radius: .3rem;
+}
+.DataInMobile .actions{
+
+    display: none !important;
+    box-shadow: #aaa 0px -1px 11px 0px;
+    background: white !important;
+    padding-bottom: .5rem;
+}
+.DataInMobile .actions div{
+    display: flex;
+    
+    padding: .3rem 3rem .3rem .5rem;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+}
+.DataInMobile .actions div:hover{
+    background-color: #f5f6f6;
+}
+.DataInMobile .actions button{
+    padding: .3rem 3rem .3rem .5rem;
+
+}
+.DataInMobile .action:hover .actions{
+    display: flex !important;
 
 }

@@ -50,7 +50,6 @@ const{infoo}=useContext(AuthContext)
       borderWidth: 1
     }]
   };
-
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -67,7 +66,6 @@ const{infoo}=useContext(AuthContext)
       }
     }
   };
-
   const barOptions = {
     ...chartOptions,
     scales: {
@@ -84,8 +82,6 @@ const{infoo}=useContext(AuthContext)
       }
     }
   };
-
-console.log(statuss)
   return (
     <div className="charts-section">
       <div className="charts-container">

@@ -11,6 +11,7 @@ import ViewData from './ViewData';
 import { AuthContext } from '../../../../context/AuthContext';
 import PaginationTest from './Pagination';
 import NoData from '../../../Shared/componetns/NoData/NoData';
+import DataInMobile from './DataInMobile';
 export default function ProjectList() {
   const [totalPages, setTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
@@ -20,7 +21,7 @@ export default function ProjectList() {
   const navigate = useNavigate();
   const [AllProjects ,setAllProjects] = useState([]);
   const[ title ,setTitle] = useState("");
-  const [loders ,setLoders] = useState(false);
+  const [Loader ,setLoader] = useState(false);
   const [view ,setView] = useState(false);
   const[dataView , setDataView] = useState<getDataProject |null>(null);
 
@@ -32,7 +33,7 @@ export default function ProjectList() {
 
   const fetchProjects  = async ( pageNumber:number,pageSize:number,title:string  )=>{
     if(loginData === null) return
-    setLoders(true)
+    setLoader(true)
     try {
       let response;
       
@@ -51,7 +52,7 @@ export default function ProjectList() {
       console.log(error);
       
     }finally {
-      setLoders(false)
+      setLoader(false)
 
     }
     
@@ -66,7 +67,7 @@ export default function ProjectList() {
     
    },[title])
   return (
-    <div className='ProjectList m-3 bg-white rounded-2 '>
+    <div className='ProjectList bg-white rounded-2 '>
       <header className='p-3 d-flex justify-content-between align-items-center'>
         <span>Projects</span>
         {loginData?.userGroup === "Manager" &&(
@@ -80,8 +81,8 @@ export default function ProjectList() {
         </div>
       </div>
       <div className='overflow-auto w-100 table-data'>
-        {!loders && !AllProjects.length ?<NoData /> :(<>
-            {loders? <div className='d-flex justify-content-center p-5'><ScaleLoader  color='#EF9B28'/></div> :
+        {!Loader && !AllProjects.length ?<NoData /> :(<>
+            {Loader? <div className='d-flex justify-content-center p-5'><ScaleLoader  color='#EF9B28'/></div> :
                       <>
                               <table className='w-100'>
                                   <thead>
@@ -147,6 +148,15 @@ export default function ProjectList() {
                       </>
             }
         </>)}
+
+           <div className='data_small_screen'>
+              {AllProjects.length ?
+                    ( 
+                      AllProjects.map((ele)=>{
+                          return <DataInMobile key={ele.id} data={ele} {...{AllProjects}} {...{navigate}}/>
+                      })):""
+                }
+            </div>
    <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={fetchProjects} />
   
 

@@ -1,5 +1,5 @@
 
-import  { useContext, useState } from 'react';
+import  { useContext, useEffect, useState } from 'react';
 import './login.css';
 import bgYacts from '../../../../images/Logo.png'
 import { useForm } from 'react-hook-form';
@@ -8,32 +8,42 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../context/AuthContext';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 import { EMAIL_VALIDION } from '../../../../services/validation';
-import { ClipLoader } from 'react-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { ClipLoader } from 'react-spinners';
 const Login = () => {
-  const [showPass, setShowPass] = useState(true);
-  let navi=useNavigate()
-  const [loder, setLoder] = useState(false)
+  const [Loader ,setLoader] = useState(false);
+  let navigation=useNavigate();
+   const [showPass, setShowPass] = useState(true);
+
   const {register,handleSubmit,formState:{errors}}=useForm();
-  let{saveLoginData}:any = useContext(AuthContext);
+  let{saveLoginData,funUserdata,funGetStatus_info,funGetStatus_Users} = useContext(AuthContext);
 
   let submittion= async(data:any)=>{
-    setLoder(true)
+    setLoader(true)
     try {
       let res= await axiosInstance.post(USERS_URLS.LOGIN,data)
       localStorage.setItem('token' , (res.data.token));
         toast.success('تم حفظ البيانات بنجاح!');
-        navi('/dashboard');
-        saveLoginData();
+        navigation('/dashboard');
+        saveLoginData()
+        funUserdata()
+        funGetStatus_info()
+        funGetStatus_Users()
+         useEffect(() => {
+    funGetStatus_info()
+        funGetStatus_Users()
+  },[]);
     } catch (error) {
-      toast.error("Error during form submission:");
-    }finally{
-      setLoder(false)
-
+      console.error("Error during form submission:", error);
+       toast.error("Error during form submission:");
+    }
+    finally{
+      setLoader(false)
     }
    
   }
+ 
 
  
   return (
@@ -72,28 +82,27 @@ const Login = () => {
 
           <div className="FieldYasta">
             <label className="LabelYasta">Password</label>
-            <div className="PasswordWrapperYasta text-white">
-              <div className='d-flex justify-content-between align-items-center'>
-                <input 
-                type={showPass ? "password" : "text"}   
-                  className="InputYasta" 
-                  placeholder="Enter your password"
-                  autoComplete="off"
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 6,
-                      message: "Password must be at least 6 characters"
-                    }
-                  })}
-                  
-                />
-                {showPass?( <FontAwesomeIcon className='icons' icon={faEye} 
-                              onClick={()=> setShowPass(false)}
-                        /> ) :<FontAwesomeIcon className='icons' icon={faEyeSlash}
-                              onClick={()=> setShowPass(true)}
-                        
-                  /> }
+            <div className="PasswordWrapperYasta">
+              <div className='d-flex justify-content-between align-items-center text-white'>
+                  <input 
+                  type={showPass ? "password" : "text"}   
+                    className="InputYasta" 
+                    placeholder="Enter your password"
+                    autoComplete="off"
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters"
+                      }
+                    })}
+                  />
+                  {showPass?( <FontAwesomeIcon className='icons' icon={faEye} 
+                                onClick={()=> setShowPass(false)}
+                          /> ) :<FontAwesomeIcon className='icons' icon={faEyeSlash}
+                                onClick={()=> setShowPass(true)}
+                          
+                    /> }
               </div>
               {errors.password && <span className="ErrorYastaPassemail">{errors.password.message}</span>}
             
@@ -106,7 +115,8 @@ const Login = () => {
           </div>
 
           <button type="submit" className="ButtonYasta">
-            { loder? <ClipLoader size={15} color='green' />: "Login"}
+          {Loader?  <ClipLoader size={15} color='green' /> :"Login"}
+            
           </button>
         </form>
       </div>

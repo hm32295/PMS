@@ -12,6 +12,7 @@ import './TasksList.css'
 import { AuthContext } from '../../../../context/AuthContext';
 import PaginationTest from './Pagination';
 import NoData from '../../../Shared/componetns/NoData/NoData';
+import DataInMobile from './DataInMobile';
 export default function TasksList() {
   
   const [totalPages, setTotalPages] = useState(0);
@@ -22,7 +23,7 @@ export default function TasksList() {
   const navigate = useNavigate();
   const [AllProjects ,setAllProjects] = useState([]);
   const[ title ,setTitle] = useState("");
-  const [loders ,setLoders] = useState(false);
+  const [Loader ,setLoader] = useState(false);
   const [view ,setView] = useState(false);
   const[dataView , setDataView] = useState<getAllTasks |null>(null);
   
@@ -32,7 +33,7 @@ export default function TasksList() {
   }
 
   const getAllTasks = async ( pageNumber:number,pageSize:number,title:string  )=>{
-    setLoders(true);
+    setLoader(true);
     if(loginData === null) return
     try {
       let response;
@@ -48,12 +49,12 @@ export default function TasksList() {
 
    
       setAllProjects(response?.data?.data);
-      setLoders(false);
+      setLoader(false);
       
     } catch (error) {
       console.log(error);
       
-      setLoders(false)
+      setLoader(false)
       
     }
     
@@ -68,7 +69,7 @@ export default function TasksList() {
     
    },[title])
   return (
-    <div className='ProjectList TasksList m-3 bg-white rounded-2 '>
+    <div className='ProjectList TasksList bg-white rounded-2 '>
       <header className='p-3 d-flex justify-content-between align-items-center'>
         <span>Tasks</span>
         <button onClick={()=>{navigate('/dashboard/tasks-Data')}}>Add New Task</button>
@@ -79,77 +80,86 @@ export default function TasksList() {
           <input type="search" onChange={(e)=>{setTitle(e.target.value)}} placeholder='Search By Title ' />
         </div>
       </div>
-      <div className='overflow-auto w-100 table-data'>
-        {AllProjects.length === 0 && !loders ? <NoData />:(
-          <>
-              {loders? <div className='d-flex justify-content-center p-5'><ScaleLoader  color='#EF9B28'/></div> :
-                  (
-                    <table className='w-100'>
-                        <thead>
-                          <tr>
-                            <th>Title </th>
-                            <th>Statues </th>
-                            <th>User </th>
-                            <th>Project </th>
-                            <th>Date Created </th>
-                            <th> action</th>
-                          </tr>
-                        </thead>
-                        <tbody >
-                        
-                      
-                              {AllProjects.length ?
-                              (
-                                
-                                
-                                AllProjects.map((ele:getAllTasks)=>{
-                                
-                                  return(
-                                    <tr key={ele.id}>
-                                      
-                                        <td>{ele.title}</td>
-                                        <td className={``} > {ele.status}</td>
-                                        <td>{ele.employee?.userName}</td>
-                                        <td>{ele.project?.title}</td>
-                                        <td>{ele.creationDate}</td>
-                                        
-                                        <td className='action align-items-center d-flex flex-column gap-1 position-relative'>
-                                              <span className='rounded-circle'></span>
-                                              <span className='rounded-circle'></span>
-                                              <span className='rounded-circle'></span>
-                                            
-                                              <div className="actions position-absolute rounded-3 bg-white end-0 d-flex flex-column">
-                                                <div onClick={()=> showView(ele)}>
-                                                  <FontAwesomeIcon className='actions_icons' icon={faEye}  title="View" />
-                                                  <span>View</span>
-                                                  
-                                                </div>
-                                                <div onClick={()=>{navigate("/dashboard/tasks-Data", {state : ele})}}>
-                                                  <FontAwesomeIcon className='actions_icons' icon={faEdit} title="Edit" />
-                                                  <span>edit</span>
-                                                </div>
+
+          <div className=' table-data overflow-auto'>
+            {AllProjects.length === 0 && !Loader ? <NoData />:(
+              <>
+                  {Loader? <div className='d-flex justify-content-center p-5'><ScaleLoader  color='#EF9B28'/></div> :
+                      (
+                        <table className=''>
+                            <thead>
+                              <tr>
+                                <th>Title </th>
+                                <th>Statues </th>
+                                <th>User </th>
+                                <th>Project </th>
+                                <th>Date Created </th>
+                                <th> action</th>
+                              </tr>
+                            </thead>
+                            <tbody >
+                            
                           
-                                                  <DeleteConfirmation nameEle={ele.title}  type='tasks' icon={faTrash} id={ele.id} getData={getAllTasks}/>
-                                              
-                                              </div>
-                                        </td>
-                                  </tr>
-                                  )
-                                })
-                              ) : <tr><td></td></tr>}
-                    
-                        </tbody> 
-                    </table>
-                    )}
-                      <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={getAllTasks} />
-                    {view && <ViewData data={dataView} setView={setView}/>} 
-          </>
-    )}
-              
-      </div>
+                                  {AllProjects.length ?
+                                  ( 
+                                    AllProjects.map((ele:getAllTasks)=>{
+                                    
+                                      return(
+                                        <tr key={ele.id}>
+                                          
+                                            <td>{ele.title}</td>
+                                            <td className={``} > {ele.status}</td>
+                                            <td>{ele.employee?.userName}</td>
+                                            <td>{ele.project?.title}</td>
+                                            <td>{ele.creationDate}</td>
+                                            
+                                            <td className='action align-items-center d-flex flex-column gap-1 position-relative'>
+                                                  <span className='rounded-circle'></span>
+                                                  <span className='rounded-circle'></span>
+                                                  <span className='rounded-circle'></span>
+                                                
+                                                  <div className="actions position-absolute rounded-3 bg-white end-0 d-flex flex-column">
+                                                    <div onClick={()=> showView(ele)}>
+                                                      <FontAwesomeIcon className='actions_icons' icon={faEye}  title="View" />
+                                                      <span>View</span>
+                                                      
+                                                    </div>
+                                                    <div onClick={()=>{navigate("/dashboard/tasks-Data", {state : ele})}}>
+                                                      <FontAwesomeIcon className='actions_icons' icon={faEdit} title="Edit" />
+                                                      <span>edit</span>
+                                                    </div>
+                              
+                                                      <DeleteConfirmation nameEle={ele.title}  type='tasks' icon={faTrash} id={ele.id} getData={getAllTasks}/>
+                                                  
+                                                  </div>
+                                            </td>
+                                      </tr>
+                                      )
+                                    })
+                                  ) : <tr><td></td></tr>}
+                        
+                            </tbody> 
+                        </table>
+                        )}
+                            <div className='data_small_screen'>
+                              {AllProjects.length ?
+                                    ( 
+                                      AllProjects.map((ele:getAllTasks)=>{
+                                          return <DataInMobile key={ele.id} data={ele} {...{getAllTasks}} {...{navigate}}/>
+                                      })):""
+                               }
+                            </div>
+                          <PaginationTest {...{totalPages}} {...{totalResults}} getAllData={getAllTasks} />
+                        {view && <ViewData data={dataView} setView={setView}/>} 
+              </>
+        )}
+        
+                  
+          </div>
          
      
     </div>
   )
 }
+
 

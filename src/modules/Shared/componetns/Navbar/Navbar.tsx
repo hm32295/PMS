@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BsBell } from 'react-icons/bs';
 import './nav.css'; // لا تغيّر في هذا الملف إذا كانت الكلاسات المخصصة معرفة فيه
 import img_profile  from './imgProfile.svg'
 import { IoIosArrowDown } from "react-icons/io";
 import { AuthContext } from '../../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-
-
-
 const Navbar = () => {
+  useEffect(()=>{
+   funUserdata()
+},[])
     const auth = useContext(AuthContext);
-     const { loginData,Userdata} =auth ;
-      const name = loginData?.userName;   
-  const email = loginData?.userEmail; 
+     const { loginData,Userdata,funUserdata} =auth ;
+      const name = Userdata?.userName;   
+  const email = Userdata?.email; 
   const avatar = Userdata?.imagePath;
   let UrlAvatar='https://upskilling-egypt.com:3003/'
 
@@ -57,12 +57,7 @@ const Navbar = () => {
                   </div>
                 <p className="User_Email mb-0">{email}</p>
                 </div>
-               
               </div>
-              
-   
-              
-          
             </div>
           </div>
         </div>

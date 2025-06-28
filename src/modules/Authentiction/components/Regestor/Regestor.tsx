@@ -30,7 +30,7 @@ export default function Regestor() {
   const navigate = useNavigate();
   
   let {register, formState:{errors}, handleSubmit, watch ,reset} =  useForm<ForgetType>();
-  const [loder ,setLoder] = useState(false);
+  const [Loader ,setLoader] = useState(false);
 
   let handelDataToForm = (data:ForgetType) =>{
   
@@ -53,19 +53,19 @@ export default function Regestor() {
     let resulteHandleForm =handelDataToForm(data)
  
     
-      setLoder(true)
+      setLoader(true)
       try{
         let response = await axiosInstance.post(USERS_URLS.REGISTER,resulteHandleForm)
           toast.success(response.data.message || "Create Data Success");
           navigate("/verify-account")
-          setLoder(false);
+          setLoader(false);
           reset();
           
 
       }catch(error:any){
         
         toast.error(error.response.data.message);
-        setLoder(false);
+        setLoader(false);
     }
 
     
@@ -201,7 +201,7 @@ export default function Regestor() {
           <Link className='text-white p-0 mt-3 text-capitalize text-decoration-none' to={"/login"} >login now?</Link>
          
                       
-          <button className='w-50 m-auto mt-4'>{loder?  <ClipLoader size={15} color='green' /> :"save"}</button>
+          <button className='w-50 m-auto mt-4'>{Loader?  <ClipLoader size={15} color='green' /> :"save"}</button>
                       
         </form>
 

@@ -44,7 +44,7 @@ const{infoo}=useContext(AuthContext)
       icon: <FaUsers size={24} />,
       cardClass: 'card_Active_Yasta',
       iconClass: 'icon_Active_Color',
-      statuos:statuss?.activatedEmployeeCount ??0
+      statuos:statuss?.activatedEmployeeCount ??0,
     },
     {
       title: 'Inactive',

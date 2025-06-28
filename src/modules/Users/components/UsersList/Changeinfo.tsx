@@ -20,13 +20,13 @@ const Changeinfo = () => {
   const onDrop = useCallback((accepted: File[]) => {
     const selectedFile = accepted[0];
     if (selectedFile) {
-      // File type validation
+     
       if (!selectedFile.type.startsWith('image/')) {
         toast.error('Please select an image file.');
         return;
       }
 
-      // File size validation (max 2MB)
+     
       if (selectedFile.size > 2 * 1024 * 1024) {
         toast.error('Image size exceeds 2MB.');
         return;
@@ -72,8 +72,7 @@ let funEdit_Profile= async(data:any)=>{
   position: 'top-right',
   autoClose: 3000
 });
-
-
+funUserdata()
          setTimeout(() => {
              funUserdata()
   navigate("/dashboard/Protifolio");

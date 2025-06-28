@@ -11,7 +11,9 @@
 }
 
 
-
+.ant-avatar.ant-avatar-circle.ant-avatar-icon.css-dev-only-do-not-override-os2fvf{
+  background-color: #325C50 !important;
+}
 /* Test */
 /* Test */
 ._layout_j2ocx_3 {
@@ -78,4 +80,10 @@ aside._sidebar_j2ocx_17 {
   .ps-sidebar-root.sidebar-root.css-1wvake5{
     width: 80px !important;
   }
+}
+._content_10uc4_55{
+  padding: .2rem !important;
+}
+.ProjectList{
+  margin: .2rem !important;
 }

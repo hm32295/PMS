@@ -12,7 +12,7 @@ import {employeesType, getDataProject, projectData } from "../../../../interface
 export default function TasksData() {
   const navigate = useNavigate();
   const {handleSubmit, register,formState:{errors} ,reset}= useForm();
-  const [loder , setLoder] = useState(false);
+  const [loader , setLoader] = useState(false);
   const [buttonSave , setButtonSave]= useState("save")
   const location = useLocation();
   const projectItem = location.state;
@@ -22,19 +22,19 @@ export default function TasksData() {
 
 
   const getAllUsers = async()=>{
-    setLoder(true);
+    setLoader(true);
     try {
       const response = await axiosInstance(USERS_URLS.GET_USERS ,{params:{pageNumber: 1, pageSize:50}})
       setGetUsers(response.data.data);
-      setLoder(false)
+      setLoader(false)
     } catch (error) {
-      setLoder(false)
+      setLoader(false)
       
     }
     
   }
   const getAllProject = async()=>{
-    setLoder(true);
+    setLoader(true);
     try {
       const response = await axiosInstance(PROJECTS_URLS.GET,{params:{pageNumber: 1, pageSize:50}})
       setGetProject(response.data.data)
@@ -43,7 +43,7 @@ export default function TasksData() {
       
     }
     finally{
-      setLoder(false)
+      setLoader(false)
 
     }
   
@@ -77,7 +77,7 @@ export default function TasksData() {
     let id;
     if(projectItem) id = projectItem.id
     let response;
-    setLoder(true)
+    setLoader(true)
     try {
       if(buttonSave === "save"){
         response =  await axiosInstance.post(TASKS_URLS.CREATE,cleanData);
@@ -90,7 +90,7 @@ export default function TasksData() {
 
       }
       navigate("/dashboard/tasks-List");
-      setLoder(false);
+      setLoader(false);
       setButtonSave("save");
       reset({
         description:"",
@@ -98,12 +98,12 @@ export default function TasksData() {
       });
       
     } catch (error) {
-      setLoder(false)
+      setLoader(false)
       
     }
     
   }
-  if(loder) return <div className="loader"><ScaleLoader  color='#EF9B28'/></div>
+  if(loader) return <div className="loader"><ScaleLoader  color='#EF9B28'/></div>
   return (
     <div className='ProjectData TasksData'>
       <header >
@@ -168,8 +168,8 @@ export default function TasksData() {
 
 
         <div className="buttons">
-          <button type="submit" disabled={loder} className="d-flex justify-content-center align-items-center">
-            {loder ? <ClipLoader color="#fff" size={20} /> : buttonSave}
+          <button type="submit" disabled={loader} className="d-flex justify-content-center align-items-center">
+            {loader ? <ClipLoader color="#fff" size={20} /> : buttonSave}
             
           </button>
           <Link to="/dashboard/tasks-List">Cancel</Link>
