@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import AuthLayout from "./modules/Shared/componetns/AuthLayout/AuthLayout";
 import Login from "./modules/Authentiction/components/Login/Login";
 import Regestor from "./modules/Authentiction/components/Regestor/Regestor";
@@ -26,7 +26,7 @@ import TasksList from "./modules/Tasks/components/TasksList/TasksList";
 import TasksData from "./modules/Tasks/components/TasksData/TasksData";
 
 function App() {
-  const routes = createBrowserRouter([
+  const routes = createHashRouter([
     {
       path: "",
       element: <AuthLayout />,
