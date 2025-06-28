@@ -56,10 +56,21 @@ aside._sidebar_j2ocx_17 {
 .ps-sidebar-root{
   z-index: 5;
 }
-.ps-sidebar-root{
-  position: fixed !important;
+.fixed{
+  /* position: fixed !important; */
   z-index: 5;
   top: 0;
+  overflow: hidden;
   left: 0;
-  height: 100vh !important;
+  height: 100vh;
+  transition: width, left, right, 300ms;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-color: #efefef;
+}
+.w_Fixed_80{
+  width: 80px;
+}
+.w_Fixed_250{
+  width: 250px;
 }
