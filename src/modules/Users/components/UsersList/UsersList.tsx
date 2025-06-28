@@ -3,6 +3,9 @@ import { Table, Input, Select, Dropdown, Menu, Modal, Button, Card, Avatar } fro
 import { FaChevronLeft, FaChevronRight, FaEllipsisV, FaUser } from 'react-icons/fa';
 import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 import './UsersListAntD.css';
+import { IoFilterOutline } from "react-icons/io5";
+import NoData from '../../../../modules/Shared/componetns/NoData/NoData';
+import { ScaleLoader } from 'react-spinners';
 
 const { Option } = Select;
 const { Search } = Input;
@@ -18,7 +21,7 @@ type User = {
 
 export default function UsersListAntD() {
   const [usersList, setUsersList] = useState<User[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true); // ✅ تغيير القيمة الابتدائية إلى true
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalResults, setTotalResults] = useState(0);
@@ -28,6 +31,14 @@ export default function UsersListAntD() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isBlockModalVisible, setIsBlockModalVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const filterMenu = (
+    <Menu className="custom-dropdown-menu" onClick={({ key }) => setStatusFilter(key)} selectedKeys={[statusFilter]}>
+      <Menu.Item key="">All</Menu.Item>
+      <Menu.Item key="true">Active</Menu.Item>
+      <Menu.Item key="false">Not Active</Menu.Item>
+    </Menu>
+  );
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -127,7 +138,7 @@ export default function UsersListAntD() {
           trigger={['click']}
         >
           <a onClick={(e) => e.preventDefault()}>
-            <FaEllipsisV style={{ fontSize: '16px' }} />
+            <FaEllipsisV style={{ fontSize: '16px', color: '#0E382F' }} />
           </a>
         </Dropdown>
       ),
@@ -163,7 +174,7 @@ export default function UsersListAntD() {
           }
           trigger={['click']}
         >
-          <Button type="text" icon={<FaEllipsisV />} />
+          <Button type="text" icon={<FaEllipsisV style={{ color: '#0E382F' }} />} />
         </Dropdown>
       </div>
     </Card>
@@ -179,6 +190,7 @@ export default function UsersListAntD() {
 
       <div className="d-flex flex-column flex-md-row gap-3 mb-3">
         <Search
+          className="custom-search-input"
           placeholder="Search Users"
           value={nameValue}
           onChange={(e) => {
@@ -188,97 +200,104 @@ export default function UsersListAntD() {
           style={{ maxWidth: isMobile ? '100%' : '300px', width: '100%' }}
           allowClear
         />
-
-        <Select
-          placeholder="Filter by Status"
-          onChange={(value) => setStatusFilter(value)}
-          value={statusFilter || undefined}
-          style={{ minWidth: isMobile ? '100%' : '220px', width: '100%' }}
-          allowClear
-        >
-          <Option value="">All</Option>
-          <Option value="true">Active</Option>
-          <Option value="false">Not Active</Option>
-        </Select>
+        <Dropdown overlay={filterMenu} trigger={['click']}>
+          <Button icon={<IoFilterOutline />} className="filter-button">
+            Filter
+          </Button>
+        </Dropdown>
       </div>
-
 
       {isMobile ? (
         <div>
           {loading ? (
-            <div style={{ textAlign: 'center', padding: '40px' }}>Loading...</div>
+            <div className='d-flex justify-content-center p-5'><ScaleLoader color='#EF9B28'/></div>
           ) : (
             <>
-              {filteredUsers.map((user) => (
-                <UserCard key={user.id} user={user} />
-              ))}
-             
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', gap: '8px' }}>
-                <Button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} size="small">Previous</Button>
-                <span>{currentPage} / {Math.ceil(totalResults / pageSize)}</span>
-                <Button disabled={currentPage >= Math.ceil(totalResults / pageSize)} onClick={() => setCurrentPage(currentPage + 1)} size="small">Next</Button>
-              </div>
+              {filteredUsers.length === 0 ? (
+                <NoData />
+              ) : (
+                filteredUsers.map((user) => (
+                  <UserCard key={user.id} user={user} />
+                ))
+              )}
+              {filteredUsers.length > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', gap: '8px' }}>
+                  <Button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} size="small">Previous</Button>
+                  <span>{currentPage} / {Math.ceil(totalResults / pageSize)}</span>
+                  <Button disabled={currentPage >= Math.ceil(totalResults / pageSize)} onClick={() => setCurrentPage(currentPage + 1)} size="small">Next</Button>
+                </div>
+              )}
             </>
           )}
         </div>
       ) : (
         <>
-          <Table
-            className="custom-table zebra-rows"
-            columns={columns}
-            dataSource={filteredUsers}
-            loading={loading}
-            pagination={false}
-            bordered
-            rowClassName={(_, index) => index % 2 === 0 ? 'zebra-row-light' : 'zebra-row-dark'}
-            scroll={{ x: 'max-content' }}
-          />
-
-          <div style={{ display: 'flex', justifyContent: 'End', alignItems: 'center', marginTop: 24, gap: 16 }}>
-            <span>
-              Showing{' '}
-              <Select
-                size="small"
-                value={pageSize}
-                onChange={(value) => {
-                  setPageSize(value);
-                  setCurrentPage(1);
-                }}
-                style={{ width: 70 }}
-              >
-                <Option value={10}>10</Option>
-                <Option value={25}>25</Option>
-                <Option value={50}>50</Option>
-              </Select>{' '}
-              of {totalResults} Results
-            </span>
-
-            <span>
-              Page {currentPage} of {Math.ceil(totalResults / pageSize)}
-            </span>
-
-            <Button
-              type="text"
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage((prev) => prev - 1)}
-              icon={<FaChevronLeft />}
+          {loading ? (
+            <div className='d-flex justify-content-center p-5'><ScaleLoader color='#EF9B28'/></div>
+          ) : (
+            <Table
+              className="custom-table zebra-rows"
+              columns={columns}
+              dataSource={filteredUsers}
+              loading={false}
+              pagination={false}
+              bordered
+              rowClassName={(_, index) => index % 2 === 0 ? 'zebra-row-light' : 'zebra-row-dark'}
+              scroll={{ x: 'max-content' }}
+              locale={{ emptyText: <NoData /> }}
             />
-
-            <Button
-              type="text"
-              disabled={currentPage >= Math.ceil(totalResults / pageSize)}
-              onClick={() => setCurrentPage((prev) => prev + 1)}
-              icon={<FaChevronRight />}
-            />
-          </div>
+          )}
+          {!loading && (
+            <div style={{ display: 'flex', justifyContent: 'End', alignItems: 'center', marginTop: 24, gap: 16 }}>
+              <span>
+                Showing{' '}
+                <Select
+                  size="small"
+                  value={pageSize}
+                  onChange={(value) => {
+                    setPageSize(value);
+                    setCurrentPage(1);
+                  }}
+                  style={{ width: 70 }}
+                >
+                  <Option value={10}>10</Option>
+                  <Option value={25}>25</Option>
+                  <Option value={50}>50</Option>
+                </Select>{' '}
+                of {totalResults} Results
+              </span>
+              <span>
+                Page {currentPage} of {Math.ceil(totalResults / pageSize)}
+              </span>
+              <Button
+                type="text"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((prev) => prev - 1)}
+                icon={<FaChevronLeft />}
+              />
+              <Button
+                type="text"
+                disabled={currentPage >= Math.ceil(totalResults / pageSize)}
+                onClick={() => setCurrentPage((prev) => prev + 1)}
+                icon={<FaChevronRight />}
+              />
+            </div>
+          )}
         </>
       )}
 
-       <Modal
-        title="  User Details"
+      <Modal
+        title="User Details"
         visible={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
-        footer={<Button type="primary" onClick={() => setIsModalVisible(false)}>Close</Button>}
+        footer={
+          <Button
+            style={{ backgroundColor: '#0E382F', color: '#fff', borderColor: '#0E382F' }}
+            onClick={() => setIsModalVisible(false)}
+          >
+            Close
+          </Button>
+        }
       >
         {selectedUser && (
           <div style={{ lineHeight: '2', paddingTop: '10px' }}>
@@ -291,8 +310,8 @@ export default function UsersListAntD() {
         )}
       </Modal>
 
-       <Modal
-        title="  Confirm Action"
+      <Modal
+        title="Confirm Action"
         visible={isBlockModalVisible}
         onCancel={() => setIsBlockModalVisible(false)}
         footer={[
