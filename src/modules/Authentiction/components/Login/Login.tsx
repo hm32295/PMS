@@ -1,5 +1,5 @@
 
-import  { useContext } from 'react';
+import  { useContext, useEffect } from 'react';
 import './login.css';
 import bgYacts from '../../../../images/Logo.png'
 import { useForm } from 'react-hook-form';
@@ -12,7 +12,7 @@ const Login = () => {
   let navi=useNavigate()
 
   const {register,handleSubmit,formState:{errors}}=useForm();
-  let{saveLoginData,funUserdata} = useContext(AuthContext);
+  let{saveLoginData,funUserdata,funGetStatus_info,funGetStatus_Users} = useContext(AuthContext);
 
   let submittion= async(data:any)=>{
     try {
@@ -22,12 +22,19 @@ const Login = () => {
         navi('/dashboard');
         saveLoginData()
         funUserdata()
+        funGetStatus_info()
+        funGetStatus_Users()
+         useEffect(() => {
+    funGetStatus_info()
+        funGetStatus_Users()
+  },[]);
     } catch (error) {
       console.error("Error during form submission:", error);
        toast.error("Error during form submission:");
     }
    
   }
+ 
 
  
   return (

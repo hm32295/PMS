@@ -1,4 +1,5 @@
 import { useEffect, useState, createContext } from "react";
+
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
@@ -38,7 +39,6 @@ export default function AuthContextProvider({ children }:{children:any}) {
 const token = localStorage.getItem('token');
     const[statuss,setstatuss]=useState([])
   const funGetStatus_Users = async () => {
-  
     try {
       const res = await axios.get(
         'https://upskilling-egypt.com:3003/api/v1/Users/count',
@@ -103,7 +103,7 @@ let [infoo,setinfoo]=useState([])
       funUserdata()
     }, []);
     return (
-      <AuthContext.Provider value={{ saveLoginData, loginData, logout,isAuthLoading,statuss,infoo,Userdata,funUserdata}} >
+      <AuthContext.Provider value={{ saveLoginData, loginData, logout,isAuthLoading,statuss,infoo,Userdata,funUserdata,funGetStatus_info,funGetStatus_Users}} >
         
         {children}
 
