@@ -17,23 +17,22 @@ const Login = () => {
    const [showPass, setShowPass] = useState(true);
 
   const {register,handleSubmit,formState:{errors}}=useForm();
-  let{saveLoginData,funUserdata,funGetStatus_info,funGetStatus_Users} = useContext(AuthContext);
+  let{saveLoginData,funUserdata,funGetStatus_info,funGetStatus_Users,loginData} :{loginData:any,saveLoginData:any,funUserdata:any,funGetStatus_info:any,funGetStatus_Users:any}= useContext(AuthContext);
 
   let submittion= async(data:any)=>{
     setLoader(true)
     try {
       let res= await axiosInstance.post(USERS_URLS.LOGIN,data)
       localStorage.setItem('token' , (res.data.token));
-        toast.success('تم حفظ البيانات بنجاح!');
+      console.log(loginData);
+      
+        toast.success('Welcome');
         navigation('/dashboard');
         saveLoginData()
         funUserdata()
         funGetStatus_info()
         funGetStatus_Users()
-         useEffect(() => {
-    funGetStatus_info()
-        funGetStatus_Users()
-  },[]);
+        
     } catch (error) {
       console.error("Error during form submission:", error);
        toast.error("Error during form submission:");
@@ -44,6 +43,10 @@ const Login = () => {
    
   }
  
+  useEffect(() => {
+    funGetStatus_info()
+    funGetStatus_Users()
+},[]);
 
  
   return (

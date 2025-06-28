@@ -17,7 +17,8 @@ axiosInstance.interceptors.request.use((config) => {
     }
     return config;
 });
-
+// /api/v1/Users/count
+// /api/v1/Users/currentUser
 export const USERS_URLS = {
     RESET : `/Users/Reset/`,
     LOGIN : "/Users/Login/",
@@ -26,6 +27,8 @@ export const USERS_URLS = {
     REGISTER : "/Users/Register/",
     VERIFY : `/Users/verify`,
     GET_USERS: "/Users/",
+    COUNT: "/users/count",
+    CURRENT: "/users/currentUser/",
     UPDATE_USER_STATUS: (id: number | string) => `/Users/${id}`,
 };
 

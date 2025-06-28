@@ -2,6 +2,7 @@ import { useEffect, useState, createContext } from "react";
 
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import { axiosInstance, USERS_URLS } from "../services/urls";
 
 export const AuthContext:any = createContext();
 export default function AuthContextProvider({ children }:{children:any}) {
@@ -36,39 +37,25 @@ export default function AuthContextProvider({ children }:{children:any}) {
   
   
  
-const token = localStorage.getItem('token');
-    const[statuss,setstatuss]=useState([])
+// const token = localStorage.getItem('token');
+    const[status,setStatus]=useState([])
   const funGetStatus_Users = async () => {
     try {
-      const res = await axios.get(
-        'https://upskilling-egypt.com:3003/api/v1/Users/count',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
+      const res = await axiosInstance(USERS_URLS.COUNT);
      
-      setstatuss(res.data);
+      setStatus(res.data);
     } catch (error) {
       console.log('Error', error);
     }
   };
 // Get Progress && ToDo && Done
-let [infoo,setinfoo]=useState([])
+let [infoo,setInfo]=useState([])
   const funGetStatus_info = async () => {
   
     try {
-      const res = await axios.get(
-        'https://upskilling-egypt.com:3003/api/v1/Task/count',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
+      const res = await axiosInstance(USERS_URLS.COUNT);
     
-      setinfoo(res.data);
+      setInfo(res.data);
     } catch (error) {
       console.log('Error', error);
     }
@@ -77,12 +64,8 @@ let [infoo,setinfoo]=useState([])
       let [Userdata,setUserdata]=useState([])
       let funUserdata=async()=>{
         try {
-          let res=await  axios.get('https://upskilling-egypt.com:3003/api/v1/Users/currentUser', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-        )
+          //// user url
+          let res=await  axiosInstance(USERS_URLS.CURRENT)
       setUserdata(res.data)
      
   
@@ -103,7 +86,7 @@ let [infoo,setinfoo]=useState([])
       funUserdata()
     }, []);
     return (
-      <AuthContext.Provider value={{ saveLoginData, loginData, logout,isAuthLoading,statuss,infoo,Userdata,funUserdata,funGetStatus_info,funGetStatus_Users}} >
+      <AuthContext.Provider value={{ saveLoginData, loginData, logout,isAuthLoading,status,infoo,Userdata,funUserdata,funGetStatus_info,funGetStatus_Users}} >
         
         {children}
 

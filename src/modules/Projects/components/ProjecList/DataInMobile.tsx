@@ -1,11 +1,9 @@
-import {  faEdit, faEye, faTrash, faUser } from "@fortawesome/free-solid-svg-icons";
+import {  faEdit, faTrash, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DeleteConfirmation from "../../../Shared/componetns/DeleteConfirm/DeleteConfirmation";
-import { Avatar, Button, Card, Dropdown, Menu } from "antd";
-import { FaEllipsisV, FaUser } from "react-icons/fa";
 
 export default function DataInMobile({data ,AllProjects,navigate}) {
-    console.log(data);
+ 
     
   return (
    
