@@ -10,7 +10,7 @@ import { axiosInstance, USERS_URLS } from '../../../../services/urls';
 import { ClipLoader } from 'react-spinners';
 import { EMAIL_VALIDION } from '../../../../services/validation';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 type ForgetType = {
   oldPassword: "string",
   newPassword: "string",
@@ -22,24 +22,24 @@ export default function ChangePass() {
   const [showPassCon, setShowPassCon] = useState(true);
   const navigate = useNavigate()
   let {register, formState:{errors}, handleSubmit, watch ,reset} =  useForm<ForgetType>();
-  const [loder ,setLoder] = useState(false);
+  const [Loader ,setLoader] = useState(false);
 
 
   const onSubmit = async (data:ForgetType)=>{
-      setLoder(true)
+      setLoader(true)
       try{
         let response = await axiosInstance.put(USERS_URLS.CHANGE_PASSWORD,data).then(res=>{
           console.log(res.data);
           
           // toast.success(res.data.message);
           navigate("/login")
-          setLoder(false);
+          setLoader(false);
           reset()
           
         })
       }catch(error){
         toast.success(error.data.message);
-        setLoder(false);
+        setLoader(false);
     }
     
   }
@@ -118,8 +118,8 @@ export default function ChangePass() {
             </div>
             {errors.confirmNewPassword&&<div className="text-danger mb-2">{errors.confirmNewPassword.message}</div>}
           </div>
-    
-          <button>{loder? <ClipLoader size={15} color='green' /> :"Verify"}</button>
+          <Link to="/dashboard" className='text-white text-decoration-none d-flex mt-3'>Home Page?</Link>
+          <button>{Loader? <ClipLoader size={15} color='green' /> :"Verify"}</button>
         </form>
       </div>
     </div>

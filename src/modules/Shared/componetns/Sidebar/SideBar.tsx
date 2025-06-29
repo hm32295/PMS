@@ -1,19 +1,13 @@
-import React from 'react';
+
 import { AiFillHome } from 'react-icons/ai';
 import { HiUsers } from 'react-icons/hi';
 import { BsGrid3X3Gap } from 'react-icons/bs';
 import { BsCalendar2Check } from 'react-icons/bs';
+import { TbArrowsExchange } from "react-icons/tb";
 import { BiLogOut } from 'react-icons/bi';
 import { useLocation } from 'react-router-dom';
 import './sidepar.css';
-
-import { IoHome } from 'react-icons/io5';
-import { HiOutlineUsers } from 'react-icons/hi2';
-import { FiGrid } from 'react-icons/fi';
-import { HiLogout } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
-import { FaTasks } from "react-icons/fa";
-import { AuthContext } from '../../../../context/AuthContext';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
@@ -33,6 +27,8 @@ const SideBar = ({ open, onToggle, isSmallScreen }: SidebarProps) => {
     { icon: HiUsers, label: 'Users', path: '/dashboard/users' },
     { icon: BsGrid3X3Gap, label: 'Projects', path: '/dashboard/project-List' },
     { icon: BsCalendar2Check, label: 'Tasks', path: '/dashboard/tasks-list' },
+    { icon: BsCalendar2Check, label: 'Tasks', path: '/dashboard/tasks-board' },
+    { icon: TbArrowsExchange , label: 'Change Password', path: '/change-password' },
   ];
 
   const isActive = (path: string) => location.pathname === path;

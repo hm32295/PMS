@@ -1,0 +1,72 @@
+[33mb7b1507[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge branch 'master' of https://github.com/hm32295/PMS
+[33m673cddc[m[33m ([m[1;31morigin/repos[m[33m, [m[1;32mrepos[m[33m)[m handel project and task
+[33me869fc9[m handel project and task
+[33mb8044ae[m Resolve merge conflicts
+[33m0c6c753[m[33m ([m[1;31morigin/feature/sidebar-toggle-yousef[m[33m)[m update Sidepar
+[33mf7e1c7f[m test
+[33mf1b06db[m handel responsive
+[33m3bb14d0[m[33m ([m[1;31morigin/development[m[33m, [m[1;32mdevelopment[m[33m)[m Merge pull request #5 from hm32295/userlist-amr
+[33m18fcc31[m[33m ([m[1;31morigin/userlist-amr[m[33m)[m Fix: Prevent NoData showing while loading in UsersList , Style
+[33m308c09d[m handel sidebar
+[33m20df769[m دمج master وحل التعارضات
+[33md301518[m handel sidebar
+[33m8c5b6b5[m Yousef
+[33m7695c53[m وصف التعديلات اللي عملتها
+[33m82d45cf[m conflect
+[33mfc08d47[m handle show and hide passowrd and sidebar and loader
+[33m5431c9a[m Merge pull request #4 from hm32295/responsive-Table--protected-route-Amr
+[33mad562fc[m[33m ([m[1;31morigin/responsive-Table--protected-route-Amr[m[33m)[m Merge branch 'development' into responsive-Table--protected-route-Amr
+[33m0b07c4a[m Merge branch 'feature/YousefDashboard' into development
+[33m091a7c9[m[33m ([m[1;31morigin/feature/YousefDashboard[m[33m)[m Add my YousefDashboard
+[33m7d0c318[m[33m ([m[1;31morigin/tasks-board-hamza[m[33m, [m[1;32mtasks-board-hamza[m[33m)[m handel paginatin in p,t
+[33ma529544[m finle
+[33m30b5f2b[m[33m ([m[1;31morigin/tasks-listAndData-hamza[m[33m, [m[1;32mtasks-listAndData-hamza[m[33m)[m updata brunch
+[33m67aa8d2[m responsive-Table--protected-route-Amr
+[33m38c99a5[m edit
+[33mf6c1dcc[m create pages
+[33m0196c49[m responsive said bar
+[33mdbea1d1[m confic
+[33me74266c[m reaponsiv in project
+[33m6972b7f[m reaponsiv in project
+[33maa569ad[m Merge origin/development into development
+[33m92aeb82[m حل التعارض وتطبيق التعديلات يوسف
+[33m8793c56[m conflict
+[33m0cc5212[m conflict
+[33m2e2eee6[m conflict
+[33m7efee4a[m[33m ([m[1;31morigin/feature/user-list-and-style-updates[m[33m)[m Enhancements to UserList: updated CSS, moved component, and modified URLs
+[33m136df7d[m[33m ([m[1;32mprojectData-hamza[m[33m)[m handel pagination
+[33m8f4b4ab[m[33m ([m[1;31morigin/projectData-hamza[m[33m)[m handel search in project list and edit in data
+[33m885be08[m[33m ([m[1;31morigin/feature/NotFoundYousef[m[33m, [m[1;32mfeature/NotFoundYousef[m[33m)[m NotFound &&NoData
+[33me8e5c9e[m[33m ([m[1;31morigin/feature/underHeader[m[33m, [m[1;32mfeature/underHeader[m[33m)[m Section Under Header Yousef
+[33m749b5d3[m created form
+[33m4500999[m[33m ([m[1;31morigin/projectList-hamza[m[33m, [m[1;32mprojectList-hamza[m[33m)[m handel get data
+[33m957c046[m Sidepar_Header
+[33mb6997af[m[33m ([m[1;31morigin/feature/Nav_Yousef[m[33m, [m[1;32mfeature/Nav_Yousef[m[33m)[m Navbar Yousef
+[33mc9d3874[m Update ProtectedRoute.tsx
+[33md249093[m Upgrade React to 18.2.0 Yousef
+[33m20ed525[m Merge pull request #1 from hm32295/development
+[33m137eb16[m handel avtar
+[33m16952fc[m handel background images in login
+[33m7a0e03d[m handel log out
+[33m66886e2[m set Page regestor and verify
+[33m2a352e1[m add token in localstorage
+[33m990d98b[m handel api with login and reset
+[33me091496[m merg change with development
+[33m95eedec[m[33m ([m[1;31morigin/change-password-hamza[m[33m, [m[1;32mchange-password-hamza[m[33m)[m handel api change Password
+[33m83bef67[m Resolved merge conflicts between reset and development
+[33m13b8894[m Forget Yousef
+[33m26c73f2[m Merge branch 'development' of https://github.com/hm32295/PMS into development
+[33mf319e5d[m Add login yousef
+[33meeb244e[m update context file
+[33m33c5235[m create page change password
+[33m500791e[m[33m ([m[1;31morigin/reset-password-hamza[m[33m, [m[1;32mreset-password-hamza[m[33m)[m valditon
+[33m95aa667[m URLS Object
+[33mb6b32ca[m update reset
+[33m3b8753f[m add file services
+[33ma2a5607[m Add reset password page with form
+[33m010e87a[m Handel Routing
+[33m62184e5[m add type script and rename files
+[33m8653e2e[m dasgboard folder strucure
+[33m218cf97[m Folder Structue
+[33md27d702[m Dependencies
+[33md9f08ca[m start project pms

@@ -87,3 +87,16 @@ aside._sidebar_j2ocx_17 {
 .ProjectList{
   margin: .2rem !important;
 }
+.not-found-container{
+  min-height: auto !important;
+}
+.ant-card-body{
+  padding: .5rem;
+}
+.ant-card-body > div >div{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  gap: .5rem;
+}
