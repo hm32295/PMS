@@ -7,7 +7,6 @@ import { FiGrid } from 'react-icons/fi';
 import { HiLogout } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { FaTasks } from "react-icons/fa";
-import iconChange from "../../../../assets/image/iconChangePassword.svg"
 import { AuthContext } from '../../../../context/AuthContext';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
