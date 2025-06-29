@@ -53,11 +53,16 @@ function App() {
         { index: true, element: <Dashboard /> },
         { path: "/dashboard", element: <Dashboard /> },
         { path: "project-List", element: <ProjectList /> },
-        { path: "project-Data", element: <ProjectData /> },
-        { path: "tasks-board", element: <TasksBoard /> },
-        { path: "tasks-list", element: <TasksList /> },
-        { path: "tasks-data", element: <TasksData /> },
-        { path: "users", element: <Users /> },
+
+        { path: "project-Data", element:<ProtectedRoute allowedRoles={['Manager']}> <ProjectData /> </ProtectedRoute>},
+
+        { path: "tasks-board", element:<ProtectedRoute allowedRoles={['Employee']}> <TasksBoard /></ProtectedRoute> },
+        { path: "tasks-list", element: <ProtectedRoute allowedRoles={['Manager']}>  <TasksList /></ProtectedRoute> },
+        { path: "tasks-data", element: <ProtectedRoute allowedRoles={['Manager']}> <TasksData /></ProtectedRoute> },
+      
+        { path: "users", element:<ProtectedRoute allowedRoles={['Manager']}> <Users /></ProtectedRoute>
+      
+      },
         { path: "protifolio", element: <Protifolio /> },
         { path: "changeinfo", element: <Changeinfo /> },
       ],
