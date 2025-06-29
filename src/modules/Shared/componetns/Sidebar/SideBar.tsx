@@ -10,6 +10,8 @@ import './sidepar.css';
 import { useNavigate } from 'react-router-dom';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { useContext } from 'react';
+import { AuthContext } from '../../../../context/AuthContext';
 
 
 interface SidebarProps {
@@ -21,15 +23,22 @@ interface SidebarProps {
 const SideBar = ({ open, onToggle, isSmallScreen }: SidebarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
-
+const{loginData, logout} = useContext(AuthContext)
   const menuItems = [
     { icon: AiFillHome, label: 'Home', path: '/dashboard' },
-    { icon: HiUsers, label: 'Users', path: '/dashboard/users' },
+
+    ...(loginData?.userGroup === 'Manager' ? [
+      { icon: HiUsers, label: 'Users', path: '/dashboard/users' }
+    ] : []),
     { icon: BsGrid3X3Gap, label: 'Projects', path: '/dashboard/project-List' },
-    { icon: BsCalendar2Check, label: 'Tasks', path: '/dashboard/tasks-list' },
-    { icon: BsCalendar2Check, label: 'Tasks', path: '/dashboard/tasks-board' },
+    ...(loginData?.userGroup === 'Manager' ? [
+      { icon: BsCalendar2Check, label: 'Tasks List', path: '/dashboard/tasks-list' }
+    ] : []), 
+    ...(loginData?.userGroup !== 'Manager' ? [
+      { icon: BsCalendar2Check, label: 'Tasks Board', path: '/dashboard/tasks-board' }
+    ] : []),
     { icon: TbArrowsExchange , label: 'Change Password', path: '/change-password' },
-  ];
+  ]
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -84,7 +93,9 @@ const SideBar = ({ open, onToggle, isSmallScreen }: SidebarProps) => {
 
      
       <div className="sidebar-footer">
-        <button className="menu-item logout-btn">
+        <button className="menu-item logout-btn"
+          onClick={()=>{logout()}}
+        >
           <div className="menu-icon">
             <BiLogOut size={20} />
 
