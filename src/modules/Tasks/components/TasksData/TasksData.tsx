@@ -3,14 +3,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import './TasksData.css'
 import { useForm } from "react-hook-form";
 import { axiosInstance, PROJECTS_URLS, TASKS_URLS, USERS_URLS } from "../../../../services/urls";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ClipLoader, ScaleLoader } from "react-spinners";
 import {employeesType, getDataProject, projectData } from "../../../../interfaces/interface";
+import { AuthContext } from "../../../../context/AuthContext";
 
 
 export default function TasksData() {
   const navigate = useNavigate();
+  let {funGetStatus_info, funUserdata} = useContext<any>(AuthContext);
   const {handleSubmit, register,formState:{errors} ,reset}= useForm();
   const [loader , setLoader] = useState(false);
   const [buttonSave , setButtonSave]= useState("save")
@@ -31,7 +33,6 @@ export default function TasksData() {
       setLoader(false)
       
     }
-    
   }
   const getAllProject = async()=>{
     setLoader(true);
@@ -89,6 +90,8 @@ export default function TasksData() {
         
 
       }
+        await funGetStatus_info();        
+      await funUserdata();       
       navigate("/dashboard/tasks-List");
       setLoader(false);
       setButtonSave("save");

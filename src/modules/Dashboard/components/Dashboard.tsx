@@ -6,8 +6,8 @@ import { AuthContext } from "../../../context/AuthContext";
 
 
 export default function Dashboard() {
-  const {statuss}=useContext(AuthContext)
-const{infoo}=useContext(AuthContext)
+  const {status,infoo}=useContext(AuthContext)
+
   const tasksData = [
     {
       title: 'Progress',
@@ -44,7 +44,7 @@ const{infoo}=useContext(AuthContext)
       icon: <FaUsers size={24} />,
       cardClass: 'card_Active_Yasta',
       iconClass: 'icon_Active_Color',
-      statuos:statuss?.activatedEmployeeCount ??0,
+      statuos:status?.activatedEmployeeCount ??0,
     },
     {
       title: 'Inactive',
@@ -52,7 +52,7 @@ const{infoo}=useContext(AuthContext)
       icon: <FaUserSlash size={24} />,
       cardClass: 'card_Inactive_Khalas',
       iconClass: 'icon_Inactive_Color',
-       statuos:statuss?.deactivatedEmployeeCount ??0
+       statuos:status?.deactivatedEmployeeCount ??0
     }
   ];
   

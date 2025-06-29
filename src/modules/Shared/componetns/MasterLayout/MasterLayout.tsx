@@ -5,7 +5,6 @@ import SideBar from '../Sidebar/SideBar';
 import Header from '../Header/Header';
 import { Nav, Navbar } from 'react-bootstrap';
 import Top_Navbar from '../Navbar/Top_Navbar';
-
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);

@@ -31,6 +31,13 @@ export const USERS_URLS = {
     CURRENT: "/users/currentUser/",
     UPDATE_USER_STATUS: (id: number | string) => `/Users/${id}`,
 };
+export const USERS_URLS_info = {
+   
+    COUNT_Count: "/Task/count",
+    Users_COUNT: "/Users/count",
+    CURRENT: "/users/currentUser/",
+
+};
 
 export const PROJECTS_URLS = {
     GET : `/Project/`,

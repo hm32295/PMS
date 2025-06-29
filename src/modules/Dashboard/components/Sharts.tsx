@@ -24,8 +24,8 @@ ChartJS.register(
 const Charts = () => {
   
 
-   const {statuss}=useContext(AuthContext)
-const{infoo}=useContext(AuthContext)
+   const {status,infoo}=useContext(AuthContext)
+
   const pieData = {
     labels: ['Progress', 'Tasks', 'Done'],
     datasets: [{
@@ -38,7 +38,7 @@ const{infoo}=useContext(AuthContext)
   const barData = {
     labels: ['Active','inactive'],
     datasets: [{
-      data: [statuss?.activatedEmployeeCount ??0,statuss?.deactivatedEmployeeCount ??0],
+      data: [status?.activatedEmployeeCount ??0,status?.deactivatedEmployeeCount ??0],
       backgroundColor: [
        'rgba(14,56,47,1)',  'rgba(239,155,40,1)',
        
