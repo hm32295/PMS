@@ -4,9 +4,19 @@ import { HiUsers } from 'react-icons/hi';
 import { BsGrid3X3Gap } from 'react-icons/bs';
 import { BsCalendar2Check } from 'react-icons/bs';
 import { BiLogOut } from 'react-icons/bi';
-import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './sidepar.css';
+
+import { IoHome } from 'react-icons/io5';
+import { HiOutlineUsers } from 'react-icons/hi2';
+import { FiGrid } from 'react-icons/fi';
+import { HiLogout } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
+import { FaTasks } from "react-icons/fa";
+import { AuthContext } from '../../../../context/AuthContext';
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
+
 
 interface SidebarProps {
   open: boolean;
@@ -34,6 +44,7 @@ const SideBar = ({ open, onToggle, isSmallScreen }: SidebarProps) => {
   const sidebarClass = isSmallScreen 
     ? 'sidebar-container sidebar-mobile' 
     : `sidebar-container sidebar-desktop ${open ? 'sidebar-open' : 'sidebar-collapsed'}`;
+
 
   return (
     <div className={sidebarClass}>
@@ -80,6 +91,7 @@ const SideBar = ({ open, onToggle, isSmallScreen }: SidebarProps) => {
         <button className="menu-item logout-btn">
           <div className="menu-icon">
             <BiLogOut size={20} />
+
           </div>
           {(open || !isSmallScreen) && (
             <span className="menu-label">Logout</span>
