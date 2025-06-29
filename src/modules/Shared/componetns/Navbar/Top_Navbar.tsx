@@ -4,7 +4,7 @@ import './nav.css'; // لا تغيّر في هذا الملف إذا كانت ا
 import img_profile  from './imgProfile.svg'
 import { IoIosArrowDown } from "react-icons/io";
 import { AuthContext } from '../../../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Navbar = () => {
   useEffect(()=>{
    funUserdata()
@@ -27,12 +27,12 @@ const Navbar = () => {
         <div className="d-flex align-items-center justify-content-between">
         
           <div className="flex-shrink-0">
-            <a href="#" className="Logo_Ya_Ged3an d-flex align-items-center text-decoration-none">
+            <Link  to="/dashboard" className="Logo_Ya_Ged3an d-flex align-items-center text-decoration-none">
               <div className="Logo_Soora me-2">
                 PM
               </div>
               <span className=" d-md-inline">PMS</span>
-            </a>
+            </Link>
           </div>
           {/* User Info Section */}
           <div className="flex-shrink-0">

@@ -33,10 +33,6 @@ export default function AuthContextProvider({ children }:{children:any}) {
      
     };
   
-  
-  
- 
-// const token = localStorage.getItem('token');
     const[status,setStatus]=useState([])
   const funGetStatus_Users = async () => {
     try {
