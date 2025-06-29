@@ -243,6 +243,7 @@
     height: 2rem;
     width: 2rem;
     font-size: 2rem;
+    /* color: #EF9B28; */
 }
 .DataInMobile h1{
     font-weight: 500;
@@ -299,5 +300,19 @@
 }
 .DataInMobile .action:hover .actions{
     display: flex !important;
+
+}
+.DataInMobile .data_sup {
+    flex: 1;
+}
+@media (max-width : 480px) {
+    .DataInMobile .icons_user{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .DataInMobile .data_sup{
+        width: 100%;
+    }
 
 }

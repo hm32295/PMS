@@ -11,7 +11,7 @@ import { projectData } from "../../../../interfaces/interface";
 export default function ProjectData() {
   const navigate = useNavigate();
   const {handleSubmit, register,formState:{errors} ,reset}= useForm();
-  const [loder , setLoder] = useState(false);
+  const [Loader , setLoader] = useState(false);
   const [buttonSave , setButtonSave]= useState("save")
   const location = useLocation();
   const projectItem = location.state
@@ -33,7 +33,7 @@ export default function ProjectData() {
     let id;
     if(projectItem) id = projectItem.id
     let response;
-    setLoder(true)
+    setLoader(true)
     try {
       if(buttonSave === "save"){
         response =  await axiosInstance.post(PROJECTS_URLS.CRETE,data);
@@ -51,7 +51,7 @@ export default function ProjectData() {
     } catch (error) {
       
     }finally{
-      setLoder(false)
+      setLoader(false)
 
     }
     
@@ -75,8 +75,8 @@ export default function ProjectData() {
           {errors?.description&&<div className="text-danger mb-2">{errors?.description?.message}</div>}
         </div>
         <div className="buttons">
-          <button type="submit" disabled={loder} className="d-flex justify-content-center align-items-center">
-            {loder ? <ClipLoader color="#fff" size={20} /> : buttonSave}
+          <button type="submit" disabled={Loader} className="d-flex justify-content-center align-items-center">
+            {Loader ? <ClipLoader color="#fff" size={20} /> : buttonSave}
             
           </button>
           <Link to="/dashboard/Project-List">Cancel</Link>

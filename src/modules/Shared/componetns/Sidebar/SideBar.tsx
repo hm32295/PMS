@@ -7,7 +7,7 @@ import { FiGrid } from 'react-icons/fi';
 import { HiLogout } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { FaTasks } from "react-icons/fa";
-// import { LogOut } from 'react-feather';
+import iconChange from "../../../../assets/image/iconChangePassword.svg"
 import { AuthContext } from '../../../../context/AuthContext';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
@@ -37,6 +37,9 @@ const Sidepar = () => {
    let funTasksBoard=()=>{
     navigation('/dashboard/tasks-board')
   }
+   let funChangePassword=()=>{
+    navigation('/change-password')
+  }
   
   return (
     
@@ -64,6 +67,7 @@ const Sidepar = () => {
               {loginData?.userGroup !== "Manager" &&
                 <MenuItem icon={<FaTasks />} className="menu-item-custom" onClick={funTasksBoard}>Tasks</MenuItem>
               }
+              <MenuItem icon={<HiLogout />} className="menu-item-custom text-capitalize" onClick={funChangePassword}>change Password</MenuItem>
             </Menu>
               <div>
               <Menu iconShape="circle" >
