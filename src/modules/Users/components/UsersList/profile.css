@@ -270,3 +270,31 @@
   height: 145px;
   border-radius: 50%;
 }
+@media (max-width: 989px) {
+ 
+  .card_profile_ra2eesy {
+    padding: 20px 15px;
+    margin: 0 auto;
+    width: 100%;
+    box-shadow: none;    
+    border: none;          
+    background: transparent;
+  }
+
+
+  .group_input_profile input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  
+  .card_profile_ra2eesy {
+    min-height: auto;
+  }
+
+  
+  .container_profile_kol_7aga {
+    padding: 0 10px;
+    max-width: 100%;
+  }
+}

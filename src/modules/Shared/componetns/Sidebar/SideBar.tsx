@@ -1,81 +1,93 @@
-import  { useContext, useState } from 'react';
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import React from 'react';
+import { AiFillHome } from 'react-icons/ai';
+import { HiUsers } from 'react-icons/hi';
+import { BsGrid3X3Gap } from 'react-icons/bs';
+import { BsCalendar2Check } from 'react-icons/bs';
+import { BiLogOut } from 'react-icons/bi';
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './sidepar.css';
-import { IoHome } from 'react-icons/io5';
-import { HiOutlineUsers } from 'react-icons/hi2';
-import { FiGrid } from 'react-icons/fi';
-import { HiLogout } from 'react-icons/hi';
-import { useNavigate } from 'react-router-dom';
-import { FaTasks } from "react-icons/fa";
-// import { LogOut } from 'react-feather';
-import { AuthContext } from '../../../../context/AuthContext';
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
-const Sidepar = () => {
-  const [collapsed, setCollapsed] = useState(true);
-  let{logout, loginData}:{logout:any,loginData:any} = useContext(AuthContext);
-  
+interface SidebarProps {
+  open: boolean;
+  onToggle: () => void;
+  isSmallScreen: boolean;
+}
 
-  const toggleSidebar = () => {
-    setCollapsed(prev => !prev);
-  };
-  let navigation=useNavigate();
- 
-  let funHome=()=>{
-    navigation('/dashboard')
+const SideBar = ({ open, onToggle, isSmallScreen }: SidebarProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const menuItems = [
+    { icon: AiFillHome, label: 'Home', path: '/dashboard' },
+    { icon: HiUsers, label: 'Users', path: '/dashboard/users' },
+    { icon: BsGrid3X3Gap, label: 'Projects', path: '/dashboard/project-List' },
+    { icon: BsCalendar2Check, label: 'Tasks', path: '/dashboard/tasks-list' },
+  ];
+
+  const isActive = (path: string) => location.pathname === path;
+
+  if (isSmallScreen && !open) {
+    return null;
   }
-   let funUsers=()=>{
-    navigation('/dashboard/users')
-  }
-   let funProject=()=>{
-    navigation('/dashboard/project-List')
-  }
-   let funTasks=()=>{
-    navigation('/dashboard/tasks-list')
-  }
-   let funTasksBoard=()=>{
-    navigation('/dashboard/tasks-board')
-  }
-  
+
+  const sidebarClass = isSmallScreen 
+    ? 'sidebar-container sidebar-mobile' 
+    : `sidebar-container sidebar-desktop ${open ? 'sidebar-open' : 'sidebar-collapsed'}`;
+
   return (
+    <div className={sidebarClass}>
     
-    <Sidebar
-      className={`sidebar-root ${collapsed ? 'is-collapsed' : ''}`}
-      collapsed={collapsed}
-    >
-      <div className={`fixed position-fixed top-0 start-0 ${collapsed ? "w_Fixed_80" : "w_Fixed_250"}`}>
+      <div className="sidebar-header">
+        <button onClick={onToggle} className="toggle-button">
+          {open ? (
+            <MdKeyboardDoubleArrowLeft size={24} />
+          ) : (
+            <MdKeyboardDoubleArrowRight size={24} />
+          )}
+        </button>
+      </div>
 
      
-            <div className="sidebar-header" onClick={toggleSidebar} style={{ cursor: 'pointer' }}>
-          <h3> {collapsed ? <MdKeyboardDoubleArrowRight size={50} /> : <MdKeyboardDoubleArrowLeft size={50} />}</h3>   
-            </div>
+      <div className="sidebar-menu">
+        <nav className="menu-nav">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <button
+                key={item.path}
+                onClick={() => navigate(item.path)}
+                className={`menu-item ${isActive(item.path) ? 'active' : ''}`}
+              >
+                <div className="menu-icon">
+                  <Icon size={20} />
+                </div>
+                {(open || !isSmallScreen) && (
+                  <span className="menu-label">{item.label}</span>
+                )}
+                
+                {isActive(item.path) && (
+                  <div className="active-indicator" />
+                )}
+              </button>
+            );
+          })}
+        </nav>
+      </div>
 
-          <div className="mt-3">
-        <Menu iconShape="circle" className={`sidebar-TopItems ${collapsed ? 'sidebar-TopItems-is-collapsed' : ''}`}>
-              <MenuItem icon={<IoHome />} onClick={funHome} className="menu-item-custom">Home</MenuItem>
-              {loginData?.userGroup === "Manager" &&
-                <MenuItem icon={<HiOutlineUsers />} onClick={funUsers} className="menu-item-custom">Users</MenuItem>
-              }
-              <MenuItem icon={<FiGrid />} className="menu-item-custom"  onClick={funProject}>Projects</MenuItem>
-              {loginData?.userGroup === "Manager" &&
-                <MenuItem icon={<FaTasks />} className="menu-item-custom" onClick={funTasks}>Tasks</MenuItem>
-              }
-              {loginData?.userGroup !== "Manager" &&
-                <MenuItem icon={<FaTasks />} className="menu-item-custom" onClick={funTasksBoard}>Tasks</MenuItem>
-              }
-            </Menu>
-              <div>
-              <Menu iconShape="circle" >
-            
-                <MenuItem icon={<HiLogout />}onClick={()=> {logout();navigation("/")}} className="menu-item-custom">Logout</MenuItem>
-              </Menu>
-            </div>
+     
+      <div className="sidebar-footer">
+        <button className="menu-item logout-btn">
+          <div className="menu-icon">
+            <BiLogOut size={20} />
           </div>
-          
-     </div>
-    </Sidebar>
+          {(open || !isSmallScreen) && (
+            <span className="menu-label">Logout</span>
+          )}
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default Sidepar;
+export default SideBar;

@@ -1,37 +1,57 @@
-
-import { Outlet } from 'react-router-dom'
-import styles from './masterElement.module.css'
-import Navrar from "../../componetns/Navbar/Navbar";
+import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import './masterElement.css';
 import SideBar from '../Sidebar/SideBar';
+import Header from '../Header/Header';
+import { Nav, Navbar } from 'react-bootstrap';
+import Top_Navbar from '../Navbar/Top_Navbar';
 
+const Layout = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const isSmall = window.innerWidth < 990;
+      setIsSmallScreen(isSmall);
+      if (isSmall) setSidebarOpen(false);
+    };
 
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
-
-const MasterLayout = () => {
-    const hideHeader =
-    location.pathname === '/MasterElement/Add_Update_Resipe' ||
-    location.pathname.startsWith('/MasterElement/Add_Update_Resipe/update/');
-
+  const toggleSidebar = () => {
+    setSidebarOpen(prev => !prev);
+  };
 
   return (
-    <div className={styles.layout}>
-          
-      <aside className={styles.sidebar}>
-       <SideBar/>
-      </aside>
-      <div className={styles.main}>
-        <header className={styles.topnavbar}>
-          <Navrar/>
+    <div className="layout-container">
+      {isSmallScreen && (
+        <button onClick={toggleSidebar} className="sidebar-toggle-btn">
+          {/* icon */}
+        </button>
+      )}
+      {isSmallScreen && sidebarOpen && (
+        <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
+      )}
+
+      <SideBar open={sidebarOpen} onToggle={toggleSidebar} isSmallScreen={isSmallScreen} />
+
+      <div className={`main-content ${!isSmallScreen && sidebarOpen ? 'with-sidebar' : ''}`}>
+       
+        <header className="topnavbar">
+          <Top_Navbar onToggleSidebar={toggleSidebar} />
         </header>
-        <div className={styles.content} >
+
+       
+        <div className="page-content">
          
-    
           <Outlet />
-         
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MasterLayout
+export default Layout;
